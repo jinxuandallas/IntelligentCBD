@@ -25,7 +25,7 @@ namespace IntelligentCBD.Account
         {
             if (uc.ValidateUserName(UserName.Text))
             {
-                Label1.Text = "可以注册";
+                Label1.Text = "可以使用";
 
             }
             else

@@ -15,13 +15,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    
-    
-        <br />
-        <br />
-        
-    
-    
+  
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -31,15 +25,15 @@
                     <tr>
                         <td class="auto-style1">用户名：</td>
                         <td>
-                            <asp:TextBox ID="UserName" runat="server" AutoPostBack="True" OnTextChanged="UserName_TextChanged"></asp:TextBox>
-                            <asp:Label ID="Label1" runat="server"></asp:Label>
+                            <asp:TextBox ID="UserName" runat="server" AutoPostBack="True" OnTextChanged="UserName_TextChanged" MaxLength="30"></asp:TextBox>
+                            <asp:Label ID="Label1" runat="server" ForeColor="#FF3300"></asp:Label>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td class="auto-style1">密码：</td>
                         <td>
-                            <asp:TextBox ID="Password" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
