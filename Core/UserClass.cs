@@ -89,7 +89,7 @@ namespace Core
         }
 
         /// <summary>
-        /// 注册用户
+        /// 注册用户（已包含对主键用户名重复的验证）
         /// </summary>
         /// <param name="userName">用户名</param>
         /// <param name="password">明文密码</param>
