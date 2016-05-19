@@ -94,8 +94,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Account\PersonalDetails.aspx" />
     <Content Include="Account\RegisterUser.aspx" />
+    <Content Include="Css\StyleSheet.css" />
     <Content Include="packages.config" />
+    <Content Include="MasterPage\MainSite.Master" />
+    <Content Include="MasterPage\MenuSite.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -117,12 +121,33 @@
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\PersonalDetails.aspx.cs">
+      <DependentUpon>PersonalDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\PersonalDetails.aspx.designer.cs">
+      <DependentUpon>PersonalDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\RegisterUser.aspx.cs">
       <DependentUpon>RegisterUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\RegisterUser.aspx.designer.cs">
       <DependentUpon>RegisterUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage\MenuSite.Master.cs">
+      <DependentUpon>MenuSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\MenuSite.Master.designer.cs">
+      <DependentUpon>MenuSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage\MainSite.Master.cs">
+      <DependentUpon>MainSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\MainSite.Master.designer.cs">
+      <DependentUpon>MainSite.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

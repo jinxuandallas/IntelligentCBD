@@ -13,6 +13,8 @@ namespace IntelligentCBD.Account
         protected UserClass uc;
         protected void Page_Load(object sender, EventArgs e)
         {
+            ///将来还需加入验证码机制
+            ///
             uc = new UserClass();
             if (!IsPostBack)
             {
