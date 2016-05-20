@@ -130,13 +130,23 @@ namespace Core
 			return dataSet;
 		}
 
-		
-		/// <summary>
-		/// 运行Sql语句，并生成含有结果的DataSet实体
-		/// </summary>
-		/// <param name="Sql">要执行的Sql语句</param>
-		/// <returns>含有结果的DataSet实体</returns>
-		protected DataSet GetDataSet(string Sql )
+        protected DataSet GetDataSet(string Sql, IDataParameter[] parameters)
+        {
+            DataSet dataSet = new DataSet();
+            if (Connection.State == ConnectionState.Closed) Connection.Open();
+            SqlDataAdapter sqlDA = new SqlDataAdapter();
+            sqlDA.SelectCommand = BuildCommand(Sql, parameters);
+            sqlDA.Fill(dataSet);
+            Connection.Close();
+
+            return dataSet;
+        }
+        /// <summary>
+        /// 运行Sql语句，并生成含有结果的DataSet实体
+        /// </summary>
+        /// <param name="Sql">要执行的Sql语句</param>
+        /// <returns>含有结果的DataSet实体</returns>
+        protected DataSet GetDataSet(string Sql )
 		{
 			 DataSet dataSet = new DataSet();
 			if (Connection.State==ConnectionState.Closed) Connection.Open();

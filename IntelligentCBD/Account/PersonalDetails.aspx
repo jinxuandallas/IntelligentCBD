@@ -71,8 +71,10 @@
                 <td style="width: 100px">&nbsp;</td>
                 <td class="auto-style1" style="width: 170px">
                     <asp:Button ID="Submit" runat="server" Text="完成修改" OnClick="Submit_Click" />
+                &nbsp;</td>
+                <td>
+                    <asp:Label ID="LabelSucceed" runat="server"></asp:Label>
                 </td>
-                <td>&nbsp;</td>
             </tr>
             <!--下一步加入上传头像功能  -->
         </table>

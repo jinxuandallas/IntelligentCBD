@@ -144,7 +144,12 @@ namespace Core
             }
         }
 
-        public bool UpdateDetail(string username)
+        /// <summary>
+        /// 更新存于UserClass对象中的用户详细信息
+        /// </summary>
+        /// <param name="username">要更新的用户名</param>
+        /// <returns>返回是否更新成功</returns>
+        public bool UpdateDetails(string username)
         {
             string sql = "update [用户] set 昵称=@nickname,性别=@sex,手机号码=@phone,电子邮箱=@email,密保问题=@question,密保答案=@answer where 用户名=@username";
             int rtn=ExecuteSql(sql, new SqlParameter[] { new SqlParameter("@username",username),
@@ -158,6 +163,17 @@ namespace Core
             if (rtn == 1) return true;
             else return false;
 
+        }
+        /// <summary>
+        /// 获取用户详细信息
+        /// </summary>
+        /// <param name="username">要返回信息的用户名</param>
+        /// <returns>返回SqlDataReader对象</returns>
+        public SqlDataReader GetDetails(string username)
+        {
+            string sql = "select 昵称,性别,手机号码,电子邮箱,密保问题,密保答案 from [用户] where 用户名=@username";
+            return  GetDataReader(sql, new SqlParameter[] { new SqlParameter("@username", username) }); 
+            
         }
     }
 }
