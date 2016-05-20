@@ -2,6 +2,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <table style="width:100%;">
             <tr>
+                <td style="width: 100px; height: 20px;"></td>
+                <td style="height: 20px; width: 170px;"></td>
+                <td style="height: 20px"></td>
+            </tr>
+            <tr>
                 <td style="width: 100px">用户名：</td>
                 <td class="auto-style1" style="width: 170px">
                     <asp:Label ID="Label_Username" runat="server"></asp:Label>
@@ -58,14 +63,14 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td style="width: 100px; height: 19px;"></td>
-                <td style="height: 19px; width: 170px;"></td>
-                <td style="height: 19px"></td>
+                <td style="width: 100px; height: 20px;"></td>
+                <td style="height: 20px; width: 170px;"></td>
+                <td style="height: 20px"></td>
             </tr>
             <tr>
                 <td style="width: 100px">&nbsp;</td>
                 <td class="auto-style1" style="width: 170px">
-                    <asp:Button ID="Button1" runat="server" Text="完成修改" />
+                    <asp:Button ID="Submit" runat="server" Text="完成修改" OnClick="Submit_Click" />
                 </td>
                 <td>&nbsp;</td>
             </tr>

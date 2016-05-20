@@ -18,7 +18,7 @@ namespace IntelligentCBD.MasterPage
         {
             //测试用
             Session["Username"] = "a3";
-            if (Session["Username"] == null) Response.Redirect("~/Account/Login.aspx");
+            if (Session["Username"] == null || Session["Username"].ToString().Trim()=="") Response.Redirect("~/Account/Login.aspx");
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,6 +26,11 @@ namespace IntelligentCBD.MasterPage
             //Session["Username"] = "s345";
             //if (Session["Username"] == null) Response.Redirect("~/Account/Login.aspx");
 
+        }
+
+        protected void LoginStatus1_LoggedOut(object sender, EventArgs e)
+        {
+            Session.Remove("Username");
         }
 
         /*protected void Page_PreRender(object sender,EventArgs e)

@@ -44,7 +44,7 @@ namespace IntelligentCBD.Account
         protected void CreateUser_Click(object sender, EventArgs e)
         {
             //无需再验证一遍用户名是否可以使用，防止客户端脚本篡改，因为CreateUser方法已包括
-            bool achieve = uc.CreateUser(UserName.Text, Password.Text);
+            bool achieve = uc.CreateUser(UserName.Text, Password.Text,1);
             //Label1.Text = "";
 
             if (achieve) Response.Redirect("Login.aspx");

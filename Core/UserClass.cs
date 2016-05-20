@@ -13,6 +13,13 @@ namespace Core
 {
     public class UserClass : Database
     {
+        public string Username { get; set; }
+        public string Nickname { get; set; }
+        public string Sex { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Question { get; set; }
+        public string Answer { get; set; }
         public UserClass()
         {
 
@@ -94,7 +101,7 @@ namespace Core
         /// <param name="userName">用户名</param>
         /// <param name="password">明文密码</param>
         /// <returns>返回是否注册成功</returns>
-        public bool CreateUser(string userName, string password)
+        public bool CreateUser(string userName, string password,int accountType)
         {
             //验证用户名是否已经注册过
 
@@ -107,11 +114,12 @@ namespace Core
             //注册用户
             try
             {
-                string sql = "insert into [用户] (用户名,密码,盐值) values (@username,@password,@salt)";
+                string sql = "insert into [用户] (用户名,密码,盐值,账户类型) values (@username,@password,@salt,@type)";
                 Insert(sql, new SqlParameter[]{
                     new SqlParameter("@username",userName),
                     new SqlParameter("@password",Password),
-                    new SqlParameter("@salt",salt)
+                    new SqlParameter("@salt",salt),
+                    new SqlParameter("@type",accountType)
                 });
             }
             catch (Exception e)
@@ -134,6 +142,22 @@ namespace Core
                 if (sdr.Read()) return false;
                 else return true;
             }
+        }
+
+        public bool UpdateDetail(string username)
+        {
+            string sql = "update [用户] set 昵称=@nickname,性别=@sex,手机号码=@phone,电子邮箱=@email,密保问题=@question,密保答案=@answer where 用户名=@username";
+            int rtn=ExecuteSql(sql, new SqlParameter[] { new SqlParameter("@username",username),
+                new SqlParameter("@nickname",Nickname),
+                new SqlParameter("@sex",Sex),
+                new SqlParameter("@phone",Phone),
+                new SqlParameter("@email",Email),
+                new SqlParameter("@question",Question),
+                new SqlParameter("@answer",Answer)
+            });
+            if (rtn == 1) return true;
+            else return false;
+
         }
     }
 }

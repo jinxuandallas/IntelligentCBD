@@ -394,20 +394,20 @@ namespace Core
             return ID;
         }
 
-        protected bool Insert(string sql, IDataParameter[] parameters)
+        protected int Insert(string sql, IDataParameter[] parameters)
         {
-
+            int rtn = -1;
             if (Connection.State == ConnectionState.Closed) Connection.Open();
 
             SqlCommand com;
 
             com = BuildCommand(sql, parameters);
 
-            com.ExecuteNonQuery();
+            rtn=com.ExecuteNonQuery();
 
             //com.CommandText = sql;
 
-            return true;
+            return rtn;
         }
         /// <summary>
         /// “Ï≥£¥¶¿Ì
