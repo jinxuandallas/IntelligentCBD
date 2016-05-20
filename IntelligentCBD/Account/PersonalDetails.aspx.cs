@@ -11,19 +11,14 @@ namespace IntelligentCBD.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label_Username.Text = Session["Username"].ToString();
+            if (!IsPostBack)
+                Label_Username.Text = Session["Username"].ToString();
             //Session["Username"] = "s345";
             //Label_Username.Text = Session["Username"].ToString();
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void Page_PreRenderComplete(object sender, EventArgs e)
+        /*protected void Page_PreRenderComplete(object sender, EventArgs e)
         {
-            //Label_Username.Text = Session["Username"].ToString();
-        }
+            Label_Username.Text = Session["Username"].ToString();
+        }*/
     }
 }
