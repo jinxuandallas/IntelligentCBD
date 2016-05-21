@@ -47,7 +47,8 @@ namespace IntelligentCBD.Account
             bool achieve = uc.CreateUser(UserName.Text, Password.Text,1);
             //Label1.Text = "";
 
-            if (achieve) Response.Redirect("Login.aspx");
+            //跨目录要用@"..\default.aspx"的形式
+            if (achieve) Response.Redirect("Login.aspx?url=" + System.Web.HttpUtility.UrlEncode(@"..\default.aspx"));
             else Label1.Text = "注册不成功";
         }
     }

@@ -17,7 +17,7 @@ namespace IntelligentCBD.MasterPage
         protected void Page_Init(object sender, EventArgs e)
         {
             //测试用
-            Session["Username"] = "a3";
+            Session["Username"] = System.Configuration.ConfigurationManager.AppSettings["username"];
             if (Session["Username"] == null || Session["Username"].ToString().Trim()=="") Response.Redirect("~/Account/Login.aspx");
         }
         protected void Page_Load(object sender, EventArgs e)

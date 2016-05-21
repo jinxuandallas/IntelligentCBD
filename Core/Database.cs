@@ -17,7 +17,7 @@ namespace Core
 		/// </summary>
 		protected SqlConnection Connection;
 		private string connectionString;
-		public SqlDataReader dr;
+		private SqlDataReader dr;
 
 		/// <summary>
 		/// 默认构造函数。
@@ -404,6 +404,7 @@ namespace Core
             return ID;
         }
 
+        /*
         protected int Insert(string sql, IDataParameter[] parameters)
         {
             int rtn = -1;
@@ -419,6 +420,8 @@ namespace Core
 
             return rtn;
         }
+        */
+
         /// <summary>
         /// 异常处理
         /// </summary>
