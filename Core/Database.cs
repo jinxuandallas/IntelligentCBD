@@ -17,7 +17,7 @@ namespace Core
 		/// </summary>
 		protected SqlConnection Connection;
 		private string connectionString;
-		private SqlDataReader dr;
+//		private SqlDataReader dr;
 
 		/// <summary>
 		/// 默认构造函数。
