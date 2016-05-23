@@ -35,13 +35,22 @@ namespace IntelligentCBD.Account
             //此处留着以后处理
         }
 
-        protected void SubmitSecret_Click(object sender, EventArgs e)
+        protected void Next_Click(object sender, EventArgs e)
         {
             //还未测试
             if (uc.ValidateAnswer(Session["Username"].ToString(), TextBoxAnswer.Text))
                 MultiView1.ActiveViewIndex = 2;
             else
                 LabelNotice.Text = "答案不正确";
+        }
+
+        protected void SubmitChangepassword_Click(object sender, EventArgs e)
+        {
+            //更新密码
+            if (uc.UpdatePassword(Session["Username"].ToString(), NewPassword.Text))
+                LabelPasswordNotice.Text = "密码修改成功";
+            else
+                LabelPasswordNotice.Text = "密码修改失败";
         }
     }
 }

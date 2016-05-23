@@ -33,10 +33,14 @@ namespace IntelligentCBD.Account
                 Response.Redirect(ViewState["UrlReferrer"].ToString());
                 */
 
-            if (Request.QueryString["url"]!=null) Response.Redirect(System.Web.HttpUtility.UrlDecode(Request.QueryString["url"].ToString()));
+            //判断是否有QueryString["url"]，如有直接跳转到参数指定的页面
+            if (Request.QueryString["url"]!=null)
+                Response.Redirect(System.Web.HttpUtility.UrlDecode(Request.QueryString["url"].ToString()));
+            
             //返回登录前网页
             if (ViewState["UrlReferrer"] != null)
                 UserLogin.DestinationPageUrl=ViewState["UrlReferrer"].ToString();
+            
             //验证是否登陆成功
             e.Authenticated = uc.ValidateUser(UserLogin.UserName, UserLogin.Password);
             Session["Username"] = UserLogin.UserName;
