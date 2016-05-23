@@ -2,7 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table style="width: 100%;">
         <tr>
-            <td class="auto-style1" style="width: 100px">&nbsp;&nbsp; 修改密码</td>
+                <td class="TableTitle">修改密码</td>
+                <td style="height: 20px;"></td>
+                <td style="height: 20px"></td>
+            </tr
+        <tr>
+            <td class="auto-style1" style="width: 100px">&nbsp;&nbsp; </td>
             <td style="width: 170px">&nbsp;</td>
             <td>&nbsp;</td>
         </tr>

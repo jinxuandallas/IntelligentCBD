@@ -24,6 +24,11 @@
         .auto-style5 {
             height: 23px;
         }
+        .auto-style6 {
+            font-weight: bold;
+            font-size: 1.4em;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -38,6 +43,16 @@
             <ContentTemplate>
                 <!--<asp:TextBox ID="TextBox1" runat="server" AutoPostBack="True" onblur="alert('xx')" OnTextChanged="UserName_TextChanged"></asp:TextBox>-->
                 <table style="width:100%;">
+                   <tr> 
+                    <td style="background-color: #0066ff; text-align: center; height: 20px;" class="auto-style6">注册用户</td>
+                <td style="height: 20px;"></td>
+                <td style="height: 20px"></td>
+            </tr>
+            <tr>
+                <td style="height: 20px; "></td>
+                <td style="height: 20px; "></td>
+                <td style="height: 20px; "></td>
+            </tr>
                     <tr>
                         <td class="auto-style2">用户名：</td>
                         <td class="auto-style3">
