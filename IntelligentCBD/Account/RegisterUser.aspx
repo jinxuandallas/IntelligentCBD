@@ -43,6 +43,7 @@
                         <td class="auto-style3">
                             <asp:TextBox ID="UserName" runat="server" AutoPostBack="True" OnTextChanged="UserName_TextChanged" MaxLength="30"></asp:TextBox>
                             <asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="UserName" Display="Dynamic" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="UserName" Display="Dynamic" ErrorMessage="4-20个字符（字母、数字、下划线）" ForeColor="Red" ValidationExpression="[a-zA-Z]\w{3,19}"></asp:RegularExpressionValidator>
                         </td>
                         <td class="auto-style3">&nbsp;</td>
@@ -51,6 +52,7 @@
                         <td class="auto-style4">密 码：</td>
                         <td class="auto-style5">
                             <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Password" Display="Dynamic" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="Password" Display="Dynamic" ErrorMessage="6-16个字符（字母、数字、下划线）" ForeColor="Red" ValidationExpression="[a-zA-Z]\w{5,15}"></asp:RegularExpressionValidator>
                         </td>
                         <td class="auto-style5"></td>

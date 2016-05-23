@@ -33,6 +33,7 @@ namespace IntelligentCBD.Account
                 Response.Redirect(ViewState["UrlReferrer"].ToString());
                 */
 
+            if (Request.QueryString["url"]!=null) Response.Redirect(System.Web.HttpUtility.UrlDecode(Request.QueryString["url"].ToString()));
             //返回登录前网页
             if (ViewState["UrlReferrer"] != null)
                 UserLogin.DestinationPageUrl=ViewState["UrlReferrer"].ToString();

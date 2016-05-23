@@ -17,7 +17,7 @@ namespace Core
 		/// </summary>
 		protected SqlConnection Connection;
 		private string connectionString;
-		public SqlDataReader dr;
+//		private SqlDataReader dr;
 
 		/// <summary>
 		/// 默认构造函数。
@@ -130,13 +130,23 @@ namespace Core
 			return dataSet;
 		}
 
-		
-		/// <summary>
-		/// 运行Sql语句，并生成含有结果的DataSet实体
-		/// </summary>
-		/// <param name="Sql">要执行的Sql语句</param>
-		/// <returns>含有结果的DataSet实体</returns>
-		protected DataSet GetDataSet(string Sql )
+        protected DataSet GetDataSet(string Sql, IDataParameter[] parameters)
+        {
+            DataSet dataSet = new DataSet();
+            if (Connection.State == ConnectionState.Closed) Connection.Open();
+            SqlDataAdapter sqlDA = new SqlDataAdapter();
+            sqlDA.SelectCommand = BuildCommand(Sql, parameters);
+            sqlDA.Fill(dataSet);
+            Connection.Close();
+
+            return dataSet;
+        }
+        /// <summary>
+        /// 运行Sql语句，并生成含有结果的DataSet实体
+        /// </summary>
+        /// <param name="Sql">要执行的Sql语句</param>
+        /// <returns>含有结果的DataSet实体</returns>
+        protected DataSet GetDataSet(string Sql )
 		{
 			 DataSet dataSet = new DataSet();
 			if (Connection.State==ConnectionState.Closed) Connection.Open();
@@ -394,21 +404,24 @@ namespace Core
             return ID;
         }
 
-        protected bool Insert(string sql, IDataParameter[] parameters)
+        /*
+        protected int Insert(string sql, IDataParameter[] parameters)
         {
-
+            int rtn = -1;
             if (Connection.State == ConnectionState.Closed) Connection.Open();
 
             SqlCommand com;
 
             com = BuildCommand(sql, parameters);
 
-            com.ExecuteNonQuery();
+            rtn=com.ExecuteNonQuery();
 
             //com.CommandText = sql;
 
-            return true;
+            return rtn;
         }
+        */
+
         /// <summary>
         /// 异常处理
         /// </summary>

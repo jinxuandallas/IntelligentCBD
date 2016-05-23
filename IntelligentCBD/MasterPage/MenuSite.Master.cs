@@ -9,25 +9,28 @@ namespace IntelligentCBD.MasterPage
 {
     public partial class MenuSite : System.Web.UI.MasterPage
     {
+        /// <summary>
+        /// 在此处添加代码是要早于内容页的Page_Load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Init(object sender, EventArgs e)
         {
             //测试用
-            //Session["Username"] = "s345";
-            if (Session["Username"] == null||Session["Username"].ToString().Trim()=="") Response.Redirect("~/Account/Login.aspx");
+            Session["Username"] = System.Configuration.ConfigurationManager.AppSettings["username"];
+            if (Session["Username"] == null || Session["Username"].ToString().Trim()=="") Response.Redirect("~/Account/Login.aspx");
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*//测试用
-            Session["Username"] = "s345";
-            if (Session["Username"] == null) Response.Redirect("~/Account/Login.aspx");
-            */
+            //测试用
+            //Session["Username"] = "s345";
+            //if (Session["Username"] == null) Response.Redirect("~/Account/Login.aspx");
+
         }
 
         protected void LoginStatus1_LoggedOut(object sender, EventArgs e)
         {
-            //注意测试用的Session["Username"] = "s345";会扰乱Session赋值行为
-            Session["Username"] = null;
-            
+            Session.Remove("Username");
         }
 
         /*protected void Page_PreRender(object sender,EventArgs e)

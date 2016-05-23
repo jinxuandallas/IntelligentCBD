@@ -13,6 +13,13 @@ namespace Core
 {
     public class UserClass : Database
     {
+        public string Username { get; set; }
+        public string Nickname { get; set; }
+        public string Sex { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Question { get; set; }
+        public string Answer { get; set; }
         public UserClass()
         {
 
@@ -94,7 +101,7 @@ namespace Core
         /// <param name="userName">用户名</param>
         /// <param name="password">明文密码</param>
         /// <returns>返回是否注册成功</returns>
-        public bool CreateUser(string userName, string password)
+        public bool CreateUser(string userName, string password,int accountType)
         {
             //验证用户名是否已经注册过
 
@@ -105,19 +112,16 @@ namespace Core
             Password = TransformPassword(password, ref salt);
 
             //注册用户
-            try
-            {
-                string sql = "insert into [用户] (用户名,密码,盐值) values (@username,@password,@salt)";
-                Insert(sql, new SqlParameter[]{
+            
+            string sql = "insert into [用户] (用户名,密码,盐值,账户类型) values (@username,@password,@salt,@type)";
+            ExecuteSql(sql, new SqlParameter[]{
                     new SqlParameter("@username",userName),
                     new SqlParameter("@password",Password),
-                    new SqlParameter("@salt",salt)
-                });
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+                    new SqlParameter("@salt",salt),
+                    new SqlParameter("@type",accountType)
+            });
+            
+            
             return true;
         }
 
@@ -134,6 +138,91 @@ namespace Core
                 if (sdr.Read()) return false;
                 else return true;
             }
+        }
+
+        /// <summary>
+        /// 更新存于UserClass对象中的用户详细信息
+        /// </summary>
+        /// <param name="username">要更新的用户名</param>
+        /// <returns>返回是否更新成功</returns>
+        public bool UpdateDetails(string username)
+        {
+            string sql = "update [用户] set 昵称=@nickname,性别=@sex,手机号码=@phone,电子邮箱=@email,密保问题=@question,密保答案=@answer where 用户名=@username";
+            int rtn=ExecuteSql(sql, new SqlParameter[] { new SqlParameter("@username",username),
+                new SqlParameter("@nickname",Nickname),
+                new SqlParameter("@sex",Sex),
+                new SqlParameter("@phone",Phone),
+                new SqlParameter("@email",Email),
+                new SqlParameter("@question",Question),
+                new SqlParameter("@answer",Answer)
+            });
+            if (rtn == 1) return true;
+            else return false;
+
+        }
+        /// <summary>
+        /// 获取用户详细信息
+        /// </summary>
+        /// <param name="username">要返回信息的用户名</param>
+        /// <returns>返回SqlDataReader对象</returns>
+        public SqlDataReader GetDetails(string username)
+        {
+            string sql = "select 昵称,性别,手机号码,电子邮箱,密保问题,密保答案 from [用户] where 用户名=@username";
+            return  GetDataReader(sql, new SqlParameter[] { new SqlParameter("@username", username) }); 
+            
+        }
+
+        /// <summary>
+        /// 更换密码
+        /// </summary>
+        /// <param name="username">要更换的用户名</param>
+        /// <param name="newPassowrd">新的密码</param>
+        /// <returns>更新是否成功</returns>
+        public bool UpdatePassword(string username,string newPassowrd)
+        {
+            string password, sql,salt = null;
+            //获取新的密码和盐值
+            password = TransformPassword(newPassowrd,ref salt);
+
+            //更新新秘密和新盐值
+            sql = "update [用户] set 密码=@password,盐值=@salt where 用户名=@username";
+
+            int rtn = ExecuteSql(sql, new SqlParameter[] { new SqlParameter("@username",username),
+            new SqlParameter("@password",password),
+            new SqlParameter("@salt",salt)});
+            if (rtn == 1) return true;
+            else return false;
+        }
+
+        /// <summary>
+        /// 获取密保问题
+        /// </summary>
+        /// <param name="username">要获取密保问题的用户名</param>
+        /// <returns>返回密保问题</returns>
+        public string GetQuestion(string username)
+        {
+            string sql = "select 密保问题 from [用户] where 用户名=@username";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@username", username) }))
+            {
+                if (sdr.Read())
+                    return sdr[0].ToString();
+                else
+                    return null;
+            }
+        }
+
+        public bool ValidateAnswer(string username,string answer)
+        {
+            string sql = "select 用户名 from [用户] where 用户名=@username and 密保答案=@answer";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@username", username), new SqlParameter("@answer", answer) }))
+            {
+                if(sdr.Read())
+                {
+                    if (username == sdr[0].ToString())
+                        return true;
+                }
+            }
+            return false;
         }
     }
 }
