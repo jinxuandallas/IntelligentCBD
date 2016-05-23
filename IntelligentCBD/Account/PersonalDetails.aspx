@@ -64,7 +64,9 @@
             </tr>
             <tr>
                 <td style="width: 100px; height: 20px;"></td>
-                <td style="height: 20px; width: 170px;"></td>
+                <td style="height: 20px; width: 170px;">
+                    <asp:Label ID="LabelSucceed" runat="server" ForeColor="Red"></asp:Label>
+                </td>
                 <td style="height: 20px"></td>
             </tr>
             <tr>
@@ -73,8 +75,7 @@
                     <asp:Button ID="Submit" runat="server" Text="完成修改" OnClick="Submit_Click" />
                 &nbsp;</td>
                 <td>
-                    <asp:Label ID="LabelSucceed" runat="server"></asp:Label>
-                </td>
+                    &nbsp;</td>
             </tr>
             <!--下一步加入上传头像功能  -->
         </table>
