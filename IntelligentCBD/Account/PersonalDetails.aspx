@@ -2,7 +2,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <table style="width:100%;">
             <tr>
-                <td style="width: 100px; height: 20px;"></td>
+                <td style="width: 100px; height: 20px;">用户信息</td>
                 <td style="height: 20px; width: 170px;"></td>
                 <td style="height: 20px"></td>
             </tr>
