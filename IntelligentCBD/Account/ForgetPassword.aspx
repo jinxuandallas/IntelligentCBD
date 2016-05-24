@@ -10,12 +10,25 @@
          .auto-style6 {
              width: 25px;
          }
-         .auto-style7 {
-             width: 80px;
-         }
-        
+                 
          .auto-style8 {
              width: 108px;
+         }
+        
+        
+         .auto-style10 {
+             height: 19px;
+         }
+         .auto-style11 {
+             background-color: #0066ff;
+             color: white;
+             font-size: 1.4em;
+             font-weight: bolder;
+             text-align: center;
+             width: 100px;
+         }
+         .auto-style12 {
+             width: 100px;
          }
         
         
@@ -24,52 +37,45 @@
         <asp:View ID="Secret" runat="server">
             <table style="width:100%;">
                 <tr>
-                <td class="TableTitle" colspan="2">忘记密码</td>
+                <td class="auto-style11">忘记密码</td>
                 <td style="height: 20px"></td>
             </tr>
                 <tr>
-                    <td class="auto-style6">&nbsp;</td>
-                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style12">&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style6">&nbsp;</td>
-                    <td colspan="2">请输入正确的密保答案</td>
+                    <td class="auto-style10" colspan="2">请输入正确的密保答案</td>
+                    <td class="auto-style10"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style12">&nbsp;</td>
+                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style6">&nbsp;</td>
-                    <td class="auto-style7">&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style6">&nbsp;</td>
-                    <td class="auto-style7">密保问题：</td>
+                    <td class="auto-style12">&nbsp; 密保问题：</td>
                     <td colspan="2">
                         <asp:Label ID="LabelQuestion" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style6">&nbsp;</td>
-                    <td class="auto-style7">密保答案</td>
+                    <td class="auto-style12">&nbsp; 密保答案：</td>
                     <td>
                         <asp:TextBox ID="TextBoxAnswer" runat="server" MaxLength="50" Width="200px"></asp:TextBox>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style6">&nbsp;</td>
-                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style12">&nbsp;</td>
                     <td>
                         <asp:Label ID="LabelNotice" runat="server" ForeColor="Red"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style6">&nbsp;</td>
-                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style12">&nbsp;</td>
                     <td>
                         <asp:Button ID="Next" runat="server" OnClick="Next_Click" Text="下一步" />
                     </td>

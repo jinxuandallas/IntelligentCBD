@@ -105,6 +105,7 @@
     <Content Include="MasterPage\MainSite.Master" />
     <Content Include="MasterPage\MenuSite.Master" />
     <Content Include="IndividualSite.sitemap" />
+    <Content Include="CompanySite.sitemap" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

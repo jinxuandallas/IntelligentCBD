@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Core;
 
 namespace IntelligentCBD.MasterPage
 {
@@ -18,7 +19,29 @@ namespace IntelligentCBD.MasterPage
         {
             //测试用
             Session["Username"] = System.Configuration.ConfigurationManager.AppSettings["username"];
-            if (Session["Username"] == null || Session["Username"].ToString().Trim()=="") Response.Redirect("~/Account/Login.aspx");
+            if (Session["Username"] == null || Session["Username"].ToString().Trim()=="")
+                Response.Redirect("~/Account/Login.aspx");
+            if(!IsPostBack)
+            {
+                CompanyClass cc = new CompanyClass();
+                string type = cc.GetAccountType(Session["Username"].ToString());
+                //为不同的账户类型绑定不同的站点地图
+                switch (type)
+                {
+                    case "个人":
+                        SiteMapDataSource1.SiteMapProvider = "Individualsitemap";
+                        break;
+                    //商户和管理员共用Companysitemap站点地图
+                    case "商户":
+                    case "管理员":
+                        SiteMapDataSource1.SiteMapProvider = "Companysitemap";
+                        break;
+                    default:
+                        Response.Redirect("~/Account/Login.aspx");
+                        break;
+                }
+                
+            }
         }
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -37,7 +37,7 @@
                     <td style="padding: 0px; background-color: #0066FF;" class="auto-style2"></td>
                     <td style="padding: 0px; background-color: #0066FF;" class="auto-style4"></td>
                     <td style="padding: 0px; background-color: #0066FF; color: #FFFFFF;" class="auto-style3">
-                        <asp:LoginName ID="LoginName1" runat="server" Font-Size="15px" FormatString="你好，{0}"/>
+                        <asp:LoginName ID="LoginName1" runat="server" Font-Size="15px" FormatString="您好，{0}"/>
 &nbsp;<asp:LoginStatus ID="LoginStatus1" runat="server" Font-Size="14px" LogoutPageUrl="~\default.aspx" ForeColor="White" LogoutAction="RedirectToLoginPage" LogoutText="退出" OnLoggedOut="LoginStatus1_LoggedOut" />
                     &nbsp;<a href="~\Question\Question.aspx" style="font-size:14px; color: white">反馈问题</a></td>
 
@@ -49,7 +49,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style1" style="vertical-align:top">
-                        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" StaticDisplayLevels="2" BackColor="#B5C7DE" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="1.1em" ForeColor="#284E98" StaticSubMenuIndent="50px">
+                        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" StaticDisplayLevels="2" BackColor="#B5C7DE" DynamicHorizontalOffset="3" Font-Names="Verdana" Font-Size="1.1em" ForeColor="#284E98" StaticSubMenuIndent="50px">
                            <LevelMenuItemStyles>
                                 <asp:MenuItemStyle BackColor="#0066ff" Font-Underline="False" ForeColor="White" Width="150px" />
                            </LevelMenuItemStyles>
@@ -79,7 +79,7 @@
         
        
     </div>
-        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="Individualsitemap" />
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="Individualsitemap" ShowStartingNode="False" />
     </form>
 </body>
 </html>
