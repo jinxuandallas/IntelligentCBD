@@ -100,7 +100,7 @@
     <Content Include="Account\RegisterUser.aspx" />
     <Content Include="App_Data\IntelligentCBD.mdf" />
     <Content Include="App_Data\IntelligentCBD_log.ldf" />
-    <Content Include="Css\StyleSheet.css" />
+    <Content Include="Css\MainStyleSheet.css" />
     <Content Include="packages.config" />
     <Content Include="MasterPage\MainSite.Master" />
     <Content Include="MasterPage\MenuSite.Master" />
@@ -194,7 +194,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>5419</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5419/</IISUrl>
+          <IISUrl>http://localhost:5429/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
