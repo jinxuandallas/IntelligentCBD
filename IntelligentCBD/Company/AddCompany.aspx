@@ -105,13 +105,13 @@
                     <asp:Label ID="LabelSucceed" runat="server" ForeColor="Red"></asp:Label>
                 </td>
                 <td style="height: 20px; width: 80px;"></td>
-                <td style="height: 20px; width: 100px;">&nbsp;</td>
-                <td style="height: 20px">&nbsp;</td>
+                <td style="height: 20px; width: 100px;"></td>
+                <td style="height: 20px"></td>
             </tr>
             <tr>
                 <td style="width: 100px; height: 20px;"></td>
                 <td style="height: 20px; " colspan="2">
-                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="SingleParagraph" ForeColor="Red" />
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
                 </td>
                 <td style="height: 20px; width: 100px;"></td>
                 <td style="height: 20px"></td>
