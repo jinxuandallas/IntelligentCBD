@@ -100,6 +100,7 @@
     <Content Include="Account\RegisterUser.aspx" />
     <Content Include="App_Data\IntelligentCBD.mdf" />
     <Content Include="App_Data\IntelligentCBD_log.ldf" />
+    <Content Include="Company\AddCompany.aspx" />
     <Content Include="Css\MainStyleSheet.css" />
     <Content Include="packages.config" />
     <Content Include="MasterPage\MainSite.Master" />
@@ -155,6 +156,13 @@
     <Compile Include="Account\RegisterUser.aspx.designer.cs">
       <DependentUpon>RegisterUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Company\AddCompany.aspx.cs">
+      <DependentUpon>AddCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\AddCompany.aspx.designer.cs">
+      <DependentUpon>AddCompany.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage\MenuSite.Master.cs">
       <DependentUpon>MenuSite.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -180,6 +188,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
