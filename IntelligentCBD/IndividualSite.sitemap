@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title=""  description="">
     <siteMapNode url="" title="账户信息"  description="">
         <siteMapNode url="~/Account/PersonalDetails.aspx" title="个人信息"  description="" />
         <siteMapNode url="~/Account/ChangePassword.aspx" title="修改密码"  description="" />
     </siteMapNode>
+    <siteMapNode url="" title="企业信息"  description="">
+        <siteMapNode url="~/Account/ForgetPassword.aspx" title="添加企业信息"  description="" />
+    </siteMapNode>
+  </siteMapNode>
 </siteMap>
