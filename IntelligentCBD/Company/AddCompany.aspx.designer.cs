@@ -85,13 +85,13 @@ namespace IntelligentCBD.Company {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator4;
         
         /// <summary>
-        /// TextBox_Nickname2 控件。
+        /// TextBox_RoomNum 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_Nickname2;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_RoomNum;
         
         /// <summary>
         /// TextBox_Address 控件。
@@ -103,13 +103,22 @@ namespace IntelligentCBD.Company {
         protected global::System.Web.UI.WebControls.TextBox TextBox_Address;
         
         /// <summary>
-        /// DropDownList1 控件。
+        /// DropDownList_Vector 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_Vector;
+        
+        /// <summary>
+        /// SqlDataSourceVector 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVector;
         
         /// <summary>
         /// TextBox1 控件。
@@ -148,6 +157,15 @@ namespace IntelligentCBD.Company {
         protected global::System.Web.UI.WebControls.TextBox TextBox_RegistrationDate;
         
         /// <summary>
+        /// TextBox_Contact 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox_Contact;
+        
+        /// <summary>
         /// TextBox_Phone 控件。
         /// </summary>
         /// <remarks>
@@ -155,15 +173,6 @@ namespace IntelligentCBD.Company {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox_Phone;
-        
-        /// <summary>
-        /// RegularExpressionValidator1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
         /// TextBox_Email 控件。
@@ -175,40 +184,13 @@ namespace IntelligentCBD.Company {
         protected global::System.Web.UI.WebControls.TextBox TextBox_Email;
         
         /// <summary>
-        /// RegularExpressionValidator2 控件。
+        /// TextBox_QQ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
-        
-        /// <summary>
-        /// TextBox_Question 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_Question;
-        
-        /// <summary>
-        /// TextBox_Answer 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_Answer;
-        
-        /// <summary>
-        /// LabelSucceed 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelSucceed;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_QQ;
         
         /// <summary>
         /// ValidationSummary1 控件。
@@ -220,12 +202,30 @@ namespace IntelligentCBD.Company {
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
         
         /// <summary>
-        /// Submit 控件。
+        /// elm1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Submit;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea elm1;
+        
+        /// <summary>
+        /// LabelSucceed 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelSucceed;
+        
+        /// <summary>
+        /// Next 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Next;
     }
 }
