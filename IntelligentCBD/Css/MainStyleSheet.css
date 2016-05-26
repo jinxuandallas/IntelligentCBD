@@ -11,3 +11,6 @@ body { font-size:15px;
  .text {
         resize:none
     }
+ .SearchNotice{
+     color:white; background-color: #ff6600; font-size: 12px;
+ }
