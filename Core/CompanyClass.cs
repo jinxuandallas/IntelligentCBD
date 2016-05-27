@@ -8,8 +8,26 @@ using System.Data.SqlClient;
 
 namespace Core
 {
-    public class CompanyClass:Database
+    public class CompanyClass : Database
     {
+        public Guid ID { get; set; }
+        public string CompanyName {get;set;}
+        public long Capital { get; set; }
+        public string Industry { get; set; }
+        public int Area { get; set; }
+        public string RoomNum { get; set; }
+        public string Address { get; set; }
+        public string Vector { get; set; }
+        public string Introduction { get; set; }
+
+        public string BusinessScope { get; set; }
+        public string RegisteredAddress { get; set; }
+        public string RegistrationDate { get; set; }
+        public string Contact { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string QQ { get; set; }
+        public string Content { get; set; }
         public CompanyClass()
         {
 

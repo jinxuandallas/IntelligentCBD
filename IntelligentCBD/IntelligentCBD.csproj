@@ -183,6 +183,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Upload\Upload.aspx.cs">
       <DependentUpon>Upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Upload\Upload.aspx.designer.cs">
       <DependentUpon>Upload.aspx</DependentUpon>

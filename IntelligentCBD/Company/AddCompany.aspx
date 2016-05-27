@@ -36,7 +36,7 @@
                     <asp:TextBox ID="TextBox_Capital" runat="server" MaxLength="7" TextMode="Number" Width="100px"></asp:TextBox>
                     <asp:DropDownList ID="DropDownList_Units" runat="server">
                         <asp:ListItem>亿</asp:ListItem>
-                        <asp:ListItem>万</asp:ListItem>
+                        <asp:ListItem Selected="True">万</asp:ListItem>
                         <asp:ListItem>千</asp:ListItem>
                     </asp:DropDownList>
                 </td>
@@ -82,13 +82,13 @@
                 <td style="width: 90px; height: 160px;">企业简介：</td>
                 <td class="auto-style2" style="height: 160px;" colspan="2"><span class="SearchNotice">此处信息可被检索出</span>
                     <br />
-                    <asp:TextBox ID="TextBox1" runat="server" CssClass="text" Height="130px" TextMode="MultiLine" Width="225px" MaxLength="500"></asp:TextBox>
+                    <asp:TextBox ID="TextBox_Introduction" runat="server" CssClass="text" Height="130px" TextMode="MultiLine" Width="225px" MaxLength="500"></asp:TextBox>
                 </td>
                 <td style="width: 90px; height: 160px">
                     经营范围：</td>
                 <td style="height: 160px" class="auto-style3"><span class="SearchNotice">此处信息可被检索出</span>
                     <br />
-                    <asp:TextBox ID="TextBox2" runat="server"  CssClass="text" Height="130px" TextMode="MultiLine" Width="225px" MaxLength="500"></asp:TextBox>
+                    <asp:TextBox ID="TextBox_BusinessScope" runat="server"  CssClass="text" Height="130px" TextMode="MultiLine" Width="225px" MaxLength="500"></asp:TextBox>
                 </td>
                 <td style="height: 160px" class="auto-style3">
                     </td>
@@ -159,7 +159,7 @@
             </tr>
             <tr>
                 <td colspan="5" >
-                   <textarea name="content" id="elm1" class="xheditor {tools:'simple',upImgUrl:'upload/upload.aspx',upImgExt:'jpg,jpeg,gif,png'}" runat="server" style="height: 300px; width: 650px"></textarea></td>
+                   <textarea name="content" id="elm1" class="xheditor {tools:'simple',upImgUrl:'upload/upload.aspx',upImgExt:'jpg,jpeg,gif,png'}" runat="server" maxlength="1000000" style="height: 300px; width: 680px"></textarea></td>
                 <td style="height: 21px">
                     &nbsp;</td>
             </tr>
@@ -180,7 +180,7 @@
             <tr>
                 <td style="width: 90px">&nbsp;</td>
                 <td class="auto-style1" style="width: 150px">
-                    <asp:Button ID="Next" runat="server" Text="下一步" />
+                    <asp:Button ID="Next" runat="server" Text="下一步" OnClick="Next_Click" />
                 &nbsp;</td>
                 <td style="width: 80px">
                     &nbsp;</td>
