@@ -14,6 +14,12 @@ namespace Core
         {
 
         }
+
+        /// <summary>
+        /// 获取用户的账户类型
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <returns>返回账户类型字符串</returns>
         public string GetAccountType(string username)
         {
             string sql = "select 类型 from [用户视图] where 用户名=@username";
