@@ -101,6 +101,7 @@
     <Content Include="App_Data\IntelligentCBD.mdf" />
     <Content Include="App_Data\IntelligentCBD_log.ldf" />
     <Content Include="Company\AddCompany.aspx" />
+    <Content Include="Company\Credentials.aspx" />
     <Content Include="Css\MainStyleSheet.css" />
     <Content Include="js\jquery-1.4.4.min.js" />
     <Content Include="js\xheditor-1.2.2.min.js" />
@@ -165,6 +166,13 @@
     </Compile>
     <Compile Include="Company\AddCompany.aspx.designer.cs">
       <DependentUpon>AddCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\Credentials.aspx.cs">
+      <DependentUpon>Credentials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\Credentials.aspx.designer.cs">
+      <DependentUpon>Credentials.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage\MenuSite.Master.cs">
       <DependentUpon>MenuSite.Master</DependentUpon>

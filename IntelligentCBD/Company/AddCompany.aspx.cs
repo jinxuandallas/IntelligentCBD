@@ -48,6 +48,15 @@ namespace IntelligentCBD.Company
             cc.QQ = TextBox_QQ.Text;
             cc.Content = elm1.InnerText;
 
+            Guid id=cc.AddCompanyBaseInformation(Session["username"].ToString());
+            Session["companyID"] = id;
+            //将用户的账号类型从个人改为商户
+            UserClass uc = new UserClass();
+            if (uc.UpdateAccountType(Session["username"].ToString(), 2) && id != Guid.Empty)
+                Response.Redirect("Credentials.aspx");
+            else
+                LabelNotice.Text = "添加失败";
+
             //考虑到数据库存储问题，此处不使用Server.HtmlEncode方法，因为会增大数据库存储容量造成溢出错误；
             /*
             cc.CompanyName = Server.HtmlEncode(TextBox_CompanyName.Text);

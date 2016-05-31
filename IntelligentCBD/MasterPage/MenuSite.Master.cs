@@ -19,6 +19,7 @@ namespace IntelligentCBD.MasterPage
         {
             //测试用
             Session["Username"] = System.Configuration.ConfigurationManager.AppSettings["username"];
+
             if (Session["Username"] == null || Session["Username"].ToString().Trim()=="")
                 Response.Redirect("~/Account/Login.aspx");
             if(!IsPostBack)

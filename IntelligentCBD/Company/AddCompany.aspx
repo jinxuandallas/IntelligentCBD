@@ -166,7 +166,7 @@
             <tr>
                 <td style="width: 90px">&nbsp;</td>
                 <td class="auto-style1" style="width: 150px">
-                    <asp:Label ID="LabelSucceed" runat="server" ForeColor="Red"></asp:Label>
+                    <asp:Label ID="LabelNotice" runat="server" ForeColor="Red"></asp:Label>
                 </td>
                 <td style="width: 80px">
                     &nbsp;</td>
