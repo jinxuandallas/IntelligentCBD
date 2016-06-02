@@ -141,7 +141,7 @@ namespace Core
         }
 
         /// <summary>
-        /// 更新存于UserClass对象中的用户详细信息
+        /// 更新存于UserClass对象中的用户详细信息（更新时务必保证所有数据保存于UserClass类的访问器中）
         /// </summary>
         /// <param name="username">要更新的用户名</param>
         /// <returns>返回是否更新成功</returns>
