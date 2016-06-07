@@ -59,7 +59,7 @@
                             <asp:TextBox ID="UserName" runat="server" AutoPostBack="True" OnTextChanged="UserName_TextChanged" MaxLength="30"></asp:TextBox>
                             <asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="UserName" Display="Dynamic" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="UserName" Display="Dynamic" ErrorMessage="*" ForeColor="Red" ValidationExpression="^[a-zA-Z0-9][a-zA-Z0-9_@.]{3,19}$"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="UserName" Display="Dynamic" ErrorMessage="4-20位字符" ForeColor="Red" ValidationExpression="^[a-zA-Z0-9][a-zA-Z0-9_@.]{3,19}$"></asp:RegularExpressionValidator>
                         </td>
                         <td class="auto-style3">&nbsp;</td>
                     </tr>
