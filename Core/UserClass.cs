@@ -141,7 +141,7 @@ namespace Core
         }
 
         /// <summary>
-        /// 更新存于UserClass对象中的用户详细信息
+        /// 更新存于UserClass对象中的用户详细信息（更新时务必保证所有数据保存于UserClass类的访问器中）
         /// </summary>
         /// <param name="username">要更新的用户名</param>
         /// <returns>返回是否更新成功</returns>
@@ -211,6 +211,12 @@ namespace Core
             }
         }
 
+        /// <summary>
+        /// 验证密保问题答案
+        /// </summary>
+        /// <param name="username">要验证的密保问题的用户名</param>
+        /// <param name="answer">提供的密保答案</param>
+        /// <returns>返回是否验证通过</returns>
         public bool ValidateAnswer(string username,string answer)
         {
             string sql = "select 用户名 from [用户] where 用户名=@username and 密保答案=@answer";
@@ -222,6 +228,26 @@ namespace Core
                         return true;
                 }
             }
+            return false;
+        }
+
+        /// <summary>
+        /// 修改用户的账户类型
+        /// </summary>
+        /// <param name="username">要修改的用户名</param>
+        /// <param name="accountType">改为的账户类型值</param>
+        /// <returns>返回是否成功</returns>
+        public bool UpdateAccountType(string username,int accountType)
+        {
+            string sql = "update [用户] set 账户类型=@accountType where 用户名=@username";
+            int rtn = -1;
+            rtn = ExecuteSql(sql, new SqlParameter[]
+            {
+                new SqlParameter ("@username",username),
+                new SqlParameter ("@accountType",accountType)
+            });
+            if (rtn == 1)
+                return true;
             return false;
         }
     }

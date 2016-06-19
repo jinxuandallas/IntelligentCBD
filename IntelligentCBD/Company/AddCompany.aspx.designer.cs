@@ -121,22 +121,22 @@ namespace IntelligentCBD.Company {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVector;
         
         /// <summary>
-        /// TextBox1 控件。
+        /// TextBox_Introduction 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_Introduction;
         
         /// <summary>
-        /// TextBox2 控件。
+        /// TextBox_BusinessScope 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_BusinessScope;
         
         /// <summary>
         /// TextBox_RegisteredAddress 控件。
@@ -211,13 +211,13 @@ namespace IntelligentCBD.Company {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea elm1;
         
         /// <summary>
-        /// LabelSucceed 控件。
+        /// LabelNotice 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelSucceed;
+        protected global::System.Web.UI.WebControls.Label LabelNotice;
         
         /// <summary>
         /// Next 控件。

@@ -101,7 +101,9 @@
     <Content Include="App_Data\IntelligentCBD.mdf" />
     <Content Include="App_Data\IntelligentCBD_log.ldf" />
     <Content Include="Company\AddCompany.aspx" />
+    <Content Include="Company\UploadCredentials.aspx" />
     <Content Include="Css\MainStyleSheet.css" />
+    <None Include="js\jquery-1.4.4-vsdoc.js" />
     <Content Include="js\jquery-1.4.4.min.js" />
     <Content Include="js\xheditor-1.2.2.min.js" />
     <Content Include="packages.config" />
@@ -166,6 +168,13 @@
     <Compile Include="Company\AddCompany.aspx.designer.cs">
       <DependentUpon>AddCompany.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Company\UploadCredentials.aspx.cs">
+      <DependentUpon>UploadCredentials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\UploadCredentials.aspx.designer.cs">
+      <DependentUpon>UploadCredentials.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage\MenuSite.Master.cs">
       <DependentUpon>MenuSite.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -183,6 +192,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Upload\Upload.aspx.cs">
       <DependentUpon>Upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Upload\Upload.aspx.designer.cs">
       <DependentUpon>Upload.aspx</DependentUpon>

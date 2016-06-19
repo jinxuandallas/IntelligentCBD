@@ -14,3 +14,7 @@ body { font-size:15px;
  .SearchNotice{
      color:white; background-color: #ff6600; font-size: 12px;
  }
+ /*用于Label标签的自动换行*/
+ .WordWrap{
+     word-break:break-all
+ }
