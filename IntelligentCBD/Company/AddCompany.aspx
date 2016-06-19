@@ -54,7 +54,7 @@
                 <td style="width: 90px; height: 20px;">物业面积：</td>
                 <td class="auto-style1" style="width: 150px; height: 20px;">
                     <asp:TextBox ID="TextBox_Area" runat="server" MaxLength="10" TextMode="Number" Width="120px"></asp:TextBox>
-                    <span style="color: rgb(51, 51, 51); font-family: arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 24px; orphans: auto; text-align: start; text-indent: 28px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none; background-color: rgb(255, 255, 255);">㎡</span></td>
+                    ㎡</td>
                 <td style="height: 20px; width: 80px">
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="TextBox_Area" Display="Dynamic" ErrorMessage="请输入正确的物业面积" ForeColor="Red" ValidationExpression="^\+?[1-9][0-9]{0,6}$">*</asp:RegularExpressionValidator>
                 </td>

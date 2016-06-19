@@ -19,7 +19,7 @@
         }
         
     </style>
-    <table style="width:750px">
+    <table style="width:550px">
             <tr>
                 <td class="auto-style6">上传证照</td>
                 <td style="height: 20px;"></td>
