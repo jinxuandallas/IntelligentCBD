@@ -101,5 +101,102 @@ namespace Core
             }
             return true;
         }
+
+        public string UploadPic(HttpFileCollection uploadFiles,string filepath,int picType,Guid companyID)
+        {
+            if (uploadFiles.Count < 1)
+                return string.Empty;
+            string examResult = ExamFiles(uploadFiles, picType, companyID);
+            if (examResult != "文件检查成功")
+                return examResult;
+
+            //检查目录是否存在
+            if (!System.IO.Directory.Exists(filepath))//判断文件夹是否已经存在
+            {
+                System.IO.Directory.CreateDirectory(filepath);//创建文件夹
+            }
+
+            //上传文件
+            string extName, newFilename, newFilepath;
+            for (int i = 0; i < uploadFiles.Count; i++)
+            {
+                HttpPostedFile postedFile = uploadFiles[i];
+                try
+                {
+                    if (postedFile.ContentLength > 0)
+                    {
+                        //产生新的文件名
+                        extName = System.IO.Path.GetExtension(postedFile.FileName).ToLower();
+                        newFilename = DateTime.Now.ToString("yyyyMMddhhmmss") +picType +i + extName;
+                        
+                        //上传文件
+                        newFilepath = filepath + newFilename;
+                        postedFile.SaveAs(newFilepath);
+
+                        //添加新的数据库记录
+                        bool result = AddPic(newFilename,companyID,picType);
+                        if (!result)
+                            return "上传记录不成功";
+
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    throw Ex;
+                }
+            }
+            return "";
+        }
+
+        public string ExamFiles(HttpFileCollection uploadFiles, int picType, Guid companyID)
+        {
+            int filesSize = 0;
+            DataSet ds = GetPicbyCompany(companyID,picType);
+            System.IO.FileInfo fi;
+
+            //检查存于数据库中的文件大小，用于计算所有上传文件是否超过5M
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                fi = new FileInfo(HttpContext.Current.Server.MapPath(dr[0].ToString()));
+                filesSize += int.Parse(fi.Length.ToString());
+            }
+
+
+            string extName;
+            //此处只能使用for不能使用foreach因为uf可能为空，将导致异常
+            //foreach(HttpPostedFile uf in uploadFiles)
+            for (int i = 0; i < uploadFiles.Count; i++)
+            {
+                if (uploadFiles[i].ContentLength > 0)
+                {
+                    extName = System.IO.Path.GetExtension(uploadFiles[i].FileName).ToLower();
+                    if (extName != ".jpg" && extName != ".jpeg" && extName != ".gif" && extName != ".png")
+                        return "只能上传jpg，gif，png文件";
+                    if (uploadFiles[i].ContentLength > 2097152)
+                        return "单个文件不能超过2M";
+                    filesSize += uploadFiles[i].ContentLength;
+                    if (filesSize > 5242880)
+                        return "总文件不能超过5M";
+                }
+            }
+            return "文件检查成功";
+        }
+
+        public bool AddPic(string filename,Guid comID,int picType)
+        {
+            Guid ID = Guid.NewGuid();
+            //只能服务器使用相对路径，使用绝对路径客户端打不开（调用的是客户端文件）
+            string filepath = "~/Upload/UploadCompanyPicture/" + filename;
+            string sql = "insert 图片(ID,所属企业,图片类型,图片地址) values(@ID,@comID,@picType,@filepath)";
+            int rtn = ExecuteSql(sql, new SqlParameter[] {
+                new SqlParameter("@ID",ID),
+                new SqlParameter("@comID",comID),
+                new SqlParameter("@picType",picType),
+                new SqlParameter("@filepath", filepath)
+            });
+            if (rtn == 1)
+                return true;
+            return false;
+        }
     }
 }

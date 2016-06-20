@@ -19,7 +19,7 @@
             height: 35px;
         }
         .auto-style4 {
-            width: 99px;
+            width: 600px;
             height: 20px;
         }
         .auto-style5 {
@@ -32,10 +32,10 @@
 <body>
     <form id="form1" runat="server">
     <div>
-            <table style="width:100%;border-collapse: collapse; border-spacing: 0px;">
+            <table style="width:1200px;border-collapse: collapse; border-spacing: 0px;">
                 <tr style="background-color: #0066FF; border-width: 0px; padding: 0px; margin: 0px; border-spacing: 0px">
                     <td style="padding: 0px; background-color: #0066FF;" class="auto-style2"></td>
-                    <td style="padding: 0px; background-color: #0066FF;" class="auto-style4"></td>
+                    <td style="padding: 0px; background-color: #0066FF;" class="auto-style4" ></td>
                     <td style="padding: 0px; background-color: #0066FF; color: #FFFFFF;" class="auto-style3">
                         <asp:LoginName ID="LoginName1" runat="server" Font-Size="15px" FormatString="您好，{0}"/>
 &nbsp;<asp:LoginStatus ID="LoginStatus1" runat="server" Font-Size="14px" LogoutPageUrl="~\default.aspx" ForeColor="White" LogoutAction="RedirectToLoginPage" LogoutText="退出" OnLoggedOut="LoginStatus1_LoggedOut" />
@@ -65,7 +65,7 @@
                             <StaticSelectedStyle BackColor="#284E98" ForeColor="White" />
                         </asp:Menu>
                     </td>
-                    <td colspan="2">
+                    <td colspan="2" style="width:900px;vertical-align:top;text-align:left">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 
                         </asp:ContentPlaceHolder></td>
