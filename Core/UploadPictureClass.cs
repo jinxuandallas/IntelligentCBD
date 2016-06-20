@@ -58,7 +58,7 @@ namespace Core
                 if (!string.IsNullOrWhiteSpace(ll[i]))
                     ///将客户端地址转换成服务端地址（数据库地址）
                     ///**此处还需根据具体目录重新修改
-                    ln.Add(ll[i].Replace("Upload/", "~/FileUpload/Upload/"));
+                    ln.Add(ll[i].Replace("../Upload", "~/Upload"));
             }
 
             return ln;
@@ -67,7 +67,7 @@ namespace Core
         /// <summary>
         /// 删除服务端文件
         /// </summary>
-        /// <param name="ls">包含文件的相对路径</param>
+        /// <param name="ls">包含文件的相对路径（服务器端的虚拟路径，已经过转换）</param>
         /// <returns>返回是否成功</returns>
         public bool DelPicFile(List<string> ls)
         {
@@ -84,18 +84,23 @@ namespace Core
         /// </summary>
         /// <param name="ls">包含要删除文件的泛型列表</param>
         /// <returns>返回是否成功</returns>
-        public bool DelDbPic(List<string> ls)
+        public bool DelDbPic(List<string> ls,Guid companyID)
         {
-            string sql;
             foreach (string s in ls)
             {
                 //删除图片还要判断是否是默认图片，并在企业表中更新默认图片记录
-                sql = @"declare @pucid uniqueidentifier;
+                //判断更新企业表还可以改为更有效率版本**
+                sql = @"declare @picid uniqueidentifier;
                         set @picid = (select ID from [图片] where 图片地址 = @picpath);
-                        update [企业] set 默认图片='' where 默认图片=@picid;
+                        if @picid=(select 默认图片 from 企业 where 企业.ID=@companyID)
+                        begin
+                            update [企业] set 默认图片=null where ID=@companyID;
+                        end
                         delete from [图片] where ID=@picid";
                 //sql = "delete from [图片] where 图片地址=@picpath ";
-                int rtn = ExecuteSql(sql, new SqlParameter[] { new SqlParameter("@picpath", s) });
+                int rtn = ExecuteSql(sql, new SqlParameter[] { new SqlParameter("@picpath",s),
+                new SqlParameter("@companyID",companyID)
+                });
                 if (rtn < 1)
                     return false;
             }
@@ -127,7 +132,9 @@ namespace Core
                     {
                         //产生新的文件名
                         extName = System.IO.Path.GetExtension(postedFile.FileName).ToLower();
-                        newFilename = DateTime.Now.ToString("yyyyMMddhhmmss") +picType +i + extName;
+                        // 生成随机文件名
+                        Random random = new Random(DateTime.Now.Millisecond);
+                        newFilename = DateTime.Now.ToString("yyyyMMddhhmmss") + random.Next(10000) + picType + i + extName;
                         
                         //上传文件
                         newFilepath = filepath + newFilename;
@@ -187,7 +194,7 @@ namespace Core
             Guid ID = Guid.NewGuid();
             //只能服务器使用相对路径，使用绝对路径客户端打不开（调用的是客户端文件）
             string filepath = "~/Upload/UploadCompanyPicture/" + filename;
-            string sql = "insert 图片(ID,所属企业,图片类型,图片地址) values(@ID,@comID,@picType,@filepath)";
+            sql = "insert 图片(ID,所属企业,图片类型,图片地址) values(@ID,@comID,@picType,@filepath)";
             int rtn = ExecuteSql(sql, new SqlParameter[] {
                 new SqlParameter("@ID",ID),
                 new SqlParameter("@comID",comID),
@@ -197,6 +204,32 @@ namespace Core
             if (rtn == 1)
                 return true;
             return false;
+        }
+
+        public bool UpdateDefaultPic(Guid companyID,string picPath)
+        {
+            picPath = picPath.Replace("../Upload", "~/Upload");
+            sql = "update [企业] set 默认图片=(select ID from [图片] where 图片地址=@picpath) where ID=@companyID";
+            int rtn = ExecuteSql(sql, new SqlParameter[]
+            {
+                new SqlParameter("@picpath",picPath),
+                new SqlParameter("@companyID",companyID)
+            });
+            if (rtn == 1)
+                return true;
+            return false;
+        }
+
+        public string GetDefaultPic(Guid companyID)
+        {
+            sql = "select 图片.图片地址 from 企业,图片 where (企业.ID=@companyID) and (企业.默认图片=图片.ID)";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@companyID", companyID) }))
+            {
+                if (sdr.Read())
+                    return sdr[0].ToString();
+                else
+                    return string.Empty;
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Core
 		/// </summary>
 		protected SqlConnection Connection;
 		private string connectionString;
+        protected string sql;
 //		private SqlDataReader dr;
 
 		/// <summary>
