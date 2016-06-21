@@ -47,24 +47,26 @@
                     <asp:SqlDataSource ID="SqlDataSource_PicType" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [图片类型]"></asp:SqlDataSource>
                 </td>
             </tr>
-        <tr>
-            <td colspan="2">
+        
                 <asp:Repeater ID="Repeater1" runat="server">
                     <ItemTemplate>
-                        
-                        <div class="divpic" id="divpic" runat="server" style="vertical-align:middle;">
+                        <tr>
+            <td colspan="2">
+                        <div class="divpic" id="divpic" runat="server" style="vertical-align:middle;writing-mode:vertical-lr;">
                             <asp:Image ImageUrl='<%# Eval("图片地址") %>' ID="img"  CssClass="pic" Height="150px" runat="server"/>
                             <input type="button" id="del" class="delButton" value="删除"/>
                             <input type="button" id="defaultButton" class="defaultButton" value="设为默认" runat="server"/>
                             <br />
                             </div>
-                    </ItemTemplate>
-                </asp:Repeater>
                 </td>
             </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+                
         <tr>
                 <td class="auto-style7"></td>
                 <td style="height: 20px; ">
+                   
                    
                 </td>
             </tr>

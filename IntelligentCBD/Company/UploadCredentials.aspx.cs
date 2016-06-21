@@ -56,8 +56,12 @@ namespace IntelligentCBD.Company
             InitBind();
         }
 
+        /// <summary>
+        /// 判断是否显示设为默认按钮，已经是否显示默认选项
+        /// </summary>
         protected void ShowDefault()
         {
+            //判断选项是否为企业宣传图片
             bool show = DropDownList_PicType.SelectedValue == "1" ? true : false;
             foreach (RepeaterItem ri in Repeater1.Items)
             {
@@ -72,13 +76,15 @@ namespace IntelligentCBD.Company
                 return;
             }
 
+            //获取企业的默认图片地址
             string defaultPicPath = up.GetDefaultPic(companyID);
 
             if (!string.IsNullOrEmpty(defaultPicPath))
             {
+                //转换虚拟路径为相对路径，并存于HiddenDefault控件中（因为客户端要求相对路径）
                 HiddenDefault.Value = defaultPicPath.Replace("~/Upload", "../Upload");
                 foreach (RepeaterItem ri in Repeater1.Items)
-                    if (defaultPicPath == ((Image)ri.FindControl("img")).ImageUrl)
+                    if (defaultPicPath == ((Image)ri.FindControl("img")).ImageUrl)//判断哪张图片是默认图片
                         ((System.Web.UI.HtmlControls.HtmlGenericControl)ri.FindControl("divpic")).Style.Add("background-color", "yellow");
                 
                    
@@ -93,7 +99,11 @@ namespace IntelligentCBD.Company
             //Response.Write(HiddenDelFiles.Value);
             //return;
 
-            //1.第一步先删除客户端选定的文件(感觉删除文件要放在更新默认图片前面）
+            //第一步更新默认图片
+            if (DropDownList_PicType.SelectedValue == "1" && !string.IsNullOrWhiteSpace(HiddenDefault.Value))
+                up.UpdateDefaultPic(companyID, HiddenDefault.Value);
+
+            //第二步先删除客户端选定的文件(感觉删除文件要放在更新默认图片后面）
             //先判断要删除文件域中是否有信息，即用户是否点击过删除图片，如果没点击删除则不需进行下面处理
             if (!string.IsNullOrEmpty(HiddenDelFiles.Value))
             {
@@ -113,9 +123,7 @@ namespace IntelligentCBD.Company
                 }
             }
 
-            //更新默认图片
-            if (DropDownList_PicType.SelectedValue == "1" && !string.IsNullOrWhiteSpace(HiddenDefault.Value))
-                up.UpdateDefaultPic(companyID, HiddenDefault.Value);
+            
 
             //获取文件绝对路径
             string filepath = Server.MapPath("~/Upload/UploadCompanyPicture") + "\\";
