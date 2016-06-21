@@ -51,6 +51,11 @@ namespace Core
             }
         }
 
+        /// <summary>
+        /// 添加企业基本信息
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public Guid AddCompanyBaseInformation(string username)
         {
             ID = Guid.NewGuid();
@@ -77,6 +82,8 @@ namespace Core
                 new SqlParameter("@Vector",Vector),
                 new SqlParameter("@content",Content),
                 new SqlParameter("@inputUser",username),
+
+                //新添加的企业审核状态设为“添加未审核”
                 new SqlParameter("@audit",1)
             });
 

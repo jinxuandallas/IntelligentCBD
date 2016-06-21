@@ -36,6 +36,10 @@ namespace IntelligentCBD.Company
             }
         }
 
+
+        /// <summary>
+        /// 初始化一些数值和绑定控件
+        /// </summary>
         protected void InitBind()
         {
             ///还差在载入时检查是否存在默认图片，并显示在客户端

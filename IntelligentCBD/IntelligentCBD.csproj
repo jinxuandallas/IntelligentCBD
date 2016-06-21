@@ -101,6 +101,7 @@
     <Content Include="App_Data\IntelligentCBD.mdf" />
     <Content Include="App_Data\IntelligentCBD_log.ldf" />
     <Content Include="Company\AddCompany.aspx" />
+    <Content Include="Company\ManageCompany.aspx" />
     <Content Include="Company\UploadCredentials.aspx" />
     <Content Include="Css\MainStyleSheet.css" />
     <None Include="js\jquery-1.4.4-vsdoc.js" />
@@ -168,6 +169,13 @@
     </Compile>
     <Compile Include="Company\AddCompany.aspx.designer.cs">
       <DependentUpon>AddCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\ManageCompany.aspx.cs">
+      <DependentUpon>ManageCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\ManageCompany.aspx.designer.cs">
+      <DependentUpon>ManageCompany.aspx</DependentUpon>
     </Compile>
     <Compile Include="Company\UploadCredentials.aspx.cs">
       <DependentUpon>UploadCredentials.aspx</DependentUpon>
