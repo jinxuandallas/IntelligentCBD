@@ -42,10 +42,13 @@ namespace IntelligentCBD.Company
             
             ds = up.GetPicbyCompany(companyID,int.Parse(DropDownList_PicType.SelectedValue));
             uploadNum = 5 - ds.Tables[0].Rows.Count;
-            HiddenDelfiles.Value = string.Empty;//此处必须将hidden值清零，否则会导致上一次回发保存在hidden的值这一次继续附加在hidden的value内
+            HiddenDelFiles.Value = string.Empty;//此处必须将hidden值清零，否则会导致上一次回发保存在hidden值这一次继续附加在hidden的value内
+
             Repeater1.DataSource = ds;
             Repeater1.DataBind();
-            //Response.Write(DropDownList_PicType.SelectedIndex);
+
+            //此处改为服务器端处理默认按钮是否显示似乎更方便一些
+            ShowDefault();
         }
 
         protected void DropDownList_PicType_SelectedIndexChanged(object sender, EventArgs e)
@@ -53,14 +56,59 @@ namespace IntelligentCBD.Company
             InitBind();
         }
 
+        /// <summary>
+        /// 判断是否显示设为默认按钮，已经是否显示默认选项
+        /// </summary>
+        protected void ShowDefault()
+        {
+            //判断选项是否为企业宣传图片
+            bool show = DropDownList_PicType.SelectedValue == "1" ? true : false;
+            foreach (RepeaterItem ri in Repeater1.Items)
+            {
+                //ri.FindControl("divpic").FindControl("Button1").Visible = show;
+                ri.FindControl("defaultButton").Visible = show;
+            }
+
+            //如果改变到别的选项清空HiddenDefault中的值
+            if (!show)
+            {
+                HiddenDefault.Value = string.Empty;
+                return;
+            }
+
+            //获取企业的默认图片地址
+            string defaultPicPath = up.GetDefaultPic(companyID);
+
+            if (!string.IsNullOrEmpty(defaultPicPath))
+            {
+                //转换虚拟路径为相对路径，并存于HiddenDefault控件中（因为客户端要求相对路径）
+                HiddenDefault.Value = defaultPicPath.Replace("~/Upload", "../Upload");
+                foreach (RepeaterItem ri in Repeater1.Items)
+                    if (defaultPicPath == ((Image)ri.FindControl("img")).ImageUrl)//判断哪张图片是默认图片
+                        ((System.Web.UI.HtmlControls.HtmlGenericControl)ri.FindControl("divpic")).Style.Add("background-color", "yellow");
+                
+                   
+                
+            }
+
+        }
+               
         protected void Submit_Click(object sender, EventArgs e)
         {
-            //1.第一步先删除客户端选定的文件
+
+            //Response.Write(HiddenDelFiles.Value);
+            //return;
+
+            //第一步更新默认图片
+            if (DropDownList_PicType.SelectedValue == "1" && !string.IsNullOrWhiteSpace(HiddenDefault.Value))
+                up.UpdateDefaultPic(companyID, HiddenDefault.Value);
+
+            //第二步先删除客户端选定的文件(感觉删除文件要放在更新默认图片后面）
             //先判断要删除文件域中是否有信息，即用户是否点击过删除图片，如果没点击删除则不需进行下面处理
-            if (!string.IsNullOrEmpty(HiddenDelfiles.Value))
+            if (!string.IsNullOrEmpty(HiddenDelFiles.Value))
             {
                 //将客户端存于Hidden控件中的删除文件表，转化为可以使用的泛型列表
-                List<string> delFilelist = up.GetFileList(HiddenDelfiles.Value);
+                List<string> delFilelist = up.GetFileList(HiddenDelFiles.Value);
 
                 if (!up.DelPicFile(delFilelist))
                 {
@@ -68,18 +116,32 @@ namespace IntelligentCBD.Company
                     return;
                 }
 
-                if (!up.DelDbPic(delFilelist))
+                if (!up.DelDbPic(delFilelist,companyID))
                 {
                     LabelPrompt.Text = "删除文件记录不成功";
                     return;
                 }
             }
+
+            
+
             //获取文件绝对路径
             string filepath = Server.MapPath("~/Upload/UploadCompanyPicture") + "\\";
 
-            up.UploadPic(Request.Files, filepath, int.Parse(DropDownList_PicType.SelectedValue), companyID);
+            //上传文件
+            string result= up.UploadPic(Request.Files, filepath, int.Parse(DropDownList_PicType.SelectedValue), companyID);
 
             InitBind();
+
+            LabelPrompt.Text = result;
         }
+
+        protected void Reset_Click(object sender, EventArgs e)
+        {
+            LabelPrompt.Text = "重置成功";
+            InitBind();
+        }
+
+    
     }
 }

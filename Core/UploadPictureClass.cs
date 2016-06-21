@@ -29,7 +29,7 @@ namespace Core
         }
         */
         /// <summary>
-        /// 为了下一步判断是否为企业宣传页即设定默认图片做准备（已解决）
+        /// 获取已存在于数据库中的图片
         /// </summary>
         /// <param name="comID">要检索的企业ID</param>
         /// <param name="picType">要检索的图片类型</param>
@@ -58,7 +58,7 @@ namespace Core
                 if (!string.IsNullOrWhiteSpace(ll[i]))
                     ///将客户端地址转换成服务端地址（数据库地址）
                     ///**此处还需根据具体目录重新修改
-                    ln.Add(ll[i].Replace("Upload/", "~/FileUpload/Upload/"));
+                    ln.Add(ll[i].Replace("../Upload", "~/Upload"));
             }
 
             return ln;
@@ -67,7 +67,7 @@ namespace Core
         /// <summary>
         /// 删除服务端文件
         /// </summary>
-        /// <param name="ls">包含文件的相对路径</param>
+        /// <param name="ls">包含文件的相对路径（服务器端的虚拟路径，已经过转换）</param>
         /// <returns>返回是否成功</returns>
         public bool DelPicFile(List<string> ls)
         {
@@ -83,29 +83,45 @@ namespace Core
         /// 删除图片在数据库中的记录
         /// </summary>
         /// <param name="ls">包含要删除文件的泛型列表</param>
+        /// <param name="companyID">要删除的企业ID，此参数是为了判断查找删除的文件是不是企业的默认图片而用</param>
         /// <returns>返回是否成功</returns>
-        public bool DelDbPic(List<string> ls)
+        public bool DelDbPic(List<string> ls,Guid companyID)
         {
-            string sql;
             foreach (string s in ls)
             {
                 //删除图片还要判断是否是默认图片，并在企业表中更新默认图片记录
-                sql = @"declare @pucid uniqueidentifier;
+                //判断更新企业表还可以改为更有效率版本**
+                sql = @"declare @picid uniqueidentifier;
                         set @picid = (select ID from [图片] where 图片地址 = @picpath);
-                        update [企业] set 默认图片='' where 默认图片=@picid;
+                        if @picid=(select 默认图片 from 企业 where 企业.ID=@companyID)
+                        begin
+                            update [企业] set 默认图片=null where ID=@companyID;
+                        end
                         delete from [图片] where ID=@picid";
                 //sql = "delete from [图片] where 图片地址=@picpath ";
-                int rtn = ExecuteSql(sql, new SqlParameter[] { new SqlParameter("@picpath", s) });
+                int rtn = ExecuteSql(sql, new SqlParameter[] { new SqlParameter("@picpath",s),
+                new SqlParameter("@companyID",companyID)
+                });
                 if (rtn < 1)
                     return false;
             }
             return true;
         }
 
+        /// <summary>
+        /// 上传图片文件
+        /// </summary>
+        /// <param name="uploadFiles">包含要上传文件的HttpFileCollection</param>
+        /// <param name="filepath">文件的服务端绝对路径</param>
+        /// <param name="picType">要上传的图片类型</param>
+        /// <param name="companyID">要上传的企业ID</param>
+        /// <returns></returns>
         public string UploadPic(HttpFileCollection uploadFiles,string filepath,int picType,Guid companyID)
         {
-            if (uploadFiles.Count < 1)
-                return string.Empty;
+            //if (uploadFiles.Count < 1)
+            //    return string.Empty;
+
+            //检查文件大小与类型
             string examResult = ExamFiles(uploadFiles, picType, companyID);
             if (examResult != "文件检查成功")
                 return examResult;
@@ -127,14 +143,16 @@ namespace Core
                     {
                         //产生新的文件名
                         extName = System.IO.Path.GetExtension(postedFile.FileName).ToLower();
-                        newFilename = DateTime.Now.ToString("yyyyMMddhhmmss") +picType +i + extName;
+                        // 生成随机文件名
+                        Random random = new Random(DateTime.Now.Millisecond);
+                        newFilename = DateTime.Now.ToString("yyyyMMddhhmmss") + random.Next(10000) + picType + i + extName;
                         
                         //上传文件
                         newFilepath = filepath + newFilename;
                         postedFile.SaveAs(newFilepath);
 
                         //添加新的数据库记录
-                        bool result = AddPic(newFilename,companyID,picType);
+                        bool result = AddDbPic(newFilename,companyID,picType);
                         if (!result)
                             return "上传记录不成功";
 
@@ -148,9 +166,18 @@ namespace Core
             return "";
         }
 
+        /// <summary>
+        /// 检查上传文件的大小和类型是否符合规定
+        /// </summary>
+        /// <param name="uploadFiles">包含要上传文件的HttpFileCollection</param>
+        /// <param name="picType">要上传的图片类型</param>
+        /// <param name="companyID">要上传的企业ID</param>
+        /// <returns></returns>
         public string ExamFiles(HttpFileCollection uploadFiles, int picType, Guid companyID)
         {
             int filesSize = 0;
+
+            //获取已存在的文件，便于下一步取得已存在文件的大小
             DataSet ds = GetPicbyCompany(companyID,picType);
             System.IO.FileInfo fi;
 
@@ -170,10 +197,13 @@ namespace Core
                 if (uploadFiles[i].ContentLength > 0)
                 {
                     extName = System.IO.Path.GetExtension(uploadFiles[i].FileName).ToLower();
+
                     if (extName != ".jpg" && extName != ".jpeg" && extName != ".gif" && extName != ".png")
                         return "只能上传jpg，gif，png文件";
+
                     if (uploadFiles[i].ContentLength > 2097152)
                         return "单个文件不能超过2M";
+
                     filesSize += uploadFiles[i].ContentLength;
                     if (filesSize > 5242880)
                         return "总文件不能超过5M";
@@ -182,12 +212,19 @@ namespace Core
             return "文件检查成功";
         }
 
-        public bool AddPic(string filename,Guid comID,int picType)
+        /// <summary>
+        /// 添加上传图片记录到数据库中
+        /// </summary>
+        /// <param name="filename">上传的文件名（不包括路径）</param>
+        /// <param name="comID">要上传的企业ID</param>
+        /// <param name="picType">图片类型</param>
+        /// <returns></returns>
+        public bool AddDbPic(string filename,Guid comID,int picType)
         {
             Guid ID = Guid.NewGuid();
             //只能服务器使用相对路径，使用绝对路径客户端打不开（调用的是客户端文件）
             string filepath = "~/Upload/UploadCompanyPicture/" + filename;
-            string sql = "insert 图片(ID,所属企业,图片类型,图片地址) values(@ID,@comID,@picType,@filepath)";
+            sql = "insert 图片(ID,所属企业,图片类型,图片地址) values(@ID,@comID,@picType,@filepath)";
             int rtn = ExecuteSql(sql, new SqlParameter[] {
                 new SqlParameter("@ID",ID),
                 new SqlParameter("@comID",comID),
@@ -197,6 +234,45 @@ namespace Core
             if (rtn == 1)
                 return true;
             return false;
+        }
+
+        /// <summary>
+        /// 更新默认图片
+        /// </summary>
+        /// <param name="companyID">企业ID</param>
+        /// <param name="picPath">客户端的默认图片地址</param>
+        /// <returns></returns>
+        public bool UpdateDefaultPic(Guid companyID,string picPath)
+        {
+            //将客户端的默认图片地址转换为服务器端的图片地址
+            picPath = picPath.Replace("../Upload", "~/Upload");
+
+            sql = "update [企业] set 默认图片=(select ID from [图片] where 图片地址=@picpath) where ID=@companyID";
+            int rtn = ExecuteSql(sql, new SqlParameter[]
+            {
+                new SqlParameter("@picpath",picPath),
+                new SqlParameter("@companyID",companyID)
+            });
+            if (rtn == 1)
+                return true;
+            return false;
+        }
+
+        /// <summary>
+        /// 获取企业的默认图片地址
+        /// </summary>
+        /// <param name="companyID">企业ID</param>
+        /// <returns></returns>
+        public string GetDefaultPic(Guid companyID)
+        {
+            sql = "select 图片.图片地址 from 企业,图片 where (企业.ID=@companyID) and (企业.默认图片=图片.ID)";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@companyID", companyID) }))
+            {
+                if (sdr.Read())
+                    return sdr[0].ToString();
+                else
+                    return string.Empty;
+            }
         }
     }
 }

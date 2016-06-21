@@ -4,6 +4,9 @@
     <style type="text/css">
         .delButton{}
         .pic{}
+        .divpic{}
+        .defaultButton{}
+        
         .auto-style6 {
             background-color: #0066ff;
             color: white;
@@ -18,21 +21,21 @@
             height: 20px;
         }
         
+        .auto-style8 {
+            height: 50px;
+        }
+        
     </style>
+    <input type="hidden" id="HiddenDelFiles" runat="server"/>
+     <input type="hidden" id="HiddenDefault" runat="server"/>
     <table style="width:550px">
             <tr>
                 <td class="auto-style6">上传证照</td>
                 <td style="height: 20px;"></td>
-                <td style="height: 20px"></td>
-                <td style="height: 20px; "></td>
-                <td style="height: 20px; "></td>
             </tr>
             <tr>
                 <td class="auto-style7">
                     &nbsp;</td>
-                <td style="height: 20px; "></td>
-                <td style="height: 20px; "></td>
-                <td style="height: 20px; "></td>
                 <td style="height: 20px; "></td>
             </tr>
             <tr>
@@ -43,30 +46,32 @@
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource_PicType" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [图片类型]"></asp:SqlDataSource>
                 </td>
-                <td style="height: 20px; ">&nbsp;</td>
-                <td style="height: 20px; ">&nbsp;</td>
-                <td style="height: 20px; ">&nbsp;</td>
             </tr>
-        <tr>
+        
                 <asp:Repeater ID="Repeater1" runat="server">
                     <ItemTemplate>
-                        <td>
-                        <div>
-                            <asp:Image ImageUrl='<%# Eval("图片地址") %>' ID="img"  CssClass="pic" Height="150px" Width="150px" runat="server"/>
+                        <tr>
+            <td colspan="2">
+                        <div class="divpic" id="divpic" runat="server" style="vertical-align:middle;writing-mode:vertical-lr;">
+                            <asp:Image ImageUrl='<%# Eval("图片地址") %>' ID="img"  CssClass="pic" Height="150px" runat="server"/>
                             <input type="button" id="del" class="delButton" value="删除"/>
-                            </div></td>
+                            <input type="button" id="defaultButton" class="defaultButton" value="设为默认" runat="server"/>
+                            <br />
+                            </div>
+                </td>
+            </tr>
                     </ItemTemplate>
                 </asp:Repeater>
-            </tr>
+                
         <tr>
                 <td class="auto-style7"></td>
-                <td style="height: 20px; "></td>
-                <td style="height: 20px; "></td>
-            <td style="height: 20px; "></td>
-            <td style="height: 20px; "></td>
+                <td style="height: 20px; ">
+                   
+                   
+                </td>
             </tr>
         <tr>
-                <td colspan="5">
+                <td colspan="2" class="auto-style8">
 <div id="f" style="background-color:#ff6600; width: 350px;">
         <div id="zhi">
             <div id="content">
@@ -82,7 +87,7 @@
                 </td>
             </tr>
          <tr>
-                <td colspan="5"><input id="HiddenDelfiles" type="hidden" runat="server"/>
+                <td colspan="2">
                     <asp:Label ID="LabelPrompt" runat="server" ForeColor="Red"></asp:Label>
                 </td>
                     
@@ -93,14 +98,9 @@
                 </td>
                     
                 <td>
-                    <asp:Button ID="Reset" runat="server" Text="重置" Width="70px" />
+                    <asp:Button ID="Reset" runat="server" Text="重置" Width="70px" OnClick="Reset_Click" />
+                     
                 </td>
-                    
-                <td>&nbsp;</td>
-                    
-                <td>&nbsp;</td>
-                    
-                <td>&nbsp;</td>
                     
              </tr>
         </table>
@@ -146,21 +146,58 @@
                 alert("至少保留一个！");
             }
         });
-        
+         //删除按钮的处理
         $(".delButton").click(function (){
-            var h=$("#HiddenDelfiles").attr("value");
-            $("#HiddenDelfiles").attr("value",h+";"+$(this).parent().find(".pic").attr("src"));
+
+            //<!--在母版页中的子页会改变原控件的ID，
+            //客户端ID会被改为“ContentPlaceHolder1_Hidden2”，添加了ContentPlaceHolder1_前缀，此处需注意。
+            var h=$("#ContentPlaceHolder1_HiddenDelFiles").attr("value");
+            var src=$(this).parent().find(".pic").attr("src");
+            //var i=$("#ContentPlaceHolder1_Hidden2").val();
+            //将要删除的文件名存于ContentPlaceHolder1_HiddenDelFiles中
+            $("#ContentPlaceHolder1_HiddenDelFiles").attr("value",h+";"+src);
+            //$("#ContentPlaceHolder1_Hidden2").val(i+"12");
             uploadNum++;
+            //alert($("#ContentPlaceHolder1_HiddenDelFiles").val());
+            
+            //处理如果删除的是默认图片的处理
+            if($("#ContentPlaceHolder1_HiddenDefault").val()==src)
+                $("#ContentPlaceHolder1_HiddenDefault").val("");
             $(this).parent().remove();
             //alert($(this).parent().find(".pic").attr("src"));
-            //alert($("#Hidden1").attr("value"));
+            //alert($("#ContentPlaceHolder1_HiddenDefault").val());
         });
         //*/
         
         $(".pic").click(function(){
             window.open($(this).attr("src"),"_blank")
             //alert($(this).attr("src"));
-        })
+        });
+
+        /*
+        //下拉框改变的处理
+        $("#ContentPlaceHolder1_DropDownList_PicType").change(function(){
+            if ($(this).val()=="1")
+                $(".defaultButton").show();
+            else
+            {
+                $(".defaultButton").hide();
+                //将HiddenDefault值清空（？有没有必要？）
+                //$("#HiddenDefault").val("");
+            };
+            alert($(this).val());
+        });
+        */
+        //设为默认的处理
+        $(".defaultButton").click(function(){
+            $(".divpic").css('background-color','white');
+            $(this).parent().css('background-color','yellow');
+            $("#ContentPlaceHolder1_HiddenDefault").val($(this).parent().find(".pic").attr("src"));
+            //$("#HiddenDefault").attr("value",$(this).parent().find(".pic").attr("src"));
+            //alert($("#ContentPlaceHolder1_HiddenDefault").val());
+            //alert($(this).parent().find(".pic").attr("src"));
+        });
+        
     })
 </script>
 </asp:Content>
