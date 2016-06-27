@@ -49,11 +49,14 @@ namespace IntelligentCBD.Company
             cc.Content = elm1.InnerText;
 
             Guid id=cc.AddCompanyBaseInformation(Session["username"].ToString());
-            Session["companyID"] = id;
+            
             //将用户的账号类型从个人改为商户
             UserClass uc = new UserClass();
             if (uc.UpdateAccountType(Session["username"].ToString(), 2) && id != Guid.Empty)
-                Response.Redirect("Credentials.aspx");
+            {
+                Session["CompanyID"] = id;
+                Response.Redirect("UploadCredentials.aspx");
+            }
             else
                 LabelNotice.Text = "添加失败";
 
