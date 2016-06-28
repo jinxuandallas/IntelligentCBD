@@ -54,8 +54,8 @@ namespace Core
         /// <summary>
         /// 添加企业基本信息
         /// </summary>
-        /// <param name="username"></param>
-        /// <returns></returns>
+        /// <param name="username">添加企业的录入人</param>
+        /// <returns>返回添加企业的ID</returns>
         public Guid AddCompanyBaseInformation(string username)
         {
             ID = Guid.NewGuid();
@@ -92,5 +92,41 @@ namespace Core
             else
                 return Guid.Empty;
         }
+
+        public bool FillCompanyInfo(Guid companyID)
+        {
+            string sql = "select * from 企业 where ID=@comID";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@comID", companyID) }))
+            {
+                if (!sdr.Read())
+                    return false;
+                CompanyName = sdr["企业名称"].ToString();
+                long b;
+                long.TryParse(sdr["注册资本"].ToString(),out b);
+
+                Capital = b;
+                Industry = sdr["行业"].ToString();
+
+                int a;
+                int.TryParse(sdr["物业面积"].ToString(),out a);
+
+                RoomNum = sdr["房间号"].ToString();
+                Address = sdr["地址"].ToString();
+                Introduction = sdr["企业简介"].ToString();
+                BusinessScope = sdr["经营范围"].ToString();
+                RegistrationDate = sdr["注册日期"].ToString();
+                RegisteredAddress = sdr["注册地"].ToString();
+                Contact = sdr["联系人"].ToString();
+                Phone = sdr["联系电话"].ToString();
+                QQ = sdr["QQ"].ToString();
+                Email = sdr["电子邮箱"].ToString();
+                Content = sdr["内容"].ToString();
+                Vector = sdr["载体"].ToString();
+
+            }
+            return true;
+
+        }
+        
     }
 }

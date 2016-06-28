@@ -29,7 +29,7 @@ namespace IntelligentCBD.Company
             //cc.ID=Guid.NewGuid();
 
             cc.CompanyName = TextBox_CompanyName.Text;
-            cc.Capital = t.CapitalString2Long(TextBox_Capital.Text, DropDownList_Units.SelectedValue);
+            cc.Capital = t.CapitalStr2Long(TextBox_Capital.Text, DropDownList_Units.SelectedValue);
             cc.Industry = TextBox_Industry.Text;
             //此处需如此处理面积
             int area;

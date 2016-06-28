@@ -101,10 +101,13 @@
     <Content Include="App_Data\IntelligentCBD.mdf" />
     <Content Include="App_Data\IntelligentCBD_log.ldf" />
     <Content Include="Company\AddCompany.aspx" />
+    <Content Include="Company\EditCompany.aspx" />
+    <Content Include="Company\ListViewTest.aspx" />
     <Content Include="Company\ManageCompany.aspx" />
     <Content Include="Company\UploadCredentials.aspx" />
     <Content Include="Css\MainStyleSheet.css" />
     <None Include="js\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Images\noImg.jpg" />
     <Content Include="js\jquery-1.4.4.min.js" />
     <Content Include="js\xheditor-1.2.2.min.js" />
     <Content Include="packages.config" />
@@ -169,6 +172,20 @@
     </Compile>
     <Compile Include="Company\AddCompany.aspx.designer.cs">
       <DependentUpon>AddCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\EditCompany.aspx.cs">
+      <DependentUpon>EditCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\EditCompany.aspx.designer.cs">
+      <DependentUpon>EditCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\ListViewTest.aspx.cs">
+      <DependentUpon>ListViewTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\ListViewTest.aspx.designer.cs">
+      <DependentUpon>ListViewTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Company\ManageCompany.aspx.cs">
       <DependentUpon>ManageCompany.aspx</DependentUpon>

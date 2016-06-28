@@ -21,11 +21,14 @@ namespace IntelligentCBD.Company
             Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
             //addNum = 5;
             up = new UploadPictureClass();
+
+            if (Session["CompanyID"] == null || Session["CompanyID"].ToString().Trim() == "")
+                Response.Redirect("~/Account/Login.aspx");
+
             companyID = Guid.Parse(Session["CompanyID"].ToString());
             if (!IsPostBack)
             {
-                if (Session["CompanyID"] == null || Session["CompanyID"].ToString().Trim() == "")
-                    Response.Redirect("~/Account/Login.aspx");
+                
 
                 DropDownList_PicType.DataBind();//手动绑定DropDownList控件，否则否则后面的取值会出错为-1
 
