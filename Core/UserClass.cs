@@ -113,7 +113,7 @@ namespace Core
 
             //注册用户
             
-            string sql = "insert into [用户] (用户名,密码,盐值,账户类型) values (@username,@password,@salt,@type)";
+            sql = "insert into [用户] (用户名,密码,盐值,账户类型) values (@username,@password,@salt,@type)";
             ExecuteSql(sql, new SqlParameter[]{
                     new SqlParameter("@username",userName),
                     new SqlParameter("@password",Password),
@@ -132,7 +132,7 @@ namespace Core
         /// <returns>不存在则返回ture，存在则返回false</returns>
         public bool ValidateUserName(string userName)
         {
-            string sql = "select 用户名 from 用户 where 用户名=@username";
+            sql = "select 用户名 from 用户 where 用户名=@username";
             using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@username", userName) }))
             {
                 if (sdr.Read()) return false;
@@ -147,7 +147,7 @@ namespace Core
         /// <returns>返回是否更新成功</returns>
         public bool UpdateDetails(string username)
         {
-            string sql = "update [用户] set 昵称=@nickname,性别=@sex,手机号码=@phone,电子邮箱=@email,密保问题=@question,密保答案=@answer where 用户名=@username";
+            sql = "update [用户] set 昵称=@nickname,性别=@sex,手机号码=@phone,电子邮箱=@email,密保问题=@question,密保答案=@answer where 用户名=@username";
             int rtn=ExecuteSql(sql, new SqlParameter[] { new SqlParameter("@username",username),
                 new SqlParameter("@nickname",Nickname),
                 new SqlParameter("@sex",Sex),
@@ -167,7 +167,7 @@ namespace Core
         /// <returns>返回SqlDataReader对象</returns>
         public SqlDataReader GetDetails(string username)
         {
-            string sql = "select 昵称,性别,手机号码,电子邮箱,密保问题,密保答案 from [用户] where 用户名=@username";
+            sql = "select 昵称,性别,手机号码,电子邮箱,密保问题,密保答案 from [用户] where 用户名=@username";
             return  GetDataReader(sql, new SqlParameter[] { new SqlParameter("@username", username) }); 
             
         }
@@ -201,7 +201,7 @@ namespace Core
         /// <returns>返回密保问题</returns>
         public string GetQuestion(string username)
         {
-            string sql = "select 密保问题 from [用户] where 用户名=@username";
+            sql = "select 密保问题 from [用户] where 用户名=@username";
             using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@username", username) }))
             {
                 if (sdr.Read())
@@ -219,7 +219,7 @@ namespace Core
         /// <returns>返回是否验证通过</returns>
         public bool ValidateAnswer(string username,string answer)
         {
-            string sql = "select 用户名 from [用户] where 用户名=@username and 密保答案=@answer";
+            sql = "select 用户名 from [用户] where 用户名=@username and 密保答案=@answer";
             using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@username", username), new SqlParameter("@answer", answer) }))
             {
                 if(sdr.Read())
@@ -239,7 +239,7 @@ namespace Core
         /// <returns>返回是否成功</returns>
         public bool UpdateAccountType(string username,int accountType)
         {
-            string sql = "update [用户] set 账户类型=@accountType where 用户名=@username";
+            sql = "update [用户] set 账户类型=@accountType where 用户名=@username";
             int rtn = -1;
             rtn = ExecuteSql(sql, new SqlParameter[]
             {

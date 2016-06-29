@@ -100,6 +100,9 @@
                 <td>
                     <asp:Button ID="Reset" runat="server" Text="重置" Width="70px" OnClick="Reset_Click" />
                      
+                &nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="Preview" runat="server" Text="预览" Width="70px" OnClick="Reset_Click" />
+                     
                 </td>
                     
              </tr>
@@ -154,6 +157,7 @@
             var h=$("#ContentPlaceHolder1_HiddenDelFiles").attr("value");
             var src=$(this).parent().find(".pic").attr("src");
             //var i=$("#ContentPlaceHolder1_Hidden2").val();
+
             //将要删除的文件名存于ContentPlaceHolder1_HiddenDelFiles中
             $("#ContentPlaceHolder1_HiddenDelFiles").attr("value",h+";"+src);
             //$("#ContentPlaceHolder1_Hidden2").val(i+"12");

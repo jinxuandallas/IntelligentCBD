@@ -101,6 +101,7 @@
     <Content Include="App_Data\IntelligentCBD.mdf" />
     <Content Include="App_Data\IntelligentCBD_log.ldf" />
     <Content Include="Company\AddCompany.aspx" />
+    <Content Include="Company\CompanyPreview.aspx" />
     <Content Include="Company\EditCompany.aspx" />
     <Content Include="Company\ListViewTest.aspx" />
     <Content Include="Company\ManageCompany.aspx" />
@@ -172,6 +173,13 @@
     </Compile>
     <Compile Include="Company\AddCompany.aspx.designer.cs">
       <DependentUpon>AddCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\CompanyPreview.aspx.cs">
+      <DependentUpon>CompanyPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\CompanyPreview.aspx.designer.cs">
+      <DependentUpon>CompanyPreview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Company\EditCompany.aspx.cs">
       <DependentUpon>EditCompany.aspx</DependentUpon>

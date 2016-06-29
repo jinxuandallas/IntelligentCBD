@@ -40,7 +40,7 @@ namespace Core
         /// <returns>返回账户类型字符串</returns>
         public string GetAccountType(string username)
         {
-            string sql = "select 类型 from [用户视图] where 用户名=@username";
+            sql = "select 类型 from [用户视图] where 用户名=@username";
             using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@username", username) }))
             {
                 if (sdr.Read())
@@ -60,7 +60,7 @@ namespace Core
         {
             ID = Guid.NewGuid();
             int rtn = -1;
-            string sql = @"insert [企业] (ID,[企业名称],[注册资本],[行业],[物业面积],[房间号],[地址],[企业简介],[经营范围],[注册日期],[注册地],[联系人],[联系电话],[QQ],[电子邮箱],[内容],[载体],[录入人],[审核])
+            sql = @"insert [企业] (ID,[企业名称],[注册资本],[行业],[物业面积],[房间号],[地址],[企业简介],[经营范围],[注册日期],[注册地],[联系人],[联系电话],[QQ],[电子邮箱],[内容],[载体],[录入人],[审核])
                 values (@id,@companyName,@capital,@industry,@area,@roomNum,@address,@introduction,@businessScope,@registrationDate,@registeredAddress,@contact,@phone,@QQ,@email,@content,@Vector,@inputUser,@audit) ";
             rtn=ExecuteSql(sql, new SqlParameter[]
             {
@@ -93,9 +93,56 @@ namespace Core
                 return Guid.Empty;
         }
 
+        /// <summary>
+        /// 从当前类中的数据更新数据库中的企业基本信息
+        /// </summary>
+        /// <returns>返回是否更新成功</returns>
+        public bool UpdateCompanyInfo()
+        {
+            int rtn;
+            sql = @"update [企业] set [企业名称]=@companyName,[注册资本]=@capital,[行业]=@industry,[物业面积]=@area,[房间号]=@roomNum,[地址]=@address,
+                [企业简介]=@introduction,[经营范围]=@businessScope,[注册日期]=@registrationDate,[注册地]=@registeredAddress,[联系人]=@contact,[联系电话]=@phone,[QQ]=@QQ,[电子邮箱]=@email,[内容]=@content,[载体]=@Vector,[审核]=@audit
+                where ID=@id";
+
+            rtn = ExecuteSql(sql, new SqlParameter[]
+            {
+                new SqlParameter ("@id",ID),
+                new SqlParameter("@companyName",CompanyName),
+                new SqlParameter("@capital",Capital),
+                new SqlParameter("@industry",Industry),
+                new SqlParameter("@area",Area),
+                new SqlParameter("@roomNum",RoomNum),
+                new SqlParameter("@address",Address),
+                new SqlParameter("@introduction",Introduction),
+                new SqlParameter("@businessScope",BusinessScope),
+                new SqlParameter("@registrationDate",RegistrationDate),
+                new SqlParameter("@registeredAddress",RegisteredAddress),
+                new SqlParameter("@contact",Contact),
+                new SqlParameter("@phone",Phone),
+                new SqlParameter("@QQ",QQ),
+                new SqlParameter("@email",Email),
+                new SqlParameter("@Vector",Vector),
+                new SqlParameter("@content",Content),
+
+                //新添加的企业审核状态设为“修改未审核”
+                new SqlParameter("@audit",2)
+            });
+
+            if (rtn == 1)
+                return true;
+            else
+                return false;
+        }
+
+
+        /// <summary>
+        /// 从数据库中填充企业基本信息到当前类中
+        /// </summary>
+        /// <param name="companyID">要填充的企业ID</param>
+        /// <returns>返回是否填充成功</returns>
         public bool FillCompanyInfo(Guid companyID)
         {
-            string sql = "select * from 企业 where ID=@comID";
+            sql = "select * from 企业 where ID=@comID";
             using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@comID", companyID) }))
             {
                 if (!sdr.Read())
@@ -109,12 +156,15 @@ namespace Core
 
                 int a;
                 int.TryParse(sdr["物业面积"].ToString(),out a);
+                Area = a;
 
                 RoomNum = sdr["房间号"].ToString();
                 Address = sdr["地址"].ToString();
                 Introduction = sdr["企业简介"].ToString();
                 BusinessScope = sdr["经营范围"].ToString();
-                RegistrationDate = sdr["注册日期"].ToString();
+
+                //此处Datetime需要转化一下
+                RegistrationDate = DateTime.Parse(sdr["注册日期"].ToString()).ToString("yyyy-MM-dd");
                 RegisteredAddress = sdr["注册地"].ToString();
                 Contact = sdr["联系人"].ToString();
                 Phone = sdr["联系电话"].ToString();

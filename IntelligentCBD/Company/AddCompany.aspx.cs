@@ -48,11 +48,11 @@ namespace IntelligentCBD.Company
             cc.QQ = TextBox_QQ.Text;
             cc.Content = elm1.InnerText;
 
-            Guid id=cc.AddCompanyBaseInformation(Session["username"].ToString());
+            Guid id=cc.AddCompanyBaseInformation(Session["Username"].ToString());
             
             //将用户的账号类型从个人改为商户
             UserClass uc = new UserClass();
-            if (uc.UpdateAccountType(Session["username"].ToString(), 2) && id != Guid.Empty)
+            if (uc.UpdateAccountType(Session["Username"].ToString(), 2) && id != Guid.Empty)
             {
                 Session["CompanyID"] = id;
                 Response.Redirect("UploadCredentials.aspx");
