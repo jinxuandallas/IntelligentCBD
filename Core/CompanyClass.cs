@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
-//using System.Data;
+using System.Data;
 
 namespace Core
 {
@@ -177,6 +177,33 @@ namespace Core
             return true;
 
         }
-        
+
+        public DataSet GetCompanyAdvertises(Guid companyID)
+        {
+            //选择属于CompanyID并且是企业宣传图片的所有图片
+            sql = "select 图片地址 from 图片 where 所属企业=@comID and 图片类型=1";
+            DataSet ds = GetDataSet(sql, new SqlParameter[] { new SqlParameter("@comID", companyID) });
+
+            //添加页码列
+            ds.Tables[0].Columns.Add("Num");
+
+            //如果企业没有宣传图片则显示默认没有图片
+            if (ds.Tables[0].Rows.Count<1)
+            {
+                DataRow dr = ds.Tables[0].NewRow();
+                dr["图片地址"] = "~/Images/noImg.jpg";
+                dr["Num"] = 1;
+                ds.Tables[0].Rows.Add(dr);
+                return ds;
+            }
+
+            //添加页码列数据
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                ds.Tables[0].Rows[i]["Num"] = i+1;
+
+            return ds;
+        }
+
+
     }
 }

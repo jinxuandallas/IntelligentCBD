@@ -109,6 +109,7 @@
     <Content Include="Css\MainStyleSheet.css" />
     <None Include="js\jquery-1.4.4-vsdoc.js" />
     <Content Include="Images\noImg.jpg" />
+    <Content Include="Images\slider-arrow.png" />
     <Content Include="js\jquery-1.4.4.min.js" />
     <Content Include="js\xheditor-1.2.2.min.js" />
     <Content Include="packages.config" />
@@ -127,6 +128,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\jquery.SuperSlide.2.1.1.js" />
     <Content Include="Upload\Upload.aspx" />
     <Content Include="Upload\UploadCompanyPicture\2016062009453011.jpg" />
     <Content Include="Web.config" />
