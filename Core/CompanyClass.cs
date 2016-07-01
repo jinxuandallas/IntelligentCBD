@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Web;
 
 namespace Core
 {
@@ -13,6 +14,15 @@ namespace Core
         public Guid ID { get; set; }
         public string CompanyName {get;set;}
         public long Capital { get; set; }
+
+        /*
+        private string capitalStr;
+        public string CapitalStr { get { return capitalStr; }
+            set { capitalStr = t.LongStr2CapitalStr(value); }
+        }
+        */
+        public string CapitalStr;
+
         public string Industry { get; set; }
         public int Area { get; set; }
         public string RoomNum { get; set; }
@@ -28,9 +38,11 @@ namespace Core
         public string Email { get; set; }
         public string QQ { get; set; }
         public string Content { get; set; }
+
+        protected Tools t;
         public CompanyClass()
         {
-
+            t = new Tools();
         }
 
         /// <summary>
@@ -172,6 +184,48 @@ namespace Core
                 Email = sdr["电子邮箱"].ToString();
                 Content = sdr["内容"].ToString();
                 Vector = sdr["载体"].ToString();
+
+            }
+            return true;
+
+        }
+
+        public bool FillCompanyInfoView(Guid companyID)
+        {
+            sql = "select * from 企业视图 where ID=@comID";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@comID", companyID) }))
+            {
+                if (!sdr.Read())
+                    return false;
+                CompanyName = HttpUtility.HtmlEncode(sdr["企业名称"].ToString());
+                /*
+                long b;
+                long.TryParse(sdr["注册资本"].ToString(), out b);
+                Capital = b;
+                CapitalStr = Capital.ToString();//此处多了一步，需将长整型数字字符串处理成带单位可以显示的字符串
+                */
+                CapitalStr = t.LongStr2CapitalStr(sdr["注册资本"].ToString());
+
+                Industry = HttpUtility.HtmlEncode(sdr["行业"].ToString());
+
+                int a;
+                int.TryParse(sdr["物业面积"].ToString(), out a);
+                Area = a;
+
+                RoomNum = HttpUtility.HtmlEncode(sdr["房间号"].ToString());
+                Address = HttpUtility.HtmlEncode(sdr["地址"].ToString());
+                Introduction = HttpUtility.HtmlEncode(sdr["企业简介"].ToString());
+                BusinessScope = HttpUtility.HtmlEncode(sdr["经营范围"].ToString());
+
+                //此处Datetime需要转化一下
+                RegistrationDate = DateTime.Parse(sdr["注册日期"].ToString()).ToString("yyyy-MM-dd");
+                RegisteredAddress = HttpUtility.HtmlEncode(sdr["注册地"].ToString());
+                Contact = HttpUtility.HtmlEncode(sdr["联系人"].ToString());
+                Phone = HttpUtility.HtmlEncode(sdr["联系电话"].ToString());
+                QQ = HttpUtility.HtmlEncode(sdr["QQ"].ToString());
+                Email = HttpUtility.HtmlEncode(sdr["电子邮箱"].ToString());
+                Content = sdr["内容"].ToString();//此处无需处理HTMLEncode，因添加时xheditor控件已处理
+                Vector = sdr["载体名称"].ToString();//此处在录入时只能是数字
 
             }
             return true;

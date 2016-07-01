@@ -16,5 +16,6 @@ body { font-size:15px;
  }
  /*用于Label标签的自动换行*/
  .WordWrap{
+     word-wrap : break-word;
      word-break:break-all
  }

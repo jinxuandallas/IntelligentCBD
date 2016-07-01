@@ -49,6 +49,12 @@ namespace Core
             return sourceAddress;
         }
 
+        /// <summary>
+        /// 将过长字符串截断并在其后添加“...”
+        /// </summary>
+        /// <param name="str">要截断的字符串</param>
+        /// <param name="len">截断的长度</param>
+        /// <returns>返回处理好的字符串</returns>
         public string cutStr(string str,int len)
         {
             if (str.Length > len)
@@ -56,6 +62,11 @@ namespace Core
             return str;
         }
 
+        /// <summary>
+        /// 将长整型转换成带单位的注册资本数
+        /// </summary>
+        /// <param name="longStr">长整型的字符串形式</param>
+        /// <returns>返回处理好的注册资本字符串</returns>
         public string LongStr2CapitalStr(string longStr)
         {
             if (string.IsNullOrEmpty(longStr))

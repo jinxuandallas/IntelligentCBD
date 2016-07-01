@@ -16,7 +16,7 @@ namespace IntelligentCBD.Company
         protected void Page_Load(object sender, EventArgs e)
         {
             //测试用
-            Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
+            //Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
 
 
             if (Session["CompanyID"] == null || Session["CompanyID"].ToString().Trim() == "")
@@ -35,16 +35,15 @@ namespace IntelligentCBD.Company
         /// </summary>
         protected void FillTextbox()
         {
-            
             cc.FillCompanyInfo(companyID);
             TextBox_CompanyName.Text = cc.CompanyName;
 
             //填充注册资本，这里比较麻烦
             string capitalUnit,capitalStr;
-            capitalStr = t.LongStr2CapitalStr(cc.Capital.ToString());
-            TextBox_Capital.Text = capitalStr.Substring(0,capitalStr.Length-1);
-            capitalUnit = capitalStr.Substring(capitalStr.Length - 1);
-            DropDownList_Units.SelectedValue = capitalUnit;
+            capitalStr = t.LongStr2CapitalStr(cc.Capital.ToString());//此处得到的字符串是“100亿”如此
+            TextBox_Capital.Text = capitalStr.Substring(0,capitalStr.Length-1);//返回前面的数字复制到TextBox_Capital.Text
+            capitalUnit = capitalStr.Substring(capitalStr.Length - 1);//返回最后的单位
+            DropDownList_Units.SelectedValue = capitalUnit;//将单位赋值到DropDownList_Units控件中
 
             TextBox_Industry.Text = cc.Industry;
             TextBox_Area.Text = cc.Area.ToString();

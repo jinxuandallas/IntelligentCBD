@@ -33,11 +33,51 @@
         }
 
 		.auto-style7 {
+            font-size:15px;
+            width: 150px;
+            vertical-align:top;
+        }
+
+		.auto-style10 {
+            font-size:15px;
+            width: 200px;
+            vertical-align:top;
+        }
+
+		.auto-style13 {
+            font-size:15px;
+            width: 200px;
+            vertical-align: top;
+        }
+        
+		.auto-style16 {
+            font-size:15px;
+            font-size:15px;
+            width:100px;
+            vertical-align: top;
+        }
+
+		.auto-style17 {
+            font-size:15px;
+            width:100px;
+            vertical-align: top;
+        }
+        
+        .auto-style19 {
+            font-size:15px;
+            width: 200px;
+            vertical-align: top;
+            height: 26px;
+        }
+        .auto-style20 {
+            font-size:15px;
             width: 100px;
+             vertical-align: top;
+            height: 26px;
         }
 
 		</style>
-    <table style="width:800px">
+    <table style="width:900px">
         <tr>
             <td class="auto-style6" rowspan="5"><div id="slideBox" class="slideBox">
 			<div class="hd">
@@ -61,51 +101,71 @@
 
 		</div></td>
             <td style="font-size:20px;font-weight:bold" class="auto-style7">企业名称:</td>
-            <td colspan="2" rowspan="2" style="vertical-align:top">
-                <asp:Label ID="LabelCompanyName" runat="server" Font-Size="18px" Width="320px" Style=" word-wrap : break-word; word-break:break-all;"></asp:Label>
+            <td colspan="3" rowspan="2" style="vertical-align:top">
+                <asp:Label ID="LabelCompanyName" runat="server" Font-Size="18px" Width="400px"   CssClass="WordWrap" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>
             <td class="auto-style7">&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style7">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td class="auto-style7">联系电话：</td>
+            <td class="auto-style13">
+                <asp:Label ID="LabelPhone" runat="server" CssClass="WordWrap"></asp:Label>
+            </td>
+            <td class="auto-style16">
+                联系人：</td>
+            <td class="auto-style10">
+                <asp:Label ID="LabelContact" runat="server" CssClass="WordWrap"></asp:Label>
+            </td>
         </tr>
         <tr>
-            <td class="auto-style7">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td class="auto-style7">所属载体：</td>
+            <td class="auto-style13">
+                <asp:Label ID="LabelVector" runat="server"></asp:Label>
+            </td>
+            <td class="auto-style16">注册资本：</td>
+            <td class="auto-style10">
+                <asp:Label ID="LabelCapital" runat="server"></asp:Label>
+            </td>
         </tr>
         <tr>
-            <td class="auto-style7">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td class="auto-style7">地址：</td>
+            <td class="auto-style19">
+                <asp:Label ID="LabelAddress" runat="server"  CssClass="WordWrap" ></asp:Label>
+            </td>
+            <td class="auto-style20">房间号：</td>
+            <td class="auto-style19">
+                <asp:Label ID="LabelRoomNum" runat="server" CssClass="WordWrap"></asp:Label>
+            </td>
         </tr>
         <tr>
             <td class="auto-style6" >hjghj</td>
             <td class="auto-style7" ></td>
-            <td ></td>
-            <td>&nbsp;</td>
+            <td class="auto-style13" ></td>
+            <td class="auto-style17" ></td>
+            <td class="auto-style10">&nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style6">&nbsp;</td>
             <td class="auto-style7">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td class="auto-style13">&nbsp;</td>
+            <td class="auto-style17">&nbsp;</td>
+            <td class="auto-style10">&nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style6">&nbsp;</td>
             <td class="auto-style7">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td class="auto-style13">&nbsp;</td>
+            <td class="auto-style17">&nbsp;</td>
+            <td class="auto-style10">&nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style6">&nbsp;</td>
             <td class="auto-style7">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td class="auto-style13">&nbsp;</td>
+            <td class="auto-style17">&nbsp;</td>
+            <td class="auto-style10">&nbsp;</td>
         </tr>
     </table>
     <script type="text/javascript">
