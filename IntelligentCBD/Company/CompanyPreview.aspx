@@ -6,7 +6,7 @@
     <style type="text/css">
 		/* css 重置 */
 		*{margin:0; padding:0; list-style:none; }
-		body{ background:#fff; font:normal 12px/22px 宋体;  }
+		/*body{ background:#fff; font:normal 12px/22px 宋体;  }*/
 		img{ border:0;  }
 		a{ text-decoration:none; color:#333;  }
 
@@ -161,8 +161,8 @@
         </tr>
         <tr>
             <td colspan="5"><asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                <ajaxToolkit:TabContainer ID="TabContainer1" runat="server"  CssClass="ajax__tab_xp" ActiveTabIndex="0" Width="850px"
-             OnDemand="true">
+                <ajaxToolkit:TabContainer ID="TabContainer1" runat="server"  CssClass="ajax__tab_xp" ActiveTabIndex="0" Width="850px" OnActiveTabChanged="TabContainer1_ActiveTabChanged"
+           OnDemand="true">
                     
             <ajaxToolkit:TabPanel runat="server" HeaderText="基本信息" ID="TabPanelInfo" OnDemandMode="Once" >
                 <ContentTemplate>
@@ -236,10 +236,22 @@
             </ajaxToolkit:TabPanel>
             <ajaxToolkit:TabPanel ID="TabPanelPic" runat="server" HeaderText="相关证照" OnDemandMode="once">
                 <ContentTemplate>
-                    I'm tab 2, I was rendered at
-                    <%= DateTime.Now.ToString("T") %>
-                    <br />
-                    My OnDemandMode is &#39;Always&#39;
+                    <asp:Repeater ID="Repeater3" runat="server" OnItemCreated="Repeater3_ItemCreated" >
+        <HeaderTemplate><h2> </h2><br /></HeaderTemplate>
+        <ItemTemplate>
+            <div style="clear:both"> 
+                
+            <div style="height:30px"><%# DataBinder.Eval(Container.DataItem,"类型名称") %>：</div>
+            <asp:Repeater ID="Repeater4" runat="server">
+                <ItemTemplate>
+                    <div style="float:left;width:170px;height:120px">
+                   <asp:Image ID="img" runat="server"  Width="150px" Height="110px" ImageUrl='<%# DataBinder.Eval(Container.DataItem,"图片地址")  %>' />
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+           </div><hr style="clear:both; " /><br />
+        </ItemTemplate>
+    </asp:Repeater>
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
             <ajaxToolkit:TabPanel ID="TabPanel3" runat="server" HeaderText="TabPanel3" OnDemandMode="None">
@@ -276,6 +288,13 @@
         </tr>
     </table>
     <script type="text/javascript">
-        jQuery(".slideBox").slide({ mainCell: ".bd ul", autoPlay:true,trigger: "click" });
+        jQuery(".slideBox").slide({ mainCell: ".bd ul", autoPlay: true, trigger: "click" });
+       
 		</script>
+    <!-- 此处不需要此代码
+            function ClientActiveTabChanged(sender, e)
+            {
+                __doPostBack('<%= TabContainer1.ClientID %>', sender.get_activeTabIndex());
+        }
+        */ -->
 </asp:Content>

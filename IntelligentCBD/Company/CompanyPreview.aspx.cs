@@ -32,6 +32,10 @@ namespace IntelligentCBD.Company
             Repeater2.DataSource = ds;
             Repeater2.DataBind();
             Repeater1.DataBind();
+            
+                //Repeater3.DataSource = cc.GetPicKind(companyID);
+                //Repeater3.DataBind();
+            
 
             FillComInfo();
         }
@@ -56,6 +60,39 @@ namespace IntelligentCBD.Company
             LabelQQ.Text = cc.QQ;
             LabelEmail.Text = cc.Email;
             LabelContent.Text = cc.Content;
+        }
+
+        protected void Repeater3_ItemCreated(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Repeater rpt2 = e.Item.FindControl("Repeater4") as Repeater;
+                if (rpt2 != null && e.Item.DataItem!=null)
+                {
+                    int picType = int.Parse(((DataRowView)e.Item.DataItem).Row[0].ToString());
+                    if (picType != 0)
+                    {
+                        rpt2.DataSource = cc.GetPicShowAddress(companyID, picType);
+                        rpt2.DataBind();
+                    }
+                }
+            }
+        }
+
+        protected void TabContainer1_ActiveTabChanged(object sender, EventArgs e)
+        {
+            switch (TabContainer1.ActiveTabIndex)
+            {
+                case 1:
+                    Repeater3.DataSource = cc.GetPicKind(companyID);
+                    Repeater3.DataBind();
+                    //Repeater3.DataSource = cc.GetPicKind(companyID);
+                    //Repeater3.DataBind();
+                    break;
+                default:
+                    break;
+
+            }
         }
     }
 }
