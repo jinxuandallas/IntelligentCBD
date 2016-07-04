@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=15.1.4.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -101,10 +105,15 @@
     <Content Include="App_Data\IntelligentCBD.mdf" />
     <Content Include="App_Data\IntelligentCBD_log.ldf" />
     <Content Include="Company\AddCompany.aspx" />
+    <Content Include="Company\CompanyPreview.aspx" />
+    <Content Include="Company\EditCompany.aspx" />
+    <Content Include="Company\ListViewTest.aspx" />
     <Content Include="Company\ManageCompany.aspx" />
     <Content Include="Company\UploadCredentials.aspx" />
     <Content Include="Css\MainStyleSheet.css" />
     <None Include="js\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Images\noImg.jpg" />
+    <Content Include="Images\slider-arrow.png" />
     <Content Include="js\jquery-1.4.4.min.js" />
     <Content Include="js\xheditor-1.2.2.min.js" />
     <Content Include="packages.config" />
@@ -123,6 +132,8 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\jquery.SuperSlide.2.1.1.js" />
+    <Content Include="Test\OverlapRepeater.aspx" />
     <Content Include="Upload\Upload.aspx" />
     <Content Include="Upload\UploadCompanyPicture\2016062009453011.jpg" />
     <Content Include="Web.config" />
@@ -170,6 +181,27 @@
     <Compile Include="Company\AddCompany.aspx.designer.cs">
       <DependentUpon>AddCompany.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Company\CompanyPreview.aspx.cs">
+      <DependentUpon>CompanyPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\CompanyPreview.aspx.designer.cs">
+      <DependentUpon>CompanyPreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\EditCompany.aspx.cs">
+      <DependentUpon>EditCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\EditCompany.aspx.designer.cs">
+      <DependentUpon>EditCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\ListViewTest.aspx.cs">
+      <DependentUpon>ListViewTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\ListViewTest.aspx.designer.cs">
+      <DependentUpon>ListViewTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Company\ManageCompany.aspx.cs">
       <DependentUpon>ManageCompany.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -199,6 +231,13 @@
       <DependentUpon>MainSite.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\OverlapRepeater.aspx.cs">
+      <DependentUpon>OverlapRepeater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\OverlapRepeater.aspx.designer.cs">
+      <DependentUpon>OverlapRepeater.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Upload\Upload.aspx.cs">
       <DependentUpon>Upload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

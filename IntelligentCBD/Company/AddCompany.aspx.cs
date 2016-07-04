@@ -29,7 +29,7 @@ namespace IntelligentCBD.Company
             //cc.ID=Guid.NewGuid();
 
             cc.CompanyName = TextBox_CompanyName.Text;
-            cc.Capital = t.CapitalString2Long(TextBox_Capital.Text, DropDownList_Units.SelectedValue);
+            cc.Capital = t.CapitalStr2Long(TextBox_Capital.Text, DropDownList_Units.SelectedValue);
             cc.Industry = TextBox_Industry.Text;
             //此处需如此处理面积
             int area;
@@ -48,11 +48,11 @@ namespace IntelligentCBD.Company
             cc.QQ = TextBox_QQ.Text;
             cc.Content = elm1.InnerText;
 
-            Guid id=cc.AddCompanyBaseInformation(Session["username"].ToString());
+            Guid id=cc.AddCompanyBaseInformation(Session["Username"].ToString());
             
             //将用户的账号类型从个人改为商户
             UserClass uc = new UserClass();
-            if (uc.UpdateAccountType(Session["username"].ToString(), 2) && id != Guid.Empty)
+            if (uc.UpdateAccountType(Session["Username"].ToString(), 2) && id != Guid.Empty)
             {
                 Session["CompanyID"] = id;
                 Response.Redirect("UploadCredentials.aspx");
