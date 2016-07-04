@@ -19,7 +19,7 @@ namespace Core
         /// <param name="num">要转换的数字</param>
         /// <param name="unit">单位（亿、万、千）</param>
         /// <returns>转换后的长整型注册资本数</returns>
-        public long CapitalString2Long (string num,string unit)
+        public long CapitalStr2Long (string num,string unit)
         {
             int capitalNum;
             long capital;
@@ -40,6 +40,46 @@ namespace Core
                     break;
             }
             return capital;
+        }
+
+        public string TransformPicAddress(string sourceAddress)
+        {
+            if (string.IsNullOrEmpty(sourceAddress))
+                return "~/Images/noImg.jpg";
+            return sourceAddress;
+        }
+
+        /// <summary>
+        /// 将过长字符串截断并在其后添加“...”
+        /// </summary>
+        /// <param name="str">要截断的字符串</param>
+        /// <param name="len">截断的长度</param>
+        /// <returns>返回处理好的字符串</returns>
+        public string cutStr(string str,int len)
+        {
+            if (str.Length > len)
+                return str.Substring(0, len) + "...";
+            return str;
+        }
+
+        /// <summary>
+        /// 将长整型转换成带单位的注册资本数
+        /// </summary>
+        /// <param name="longStr">长整型的字符串形式</param>
+        /// <returns>返回处理好的注册资本字符串</returns>
+        public string LongStr2CapitalStr(string longStr)
+        {
+            if (string.IsNullOrEmpty(longStr))
+                return "";
+            long capital = Convert.ToInt64(longStr);
+            string capitalStr = capital.ToString();
+            if (capitalStr.Length > 8)
+                return (capital / 100000000).ToString() + "亿";
+            if (capitalStr.Length > 4)
+                return (capital / 10000).ToString() + "万";
+            if (capitalStr.Length > 3)
+                return (capital / 1000).ToString() + "千";
+            return capitalStr;
         }
     }
 }
