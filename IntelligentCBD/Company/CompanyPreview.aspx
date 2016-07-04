@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MenuSite.Master" AutoEventWireup="true" CodeBehind="CompanyPreview.aspx.cs" Inherits="IntelligentCBD.Company.CompanyPreview" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="../js/jquery-1.4.4.min.js"></script>
     <script src="../scripts/jquery.SuperSlide.2.1.1.js"></script>
@@ -76,6 +77,18 @@
             height: 26px;
         }
 
+		.auto-style21 {
+            width: 90px;
+        }
+        .auto-style22 {
+            width: 90px;
+            height: 100px;
+        }
+        .auto-style23 {
+            height: 100px;
+        }
+
+
 		</style>
     <table style="width:900px">
         <tr>
@@ -126,7 +139,7 @@
             </td>
             <td class="auto-style16">注册资本：</td>
             <td class="auto-style10">
-                <asp:Label ID="LabelCapital" runat="server"></asp:Label>
+                <asp:Label ID="LabelCapital" runat="server"></asp:Label>&nbsp;RMB
             </td>
         </tr>
         <tr>
@@ -140,18 +153,112 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style6" >hjghj</td>
+            <td class="auto-style6" >&nbsp;</td>
             <td class="auto-style7" ></td>
             <td class="auto-style13" ></td>
             <td class="auto-style17" ></td>
             <td class="auto-style10">&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style6">&nbsp;</td>
-            <td class="auto-style7">&nbsp;</td>
-            <td class="auto-style13">&nbsp;</td>
-            <td class="auto-style17">&nbsp;</td>
-            <td class="auto-style10">&nbsp;</td>
+            <td colspan="5"><asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <ajaxToolkit:TabContainer ID="TabContainer1" runat="server"  CssClass="ajax__tab_xp" ActiveTabIndex="0" Width="850px"
+             OnDemand="true">
+                    
+            <ajaxToolkit:TabPanel runat="server" HeaderText="基本信息" ID="TabPanelInfo" OnDemandMode="Once" >
+                <ContentTemplate>
+                    <table style="width:100%;">
+                        <tr>
+                            <td class="auto-style21">所属行业：</td>
+                            <td>
+                                <asp:Label ID="LabelIndustry" runat="server"></asp:Label>
+                            </td>
+                            <td>&nbsp;</td>
+                            <td class="auto-style21">物业面积：</td>
+                            <td>
+                                <asp:Label ID="LabelArea" runat="server"></asp:Label>㎡
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style22">企业简介：</td>
+                            <td class="auto-style23">
+                                <asp:Label ID="LabelIntroduction" Width="300px" runat="server" Style="word-wrap: break-word; word-break: break-all;height:100px;overflow-y: scroll;" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"></asp:Label>
+                            </td>
+                            <td class="auto-style23"></td>
+                            <td class="auto-style22">经营范围：</td>
+                            <td class="auto-style23">
+                                <asp:Label ID="LabelBusinessScope" runat="server" Style="word-wrap: break-word; word-break: break-all;height:100px;overflow-y: scroll;" Width="300px" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style21">注册日期：</td>
+                            <td>
+                                <asp:Label ID="LabelRegistrationDate" runat="server"></asp:Label>
+                            </td>
+                            <td>&nbsp;</td>
+                            <td class="auto-style21">注册地：</td>
+                            <td>
+                                <asp:Label ID="LabelRegisteredAddress" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style21">QQ:</td>
+                            <td>
+                                <asp:Label ID="LabelQQ" runat="server"></asp:Label>
+                            </td>
+                            <td>&nbsp;</td>
+                            <td class="auto-style21">电子邮箱：</td>
+                            <td>
+                                <asp:Label ID="LabelEmail" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td  colspan="2" class="auto-style21">企业宣传内容：</td>
+                            
+                            <td>&nbsp;</td>
+                            <td class="auto-style21">&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" >
+                               <hr />
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" >
+                                <asp:Label ID="LabelContent" runat="server" Style="word-wrap: break-word; word-break: break-all;height:100px" Width="800px"></asp:Label>
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+                </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+            <ajaxToolkit:TabPanel ID="TabPanelPic" runat="server" HeaderText="相关证照" OnDemandMode="once">
+                <ContentTemplate>
+                    I'm tab 2, I was rendered at
+                    <%= DateTime.Now.ToString("T") %>
+                    <br />
+                    My OnDemandMode is &#39;Always&#39;
+                </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+            <ajaxToolkit:TabPanel ID="TabPanel3" runat="server" HeaderText="TabPanel3" OnDemandMode="None">
+                <ContentTemplate>
+                    I'm tab 3, I was rendered at
+                    <%= DateTime.Now.ToString("T") %>
+                    <br />
+                    My OnDemandMode is &#39;None&#39;
+                </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+            <ajaxToolkit:TabPanel ID="TabPanel4" runat="server" HeaderText="TabPanel4" OnDemandMode="Once">
+                <ContentTemplate>
+                    I'm tab 4. Hey, I&#39;m loaded only once!<br />
+                    I was rendered at
+                    <%= DateTime.Now.ToString("T") %>
+                </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+        </ajaxToolkit:TabContainer>
+            </td>
         </tr>
         <tr>
             <td class="auto-style6">&nbsp;</td>

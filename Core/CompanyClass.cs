@@ -148,7 +148,7 @@ namespace Core
 
 
         /// <summary>
-        /// 从数据库中填充企业基本信息到当前类中
+        /// 从数据库中填充企业基本信息到当前类中,此处用于填充到Textbox中，所以无需用HtmlEncode转换为网页编码
         /// </summary>
         /// <param name="companyID">要填充的企业ID</param>
         /// <returns>返回是否填充成功</returns>
@@ -190,6 +190,11 @@ namespace Core
 
         }
 
+        /// <summary>
+        /// 将企业视图中的用户显示的数据填充到类属性中（由于直接用于客户端显示，所有的内容一般需经过HtmlEncode转换）
+        /// </summary>
+        /// <param name="companyID">要填充的企业ID</param>
+        /// <returns>返回是否填充成功</returns>
         public bool FillCompanyInfoView(Guid companyID)
         {
             sql = "select * from 企业视图 where ID=@comID";
@@ -197,6 +202,8 @@ namespace Core
             {
                 if (!sdr.Read())
                     return false;
+
+
                 CompanyName = HttpUtility.HtmlEncode(sdr["企业名称"].ToString());
                 /*
                 long b;
@@ -219,6 +226,9 @@ namespace Core
 
                 //此处Datetime需要转化一下
                 RegistrationDate = DateTime.Parse(sdr["注册日期"].ToString()).ToString("yyyy-MM-dd");
+                if (RegistrationDate == "1900-01-01")
+                    RegistrationDate = string.Empty;
+
                 RegisteredAddress = HttpUtility.HtmlEncode(sdr["注册地"].ToString());
                 Contact = HttpUtility.HtmlEncode(sdr["联系人"].ToString());
                 Phone = HttpUtility.HtmlEncode(sdr["联系电话"].ToString());
@@ -258,6 +268,18 @@ namespace Core
             return ds;
         }
 
+        public DataSet GetPicKind(Guid companyID)
+        {
+            sql = "select distinct(图片类型),类型名称 from 图片视图 where 所属企业=@comID";
+            return GetDataSet(sql,new SqlParameter[] { new SqlParameter("@comID", companyID) });
+        }
 
+        public DataSet GetPicShowAddress(Guid companyID,int picType)
+        {
+            sql = "select 图片地址 from 图片视图 where 所属企业=@comID and 图片类型=@picType";
+            return GetDataSet(sql, new SqlParameter[] { new SqlParameter("@comID", companyID),
+            new SqlParameter("@picType",picType)
+            });
+        }
     }
 }
