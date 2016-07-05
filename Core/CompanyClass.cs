@@ -270,13 +270,13 @@ namespace Core
 
         public DataSet GetPicKind(Guid companyID)
         {
-            sql = "select distinct(图片类型),类型名称 from 图片视图 where 所属企业=@comID";
+            sql = "select distinct(图片类型),类型名称 from 图片视图 where 图片类型>1 and 所属企业=@comID";
             return GetDataSet(sql,new SqlParameter[] { new SqlParameter("@comID", companyID) });
         }
 
         public DataSet GetPicShowAddress(Guid companyID,int picType)
         {
-            sql = "select 图片地址 from 图片视图 where 所属企业=@comID and 图片类型=@picType";
+            sql = "select 图片地址 from 图片视图 where 图片类型>1 and 所属企业=@comID and 图片类型=@picType";
             return GetDataSet(sql, new SqlParameter[] { new SqlParameter("@comID", companyID),
             new SqlParameter("@picType",picType)
             });
