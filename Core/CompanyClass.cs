@@ -242,6 +242,11 @@ namespace Core
 
         }
 
+        /// <summary>
+        /// 获取企业滚动的宣传页，并处理为绑定翻页显示控件提供数据源
+        /// </summary>
+        /// <param name="companyID">企业ID</param>
+        /// <returns>包含该企业图片类型为“企业宣传内容”的所有图片地址</returns>
         public DataSet GetCompanyAdvertises(Guid companyID)
         {
             //选择属于CompanyID并且是企业宣传图片的所有图片
@@ -268,12 +273,23 @@ namespace Core
             return ds;
         }
 
+        /// <summary>
+        /// 返回企业包含的图片类型
+        /// </summary>
+        /// <param name="companyID">企业ID</param>
+        /// <returns>返回包含图片类型的Dataset</returns>
         public DataSet GetPicKind(Guid companyID)
         {
             sql = "select distinct(图片类型),类型名称 from 图片视图 where 图片类型>1 and 所属企业=@comID";
             return GetDataSet(sql,new SqlParameter[] { new SqlParameter("@comID", companyID) });
         }
 
+        /// <summary>
+        /// 获得相应企业相应类型的图片
+        /// </summary>
+        /// <param name="companyID">企业的ID</param>
+        /// <param name="picType">图片类型</param>
+        /// <returns>返回Dataset</returns>
         public DataSet GetPicShowAddress(Guid companyID,int picType)
         {
             sql = "select 图片地址 from 图片视图 where 图片类型>1 and 所属企业=@comID and 图片类型=@picType";
