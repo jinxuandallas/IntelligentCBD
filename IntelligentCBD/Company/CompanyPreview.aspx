@@ -240,12 +240,11 @@
         <HeaderTemplate><h2> </h2><br /></HeaderTemplate>
         <ItemTemplate>
             <div style="clear:both"> 
-                
-            <div style="height:30px"><%# DataBinder.Eval(Container.DataItem,"类型名称") %>：</div>
+                <div style="height:30px"><%# DataBinder.Eval(Container.DataItem,"类型名称") %>：</div>
             <asp:Repeater ID="Repeater4" runat="server">
                 <ItemTemplate>
                     <div style="float:left;width:170px;height:120px">
-                   <asp:Image ID="img" runat="server"  Width="150px" Height="110px" ImageUrl='<%# DataBinder.Eval(Container.DataItem,"图片地址")  %>' />
+                   <a href='<%# DataBinder.Eval(Container.DataItem,"图片地址").ToString().Replace("~","..") %>' target="_blank"><asp:Image ID="img" runat="server"  Width="150px" Height="110px" ImageUrl='<%# DataBinder.Eval(Container.DataItem,"图片地址")  %>' /></a>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>

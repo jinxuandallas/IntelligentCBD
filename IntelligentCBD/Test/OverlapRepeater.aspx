@@ -22,7 +22,7 @@
             <asp:Repeater ID="Repeater2" runat="server">
                 <ItemTemplate>
                     <div style="float:left;width:170px;height:120px">
-                   <asp:Image ID="img" runat="server"  Width="150px" Height="110px" ImageUrl='<%# DataBinder.Eval(Container.DataItem,"图片地址")  %>' />
+                   <a href='<%# DataBinder.Eval(Container.DataItem,"图片地址").ToString().Replace("~","..") %>'"><asp:Image ID="img" runat="server"  Width="150px" Height="110px" ImageUrl='<%# DataBinder.Eval(Container.DataItem,"图片地址")  %>' /></a>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
