@@ -6,7 +6,7 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <link href="~/Css/MainStyleSheet.css" rel="stylesheet" type="text/css" />
+    <link href="~/Css/MainStyleSheet.css" rel="stylesheet" type="text/css"  runat="server"/>
     <style type="text/css">
         .auto-style1 {
             width: 250px;
@@ -39,7 +39,7 @@
                     <td style="padding: 0px; background-color: #0066FF; color: #FFFFFF;" class="auto-style3">
                         <asp:LoginName ID="LoginName1" runat="server" Font-Size="15px" FormatString="您好，{0}"/>
 &nbsp;<asp:LoginStatus ID="LoginStatus1" runat="server" Font-Size="14px" LogoutPageUrl="~\default.aspx" ForeColor="White" LogoutAction="RedirectToLoginPage" LogoutText="退出" OnLoggedOut="LoginStatus1_LoggedOut" />
-                    &nbsp;<a href="~\Question\Question.aspx" style="font-size:14px; color: white">反馈问题</a></td>
+                    &nbsp;<a href="~\Question\Question.aspx" style="font-size:14px; color: white" runat="server">反馈问题</a></td>
 
                 </tr>
                  <tr>

@@ -112,8 +112,12 @@
     <Content Include="Company\UploadCredentials.aspx" />
     <Content Include="Css\MainStyleSheet.css" />
     <None Include="js\jquery-1.4.4-vsdoc.js" />
+    <Content Include="default.aspx" />
     <Content Include="Images\noImg.jpg" />
     <Content Include="Images\slider-arrow.png" />
+    <Content Include="Images\Search.jpg" />
+    <Content Include="Images\title2.png" />
+    <Content Include="Images\title3.png" />
     <Content Include="js\jquery-1.4.4.min.js" />
     <Content Include="js\xheditor-1.2.2.min.js" />
     <Content Include="packages.config" />
@@ -133,6 +137,7 @@
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\jquery.SuperSlide.2.1.1.js" />
+    <Content Include="Search\Result.aspx" />
     <Content Include="Test\OverlapRepeater.aspx" />
     <Content Include="Upload\Upload.aspx" />
     <Content Include="Upload\UploadCompanyPicture\2016062009453011.jpg" />
@@ -216,6 +221,13 @@
     <Compile Include="Company\UploadCredentials.aspx.designer.cs">
       <DependentUpon>UploadCredentials.aspx</DependentUpon>
     </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage\MenuSite.Master.cs">
       <DependentUpon>MenuSite.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -231,6 +243,13 @@
       <DependentUpon>MainSite.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search\Result.aspx.cs">
+      <DependentUpon>Result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search\Result.aspx.designer.cs">
+      <DependentUpon>Result.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Test\OverlapRepeater.aspx.cs">
       <DependentUpon>OverlapRepeater.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
