@@ -13,5 +13,10 @@ namespace IntelligentCBD.MasterPage
         {
 
         }
+
+        protected void LoginStatus1_LoggedOut(object sender, EventArgs e)
+        {
+            Session.Clear();
+        }
     }
 }

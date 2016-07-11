@@ -13,7 +13,7 @@ namespace IntelligentCBD.Company
         public Tools t;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //此处给客户端调用，不能去掉
+            //此处给客户端（aspx页面）调用，不能去掉
             t = new Tools();
 
             /*此处不可如此设置，因为一个企业也需要管理（可能要删除）

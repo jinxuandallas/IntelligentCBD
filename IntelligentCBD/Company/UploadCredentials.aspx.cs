@@ -18,13 +18,13 @@ namespace IntelligentCBD.Company
         protected void Page_Load(object sender, EventArgs e)
         {
             //测试用
-            Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
+            //Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
             //addNum = 5;
             up = new UploadPictureClass();
             companyID = Guid.Parse(Session["CompanyID"].ToString());
             if (!IsPostBack)
             {
-                if (Session["CompanyID"] == null || Session["CompanyID"].ToString().Trim() == "")
+                if (string.IsNullOrWhiteSpace(Session["CompanyID"].ToString()))
                     Response.Redirect("~/Account/Login.aspx");
 
                 DropDownList_PicType.DataBind();//手动绑定DropDownList控件，否则否则后面的取值会出错为-1

@@ -20,7 +20,7 @@ namespace IntelligentCBD.MasterPage
             //测试用
             Session["Username"] = System.Configuration.ConfigurationManager.AppSettings["username"];
 
-            if (Session["Username"] == null || Session["Username"].ToString().Trim()=="")
+            if (string.IsNullOrWhiteSpace(Session["Username"].ToString()))
                 Response.Redirect("~/Account/Login.aspx");
             if(!IsPostBack)
             {
@@ -54,7 +54,7 @@ namespace IntelligentCBD.MasterPage
 
         protected void LoginStatus1_LoggedOut(object sender, EventArgs e)
         {
-            Session.Remove("Username");
+            Session.Clear();
         }
 
         /*protected void Page_PreRender(object sender,EventArgs e)

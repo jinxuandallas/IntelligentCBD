@@ -31,14 +31,14 @@
 <body>
     <form id="form1" runat="server">
     <div>
-            <table style="width:100%;border-collapse: collapse; border-spacing: 0px;">
+            <table style="width:1200px;border-collapse: collapse; border-spacing: 0px;">
                 <tr style="background-color: #0066FF; border-width: 0px; padding: 0px; margin: 0px; border-spacing: 0px">
                     <td style="padding: 0px; background-color: #0066FF;" class="auto-style2"></td>
                     <td style="padding: 0px; background-color: #0066FF;" class="auto-style4"></td>
                     <td style="padding: 0px; background-color: #0066FF; color: #FFFFFF;" class="auto-style3">
                         <asp:LoginName ID="LoginName1" runat="server" Font-Size="15px" FormatString="你好，{0}" />
-&nbsp;<asp:LoginStatus ID="LoginStatus1" runat="server" Font-Size="14px" LogoutPageUrl="~\default.aspx" ForeColor="White" />
-                    &nbsp;<a href="~\Question\Question.aspx" style="font-size:14px; color: white">反馈问题</a></td>
+&nbsp;<asp:LoginStatus ID="LoginStatus1" runat="server" Font-Size="14px" LogoutPageUrl="~\default.aspx" ForeColor="White" OnLoggedOut="LoginStatus1_LoggedOut" />
+                    &nbsp;<a href="~\Question\Question.aspx" style="font-size:14px; color: white" runat="server">反馈问题</a></td>
 
                 </tr>
                  <tr>
@@ -47,8 +47,8 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style1">&nbsp;</td>
-                    <td colspan="2">
+                    
+                    <td colspan="3">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 
                         </asp:ContentPlaceHolder></td>
