@@ -130,5 +130,16 @@ namespace IntelligentCBD.Company
         {
             FillTextbox();
         }
+
+        protected void Finish_Click(object sender, EventArgs e)
+        {
+            FillComInfo(companyID); //填充CompanyClass中的企业基本信息
+            bool result = cc.UpdateCompanyInfo(); //更新企业基本信息
+
+            if (result)
+                Response.Redirect("ManageCompany.aspx");
+            else
+                LabelNotice.Text = "更新失败";
+        }
     }
 }

@@ -39,6 +39,8 @@ namespace IntelligentCBD.Account
             bool result = uc.ValidateUser(UserLogin.UserName, UserLogin.Password);
             if (result)
             {
+                e.Authenticated = result;
+
                 Session["Username"] = UserLogin.UserName;
 
                 //判断是否有QueryString["url"]，如有直接跳转到参数指定的页面
@@ -49,7 +51,7 @@ namespace IntelligentCBD.Account
                 if (ViewState["UrlReferrer"] != null)
                     UserLogin.DestinationPageUrl = ViewState["UrlReferrer"].ToString();
 
-                e.Authenticated = result;
+                
             }
         }
     }

@@ -180,10 +180,11 @@
             <tr>
                 <td style="width: 90px">&nbsp;</td>
                 <td class="auto-style1" style="width: 150px">
-                    <asp:Button ID="Next" runat="server" Text="下一步" OnClick="Next_Click" />
-                &nbsp;</td>
+                    <asp:Button ID="AddAgain" runat="server" Text="继续添加" OnClick="AddAgain_Click" />
+                </td>
                 <td style="width: 80px">
-                    &nbsp;</td>
+                    <asp:Button ID="Next" runat="server" Text="下一步" OnClick="Next_Click" />
+                </td>
                 <td style="width: 90px">
                     &nbsp;</td>
                 <td>
