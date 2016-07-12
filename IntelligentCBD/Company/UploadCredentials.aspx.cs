@@ -24,7 +24,7 @@ namespace IntelligentCBD.Company
             companyID = Guid.Parse(Session["CompanyID"].ToString());
             if (!IsPostBack)
             {
-                if (string.IsNullOrWhiteSpace(Session["CompanyID"].ToString()))
+                if (Session["CompanyID"]==null || string.IsNullOrWhiteSpace(Session["CompanyID"].ToString()))
                     Response.Redirect("~/Account/Login.aspx");
 
                 DropDownList_PicType.DataBind();//手动绑定DropDownList控件，否则否则后面的取值会出错为-1

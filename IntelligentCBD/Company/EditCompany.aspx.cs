@@ -19,7 +19,7 @@ namespace IntelligentCBD.Company
             //Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
 
 
-            if (string.IsNullOrWhiteSpace( Session["CompanyID"].ToString()))
+            if (Session["CompanyID"]==null ||string.IsNullOrWhiteSpace( Session["CompanyID"].ToString()))
                 Response.Redirect("~/Account/Login.aspx");
 
             cc = new CompanyClass();

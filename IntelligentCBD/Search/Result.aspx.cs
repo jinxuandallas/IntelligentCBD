@@ -12,11 +12,15 @@ namespace IntelligentCBD.Search
         protected void Page_Load(object sender, EventArgs e)
         {
             //测试
-            //Response.Write(HttpUtility.UrlDecode(Server.HtmlEncode(Request.QueryString["query"])));
+            //Response.Write(Server.HtmlEncode(Request.QueryString["query"]));
             /*string s = string.IsNullOrWhiteSpace("") ? "ok" : "no";
-            Response.Write(s);*/
-
-            if (!string.IsNullOrWhiteSpace(Request.QueryString["query"]))
+            Response.Write(s);
+            string s= Request.QueryString["query"];
+            List<string> a = s.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries ).ToList<string>();
+            foreach (string b in a)
+                Response.Write(b + "<br/>");
+                */
+            if (Request.QueryString["query"]==null || string.IsNullOrWhiteSpace(Request.QueryString["query"]))
                 Response.Redirect("~/default.aspx");
 
         }
