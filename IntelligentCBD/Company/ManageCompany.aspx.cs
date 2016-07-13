@@ -37,5 +37,11 @@ namespace IntelligentCBD.Company
             ///删除企业，还没完成具体实现，包括删除图片和评论等所有企业信息
             Response.Write((((Button)sender).Parent.FindControl("Label企业ID") as Label).Text);
         }
+
+        protected void ButtonPreview_Click(object sender, EventArgs e)
+        {
+            Session["CompanyID"] = (((Button)sender).Parent.FindControl("Label企业ID") as Label).Text;
+            Response.Redirect("CompanyPreview.aspx");
+        }
     }
 }

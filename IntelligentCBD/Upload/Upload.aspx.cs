@@ -35,10 +35,10 @@ namespace WebTestApplication3.RichTextBox.Upload
 
             // 初始化一大堆变量
             string inputname = "filedata";//表单文件域name
-            string attachdir = "upload";     // 上传文件保存路径，结尾不要带/
+            string attachdir = "ContentUploadPic";     // 上传文件保存路径，结尾不要带/
             int dirtype = 1;                 // 1:按天存入目录 2:按月存入目录 3:按扩展名存目录  建议使用按天存
             int maxattachsize = 2097152;     // 最大上传大小，默认是2M
-            string upext = "txt,rar,zip,jpg,jpeg,gif,png,swf,wmv,avi,wma,mp3,mid";    // 上传扩展名
+            string upext = "jpg,jpeg,gif,png";    // 上传扩展名
             int msgtype = 2;                 //返回上传参数的格式：1，只返回url，2，返回参数数组
             string immediate = Request.QueryString["immediate"];//立即上传模式，仅为演示用
             byte[] file;                     // 统一转换为byte数组处理
@@ -118,7 +118,7 @@ namespace WebTestApplication3.RichTextBox.Upload
                         {
                             err = ex.Message.ToString();
                         }
-                        target = "upload/" + target; //加入绝对地址，使返回的地址为正确地址
+                        target = "../Upload/" + target; //加入绝对地址，使返回的地址为正确地址
                         // 立即模式判断
                         if (immediate == "1") target = "!" + target;
                         target = jsonString(target);

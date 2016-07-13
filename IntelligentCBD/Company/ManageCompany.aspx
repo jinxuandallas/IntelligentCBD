@@ -63,9 +63,11 @@
                                 <div style="width:130px;height:50px">所属载体：<asp:Label ID="Label所属载体" runat="server" Text='<%# Eval("载体名称") %>' ></asp:Label></div>
                             </div>
                             <div style="float:left;  width:150px;height:100px; margin: 10px">
-                                <div style="clear:both;width:130px;height:50px">
+                                <div style="clear:both;width:130px;height:30px">
                                     <asp:Button ID="ButtonEdit" runat="server" Text="编辑"  OnClick="ButtonEdit_Click"/></div>
-                                <div style="width:130px;height:50px"><asp:Button ID="ButtonDel" runat="server" Text="删除" CssClass="delBtn" OnClick="ButtonDel_Click" /></div>
+                                <div  style="width:130px;height:30px"><asp:Button ID="ButtonPreview" runat="server" Text="预览"  OnClick="ButtonPreview_Click"/></div>
+                                <div style="width:130px;height:30px"><asp:Button ID="ButtonDel" runat="server" Text="删除" CssClass="delBtn" OnClick="ButtonDel_Click" /></div>
+                                
                             </div>
                         </div>
                     </ItemTemplate>

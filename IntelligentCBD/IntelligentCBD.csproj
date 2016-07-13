@@ -118,6 +118,7 @@
     <Content Include="Images\Search.jpg" />
     <Content Include="Images\title2.png" />
     <Content Include="Images\title3.png" />
+    <Content Include="Images\title4.png" />
     <Content Include="js\jquery-1.4.4.min.js" />
     <Content Include="js\xheditor-1.2.2.min.js" />
     <Content Include="packages.config" />
@@ -139,6 +140,7 @@
     <Content Include="scripts\jquery.SuperSlide.2.1.1.js" />
     <Content Include="Search\Result.aspx" />
     <Content Include="Test\OverlapRepeater.aspx" />
+    <Content Include="Test\Test1.aspx" />
     <Content Include="Upload\Upload.aspx" />
     <Content Include="Upload\UploadCompanyPicture\2016062009453011.jpg" />
     <Content Include="Web.config" />
@@ -257,6 +259,13 @@
     <Compile Include="Test\OverlapRepeater.aspx.designer.cs">
       <DependentUpon>OverlapRepeater.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Test\Test1.aspx.cs">
+      <DependentUpon>Test1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Test1.aspx.designer.cs">
+      <DependentUpon>Test1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Upload\Upload.aspx.cs">
       <DependentUpon>Upload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -279,6 +288,7 @@
     <Folder Include="js\xheditor_lang\" />
     <Folder Include="js\xheditor_plugins\" />
     <Folder Include="js\xheditor_skin\" />
+    <Folder Include="Upload\ContentUploadPic\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -4,11 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Core;
+using System.Data;
 
 namespace IntelligentCBD.Search
 {
     public partial class Result : System.Web.UI.Page
     {
+        protected SearchClass sc;
         protected void Page_Load(object sender, EventArgs e)
         {
             //测试
@@ -23,6 +26,18 @@ namespace IntelligentCBD.Search
             if (Request.QueryString["query"]==null || string.IsNullOrWhiteSpace(Request.QueryString["query"]))
                 Response.Redirect("~/default.aspx");
 
+            if (!IsPostBack)
+                TextBoxSearch.Text = Request.QueryString["query"];
+            sc = new SearchClass();
+            DataSet ds = sc.GetSearchResult(Request.QueryString["query"]);
+            Repeater1.DataSource = ds;
+            Repeater1.DataBind();
+
+        }
+
+        protected void ImgBtnSearch_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("Result.aspx?query=" + HttpUtility.UrlEncode(TextBoxSearch.Text));
         }
     }
 }

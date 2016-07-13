@@ -17,7 +17,7 @@ namespace IntelligentCBD.Company
         protected void Page_Load(object sender, EventArgs e)
         {
             //测试用
-            Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
+            //Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
 
             if (Session["CompanyID"] == null || Session["CompanyID"].ToString().Trim() == "")
                 Response.Redirect("~/Account/Login.aspx");
@@ -43,7 +43,7 @@ namespace IntelligentCBD.Company
         private void FillComInfo()
         {
             //对字符串进行截断处理
-            cc.FillCompanyInfoView(companyID);
+            cc.FillCompanyInfoView(companyID);//已经过HTMLEncode处理
             LabelCompanyName.Text = t.cutStr(cc.CompanyName, 80);
             LabelPhone.Text = t.cutStr(cc.Phone,50);
             LabelContact.Text = t.cutStr(cc.Contact,30);

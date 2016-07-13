@@ -101,7 +101,7 @@
                     <asp:Button ID="Reset" runat="server" Text="重置" Width="70px" OnClick="Reset_Click" />
                      
                 &nbsp;&nbsp;&nbsp;
-                    <asp:Button ID="Preview" runat="server" Text="预览" Width="70px" OnClick="Reset_Click" />
+                    <asp:Button ID="Preview" runat="server" Text="预览" Width="70px" OnClick="Preview_Click" />
                      
                 </td>
                     

@@ -146,6 +146,9 @@ namespace IntelligentCBD.Company
             InitBind();
         }
 
-    
+        protected void Preview_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CompanyPreview.aspx");
+        }
     }
 }
