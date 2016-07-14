@@ -11,7 +11,12 @@ namespace IntelligentCBD.Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label1.Text = "<script>alert(\"xx\");</script>";
+            //Label1.Text = "<script>alert(\"xx\");</script>";
+        }
+
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Write((((ImageButton)sender).Parent.FindControl("Label1") as Label).Text+"yy");
         }
     }
 }

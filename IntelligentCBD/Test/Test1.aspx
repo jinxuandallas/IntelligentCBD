@@ -11,6 +11,7 @@
     <form id="form1" runat="server">
     <div>
     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <asp:ImageButton ID="ImageButton1" OnClick="ImageButton1_Click" ImageUrl="~/Images/noImg.jpg" runat="server" />
     </div>
     </form>
     

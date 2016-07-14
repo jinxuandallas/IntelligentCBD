@@ -24,7 +24,11 @@ namespace Core
         {
             DataSet result;
             string[] queryWord = queryString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);//RemoveEmptyEntries参数去掉多余的空格
-            sql = "select * from 企业 where contains((企业名称,企业简介,经营范围),@para1) ";
+            sql = @"SELECT   dbo.企业.ID, dbo.企业.企业名称, dbo.企业.注册资本, dbo.企业.行业, dbo.企业.物业面积, dbo.企业.房间号, 
+                 dbo.企业.联系人,dbo.载体.载体名称,dbo.图片.图片地址
+FROM      dbo.企业 LEFT OUTER JOIN
+                dbo.载体 ON dbo.企业.载体 = dbo.载体.ID LEFT OUTER JOIN
+                dbo.图片 ON dbo.企业.默认图片 = dbo.图片.ID where contains((企业名称,企业简介,经营范围),@para1) ";
             //SqlParameterCollection spc=new SqlParameterCollection();
             //spc.AddWithValue("@para1", queryWord[0]);
             SqlParameter [] sp=new SqlParameter[queryWord.Count<string>()];

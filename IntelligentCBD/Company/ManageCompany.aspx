@@ -38,8 +38,7 @@
                             <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
                         </Fields>
                     </asp:DataPager>
-                            
-                </div
+                </div>
                     </LayoutTemplate>
                     <EmptyDataTemplate>
                         <span>没有要管理的企业</span>
@@ -54,7 +53,7 @@
                             </div>
                             <div style="float:left;  width:150px;height:100px; margin: 10px">
                                 <div style="clear:both;width:130px;height:50px">
-                                    企业名称：<br /><asp:Label ID="Label企业名称" runat="server" Text='<%# Server.HtmlEncode(t.cutStr(Eval("企业名称").ToString(),40)) %>'></asp:Label>
+                                    企业名称：<br /><asp:Label ID="Label企业名称" runat="server" Text='<%# t.cutStr(Server.HtmlEncode(Eval("企业名称").ToString()),40) %>'></asp:Label>
                                 </div>
                                 
                             </div>

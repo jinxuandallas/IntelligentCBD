@@ -18,7 +18,6 @@ namespace IntelligentCBD.Company
             //测试用
             Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
 
-
             if (Session["CompanyID"]==null ||string.IsNullOrWhiteSpace( Session["CompanyID"].ToString()))
                 Response.Redirect("~/Account/Login.aspx");
 

@@ -109,6 +109,7 @@
     <Content Include="Company\EditCompany.aspx" />
     <Content Include="Company\ListViewTest.aspx" />
     <Content Include="Company\ManageCompany.aspx" />
+    <Content Include="Company\ShowCompany.aspx" />
     <Content Include="Company\UploadCredentials.aspx" />
     <Content Include="Css\MainStyleSheet.css" />
     <None Include="js\jquery-1.4.4-vsdoc.js" />
@@ -215,6 +216,13 @@
     </Compile>
     <Compile Include="Company\ManageCompany.aspx.designer.cs">
       <DependentUpon>ManageCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\ShowCompany.aspx.cs">
+      <DependentUpon>ShowCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\ShowCompany.aspx.designer.cs">
+      <DependentUpon>ShowCompany.aspx</DependentUpon>
     </Compile>
     <Compile Include="Company\UploadCredentials.aspx.cs">
       <DependentUpon>UploadCredentials.aspx</DependentUpon>

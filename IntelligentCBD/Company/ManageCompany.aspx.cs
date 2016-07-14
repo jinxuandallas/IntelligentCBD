@@ -13,6 +13,7 @@ namespace IntelligentCBD.Company
         public Tools t;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //MenuSite.Master页面已经包括Session["Username"]的是否为空的检查
             //此处给客户端（aspx页面）调用，不能去掉
             t = new Tools();
 
