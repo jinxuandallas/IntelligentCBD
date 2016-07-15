@@ -75,21 +75,7 @@
                     </ItemTemplate>
                 </asp:ListView>
 
-    <ul style="text-decoration:none">
-    <asp:Repeater ID="Repeater1" runat="server">
-        <ItemTemplate>
-            <li>
-                <div style="clear:both"><div id="d1" class="ComName"> <%# Eval("企业名称") %></div><br /> 
-                    <div>
-                        <div style="float:left;width:200px">aaa</div>
-                        <div style="float:left;width:200px">bbb</div>
-                    </div>
-                </div>
-                
-            </li>
-        </ItemTemplate>
-    </asp:Repeater>
-        </ul>
+ 
     <script>
         $(".ComName").mouseover(function () {
             $(this).attr("style", "color:#ff6600;font-size:15px;text-decoration:none");

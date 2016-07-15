@@ -39,8 +39,6 @@ namespace IntelligentCBD.Search
 
                 //此处数据源绑定必须放在!IsPostBack判断里，否则ImageButton会报“回发或回调参数无效”错误
                 DataSet ds = sc.GetSearchResult(Request.QueryString["query"]);
-                Repeater1.DataSource = ds;
-                Repeater1.DataBind();
 
                 ListViewResult.DataSource = ds;
                 ListViewResult.DataBind();
@@ -64,7 +62,8 @@ namespace IntelligentCBD.Search
 
         protected void Image企业宣传图片_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Write((((ImageButton)sender).Parent.FindControl("LabelComID") as Label).Text);
+            Response.Write("<script language='javascript'>window.open('../Company/ShowCompany.aspx?comID=" + (((ImageButton)sender).Parent.FindControl("LabelComID") as Label).Text + "');</script>");
+            //Response.Write((((ImageButton)sender).Parent.FindControl("LabelComID") as Label).Text);
         }
     }
 }
