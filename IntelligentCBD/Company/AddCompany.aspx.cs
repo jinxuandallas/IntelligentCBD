@@ -12,7 +12,7 @@ namespace IntelligentCBD.Company
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            LabelNotice.Text = "";
         }
 
         protected void Next_Click(object sender, EventArgs e)

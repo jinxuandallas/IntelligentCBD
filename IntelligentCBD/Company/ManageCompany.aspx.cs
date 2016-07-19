@@ -13,6 +13,7 @@ namespace IntelligentCBD.Company
         public Tools t;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //MenuSite.Master页面已经包括Session["Username"]的是否为空的检查
             //此处给客户端（aspx页面）调用，不能去掉
             t = new Tools();
 
@@ -36,6 +37,12 @@ namespace IntelligentCBD.Company
         {
             ///删除企业，还没完成具体实现，包括删除图片和评论等所有企业信息
             Response.Write((((Button)sender).Parent.FindControl("Label企业ID") as Label).Text);
+        }
+
+        protected void ButtonPreview_Click(object sender, EventArgs e)
+        {
+            Session["CompanyID"] = (((Button)sender).Parent.FindControl("Label企业ID") as Label).Text;
+            Response.Redirect("CompanyPreview.aspx");
         }
     }
 }

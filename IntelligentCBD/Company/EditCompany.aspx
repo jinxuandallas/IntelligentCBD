@@ -159,7 +159,7 @@
             </tr>
             <tr>
                 <td colspan="5" >
-                   <textarea name="content" id="elm1" class="xheditor {tools:'simple',upImgUrl:'upload/upload.aspx',upImgExt:'jpg,jpeg,gif,png'}" runat="server" maxlength="1000000" style="height: 300px; width: 680px"></textarea></td>
+                   <textarea name="content" id="elm1" class="xheditor {tools:'simple',upImgUrl:'../upload/upload.aspx',upImgExt:'jpg,jpeg,gif,png'}" runat="server" maxlength="1000000" style="height: 300px; width: 680px"></textarea></td>
                 <td style="height: 21px">
                     &nbsp;</td>
             </tr>

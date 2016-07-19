@@ -42,9 +42,14 @@ namespace Core
             return capital;
         }
 
+        /// <summary>
+        /// 转换图片地址，如果地址为空则显示默认无图片的地址
+        /// </summary>
+        /// <param name="sourceAddress">源地址</param>
+        /// <returns>返回处理过的图片地址</returns>
         public string TransformPicAddress(string sourceAddress)
         {
-            if (string.IsNullOrEmpty(sourceAddress))
+            if (string.IsNullOrWhiteSpace(sourceAddress))
                 return "~/Images/noImg.jpg";
             return sourceAddress;
         }

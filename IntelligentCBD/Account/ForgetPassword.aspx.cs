@@ -14,6 +14,9 @@ namespace IntelligentCBD.Account
         protected UserClass uc;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //此处必须先判断Session["Username"]是否为null否则后面的IsNullOrWhiteSpace会抛出异常
+            if (Session["Username"] == null || string.IsNullOrWhiteSpace(Session["Username"].ToString()))
+                Response.Redirect("Login.aspx");
             uc = new UserClass();
             Question = uc.GetQuestion(Session["Username"].ToString());
             if (!IsPostBack)

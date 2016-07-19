@@ -21,7 +21,7 @@ namespace Core
         /*
         public DataSet GetPicbyCompany(Guid comID)
         {
-            DataSet ds = GetDataSet("select 图片地址 from 图片 where 所属企业=@comID", new SqlParameter[] { new SqlParameter("@comID", comID) });
+            DataSet ds = GetDataSet("select 图片地址 from 企业图片 where 所属企业=@comID", new SqlParameter[] { new SqlParameter("@comID", comID) });
             ds.Tables[0].PrimaryKey = new DataColumn[] { ds.Tables[0].Columns[0] };
             //ds.Tables[0].Columns.Add(new DataColumn("Num",Type.GetType("System.Int")));
             //for(int i=1;i<6;i++)
@@ -36,7 +36,7 @@ namespace Core
         /// <returns>返回检索结果</returns>
         public DataSet GetPicbyCompany(Guid comID,int picType)
         {
-            DataSet ds = GetDataSet("select 图片地址 from 图片 where 所属企业=@comID and 图片类型=@picType", new SqlParameter[] { new SqlParameter("@comID", comID),
+            DataSet ds = GetDataSet("select 图片地址 from 企业图片 where 所属企业=@comID and 图片类型=@picType", new SqlParameter[] { new SqlParameter("@comID", comID),
             new SqlParameter("@picType",picType) });
             ds.Tables[0].PrimaryKey = new DataColumn[] { ds.Tables[0].Columns[0] };
             //ds.Tables[0].Columns.Add(new DataColumn("Num",Type.GetType("System.Int")));
@@ -92,17 +92,17 @@ namespace Core
                 //删除图片还要判断是否是默认图片，并在企业表中更新默认图片记录
                 //判断更新企业表还可以改为更有效率版本**
                 sql = @"declare @picid uniqueidentifier;
-                        set @picid = (select ID from [图片] where 图片地址 = @picpath);
+                        set @picid = (select ID from [企业图片] where 图片地址 = @picpath);
                         if @picid=(select 默认图片 from 企业 where 企业.ID=@companyID)
                         begin
                             update [企业] set 默认图片=null where ID=@companyID;
                         end
-                        delete from [图片] where ID=@picid";
-                //sql = "delete from [图片] where 图片地址=@picpath ";
-                int rtn = ExecuteSql(sql, new SqlParameter[] { new SqlParameter("@picpath",s),
+                        delete from [企业图片] where ID=@picid";
+                //sql = "delete from [企业图片] where 图片地址=@picpath ";
+                bool resulat = ExecuteTranSQL(sql, new SqlParameter[] { new SqlParameter("@picpath",s),
                 new SqlParameter("@companyID",companyID)
                 });
-                if (rtn < 1)
+                if (!resulat)
                     return false;
             }
             return true;
@@ -247,7 +247,7 @@ namespace Core
             //将客户端的默认图片地址转换为服务器端的图片地址
             picPath = picPath.Replace("../Upload", "~/Upload");
 
-            sql = "update [企业] set 默认图片=(select ID from [图片] where 图片地址=@picpath) where ID=@companyID";
+            sql = "update [企业] set 默认图片=(select ID from [企业图片] where 图片地址=@picpath) where ID=@companyID";
             int rtn = ExecuteSql(sql, new SqlParameter[]
             {
                 new SqlParameter("@picpath",picPath),
@@ -265,7 +265,7 @@ namespace Core
         /// <returns></returns>
         public string GetDefaultPic(Guid companyID)
         {
-            sql = "select 图片.图片地址 from 企业,图片 where (企业.ID=@companyID) and (企业.默认图片=图片.ID)";
+            sql = "select 企业图片.图片地址 from 企业,企业图片 where (企业.ID=@companyID) and (企业.默认图片=企业图片.ID)";
             using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@companyID", companyID) }))
             {
                 if (sdr.Read())

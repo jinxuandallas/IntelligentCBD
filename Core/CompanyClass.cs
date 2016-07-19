@@ -250,7 +250,7 @@ namespace Core
         public DataSet GetCompanyAdvertises(Guid companyID)
         {
             //选择属于CompanyID并且是企业宣传图片的所有图片
-            sql = "select 图片地址 from 图片 where 所属企业=@comID and 图片类型=1";
+            sql = "select 图片地址 from 企业图片 where 所属企业=@comID and 图片类型=1";
             DataSet ds = GetDataSet(sql, new SqlParameter[] { new SqlParameter("@comID", companyID) });
 
             //添加页码列
@@ -280,7 +280,7 @@ namespace Core
         /// <returns>返回包含图片类型的Dataset</returns>
         public DataSet GetPicKind(Guid companyID)
         {
-            sql = "select distinct(图片类型),类型名称 from 图片视图 where 图片类型>1 and 所属企业=@comID";
+            sql = "select distinct(图片类型),类型名称 from 企业图片视图 where 图片类型>1 and 所属企业=@comID";
             return GetDataSet(sql,new SqlParameter[] { new SqlParameter("@comID", companyID) });
         }
 
@@ -292,7 +292,7 @@ namespace Core
         /// <returns>返回Dataset</returns>
         public DataSet GetPicShowAddress(Guid companyID,int picType)
         {
-            sql = "select 图片地址 from 图片视图 where 图片类型>1 and 所属企业=@comID and 图片类型=@picType";
+            sql = "select 图片地址 from 企业图片视图 where 图片类型>1 and 所属企业=@comID and 图片类型=@picType";
             return GetDataSet(sql, new SqlParameter[] { new SqlParameter("@comID", companyID),
             new SqlParameter("@picType",picType)
             });

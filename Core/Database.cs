@@ -244,18 +244,21 @@ namespace Core
 			SqlCommand com;
 
 			com=BuildCommand(Sql,parameters);
+            com.Transaction = transaction;
 
-//			com.CommandText=Sql;
+            //			com.CommandText=Sql;
 
-			if (transaction!=null) com.Transaction=transaction;
+            if (transaction!=null) com.Transaction=transaction;
 			int rtn=-1;
 			try
 			{
 				rtn=com.ExecuteNonQuery();
+                transaction.Commit();
 			}
 
 			catch(Exception e)
 			{
+                transaction.Rollback();
 				deal(e);
 			}
 			return rtn;
