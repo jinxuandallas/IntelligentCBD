@@ -104,6 +104,7 @@
     <Content Include="Account\RegisterUser.aspx" />
     <Content Include="App_Data\IntelligentCBD.mdf" />
     <Content Include="App_Data\IntelligentCBD_log.ldf" />
+    <Content Include="Comment\AddComment.aspx" />
     <Content Include="Company\AddCompany.aspx" />
     <Content Include="Company\CompanyPreview.aspx" />
     <Content Include="Company\EditCompany.aspx" />
@@ -138,6 +139,8 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\jquery.min.js" />
+    <Content Include="scripts\jquery.raty.min.js" />
     <Content Include="scripts\jquery.SuperSlide.2.1.1.js" />
     <Content Include="Search\Result.aspx" />
     <Content Include="Test\OverlapRepeater.aspx" />
@@ -181,6 +184,13 @@
     </Compile>
     <Compile Include="Account\RegisterUser.aspx.designer.cs">
       <DependentUpon>RegisterUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Comment\AddComment.aspx.cs">
+      <DependentUpon>AddComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Comment\AddComment.aspx.designer.cs">
+      <DependentUpon>AddComment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Company\AddCompany.aspx.cs">
       <DependentUpon>AddCompany.aspx</DependentUpon>
@@ -292,6 +302,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Images\Ratyimg\" />
     <Folder Include="js\xheditor_emot\" />
     <Folder Include="js\xheditor_lang\" />
     <Folder Include="js\xheditor_plugins\" />
