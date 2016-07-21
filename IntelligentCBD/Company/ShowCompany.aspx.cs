@@ -11,6 +11,7 @@ namespace IntelligentCBD.Company
 {
     public partial class ShowCompany : System.Web.UI.Page
     {
+        //还需增加企业内容有错举报
         protected CompanyClass cc;
         protected Tools t;
         protected Guid companyID;

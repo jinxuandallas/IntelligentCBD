@@ -14,6 +14,7 @@ namespace IntelligentCBD.Account
         protected UserClass uc;
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             //if (!IsPostBack)
             uc = new UserClass();
             if (!IsPostBack)

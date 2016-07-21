@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MenuSite.Master" AutoEventWireup="true" CodeBehind="ChangePassword.aspx.cs" Inherits="IntelligentCBD.Account.ChangePassword" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table style="width: 100%;">
+    7<table style="width: 100%;">
         <tr>
                 <td class="TableTitle">修改密码</td>
                 <td style="height: 20px;"></td>

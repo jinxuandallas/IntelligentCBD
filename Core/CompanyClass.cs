@@ -297,5 +297,20 @@ namespace Core
             new SqlParameter("@picType",picType)
             });
         }
+
+        /// <summary>
+        /// 根据企业ID返回企业的名称（一般给别的类用）
+        /// </summary>
+        /// <param name="ID">企业ID</param>
+        /// <returns>返回的企业名称</returns>
+        public string GetCompanyName(Guid ID)
+        {
+            sql = "select 企业名称 from 企业视图 where ID=@ID";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@ID", ID) }))
+                if (sdr.Read())
+                    return sdr[0].ToString();
+                else
+                    return string.Empty;
+        }
     }
 }
