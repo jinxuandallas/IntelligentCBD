@@ -116,7 +116,7 @@ namespace Core
         /// <param name="picType">要上传的图片类型</param>
         /// <param name="companyID">要上传的企业ID</param>
         /// <returns></returns>
-        public string UploadPic(HttpFileCollection uploadFiles,string filepath,int picType,Guid companyID)
+        public string UploadCompanyPic(HttpFileCollection uploadFiles,string filepath,int picType,Guid companyID)
         {
             //if (uploadFiles.Count < 1)
             //    return string.Empty;
@@ -152,7 +152,7 @@ namespace Core
                         postedFile.SaveAs(newFilepath);
 
                         //添加新的数据库记录
-                        bool result = AddDbPic(newFilename,companyID,picType);
+                        bool result = AddCompanyDbPic(newFilename,companyID,picType);
                         if (!result)
                             return "上传记录不成功";
 
@@ -219,7 +219,7 @@ namespace Core
         /// <param name="comID">要上传的企业ID</param>
         /// <param name="picType">图片类型</param>
         /// <returns></returns>
-        public bool AddDbPic(string filename,Guid comID,int picType)
+        public bool AddCompanyDbPic(string filename,Guid comID,int picType)
         {
             Guid ID = Guid.NewGuid();
             //只能服务器使用相对路径，使用绝对路径客户端打不开（调用的是客户端文件）

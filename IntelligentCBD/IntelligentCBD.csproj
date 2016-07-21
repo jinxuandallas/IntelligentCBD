@@ -307,6 +307,7 @@
     <Folder Include="js\xheditor_lang\" />
     <Folder Include="js\xheditor_plugins\" />
     <Folder Include="js\xheditor_skin\" />
+    <Folder Include="Upload\CommentUploadPic\" />
     <Folder Include="Upload\ContentUploadPic\" />
   </ItemGroup>
   <PropertyGroup>

@@ -65,8 +65,10 @@ namespace IntelligentCBD.Company
         /// </summary>
         protected void ShowDefault()
         {
-            //判断选项是否为企业宣传图片
+            //判断选项是否为企业宣传图片，因为只有企业宣传图片才有默认图片
             bool show = DropDownList_PicType.SelectedValue == "1" ? true : false;
+
+            //将defaultButton按钮的可见性根据show值赋值
             foreach (RepeaterItem ri in Repeater1.Items)
             {
                 //ri.FindControl("divpic").FindControl("Button1").Visible = show;
@@ -90,10 +92,12 @@ namespace IntelligentCBD.Company
                 foreach (RepeaterItem ri in Repeater1.Items)
                     if (defaultPicPath == ((Image)ri.FindControl("img")).ImageUrl)//判断哪张图片是默认图片
                         ((System.Web.UI.HtmlControls.HtmlGenericControl)ri.FindControl("divpic")).Style.Add("background-color", "yellow");
-                
-                   
-                
+
+
+
             }
+            else
+                HiddenDefault.Value = "";
 
         }
                
@@ -107,7 +111,7 @@ namespace IntelligentCBD.Company
             if (DropDownList_PicType.SelectedValue == "1" && !string.IsNullOrWhiteSpace(HiddenDefault.Value))
                 up.UpdateDefaultPic(companyID, HiddenDefault.Value);
 
-            //第二步先删除客户端选定的文件(感觉删除文件要放在更新默认图片后面）
+            //第二步先删除客户端选定的要删除文件(感觉删除文件要放在更新默认图片后面）
             //先判断要删除文件域中是否有信息，即用户是否点击过删除图片，如果没点击删除则不需进行下面处理
             if (!string.IsNullOrEmpty(HiddenDelFiles.Value))
             {
@@ -133,7 +137,7 @@ namespace IntelligentCBD.Company
             string filepath = Server.MapPath("~/Upload/UploadCompanyPicture") + "\\";
 
             //上传文件
-            string result= up.UploadPic(Request.Files, filepath, int.Parse(DropDownList_PicType.SelectedValue), companyID);
+            string result= up.UploadCompanyPic(Request.Files, filepath, int.Parse(DropDownList_PicType.SelectedValue), companyID);
 
             InitBind();
 

@@ -25,6 +25,10 @@
             height: 50px;
         }
         
+        .auto-style9 {
+            height: 19px;
+        }
+        
     </style>
     <input type="hidden" id="HiddenDelFiles" runat="server"/>
      <input type="hidden" id="HiddenDefault" runat="server"/>
@@ -87,9 +91,9 @@
                 </td>
             </tr>
          <tr>
-                <td colspan="2">
+                <td colspan="2" class="auto-style9">
                     <asp:Label ID="LabelPrompt" runat="server" ForeColor="Red"></asp:Label>
-                </td>
+                    <span style="font-size: 12px; color: darkgray">&nbsp;&nbsp;&nbsp; 单张图片不要超过2MB，总共不要超过5MB，只支持jpg,png,gif图片格式</span></td>
                     
              </tr>
          <tr>
@@ -154,20 +158,23 @@
 
             //<!--在母版页中的子页会改变原控件的ID，
             //客户端ID会被改为“ContentPlaceHolder1_Hidden2”，添加了ContentPlaceHolder1_前缀，此处需注意。
-            var h=$("#ContentPlaceHolder1_HiddenDelFiles").attr("value");
-            var src=$(this).parent().find(".pic").attr("src");
+            var h=$("#ContentPlaceHolder1_HiddenDelFiles").attr("value");//获取HiddenDelFiles中原来曾经添加过的值
+            var src=$(this).parent().find(".pic").attr("src");//获取当前图片的src属性值
+
             //var i=$("#ContentPlaceHolder1_Hidden2").val();
 
             //将要删除的文件名存于ContentPlaceHolder1_HiddenDelFiles中
-            $("#ContentPlaceHolder1_HiddenDelFiles").attr("value",h+";"+src);
+            $("#ContentPlaceHolder1_HiddenDelFiles").attr("value",h+";"+src);//将HiddenDelFiles中的原值和图片的src属性值想加，并将新值存储于HiddenDelFiles控件的value值中
             //$("#ContentPlaceHolder1_Hidden2").val(i+"12");
-            uploadNum++;
+            uploadNum++;//释放一个能上传的文件数量值
+
             //alert($("#ContentPlaceHolder1_HiddenDelFiles").val());
             
             //处理如果删除的是默认图片的处理
-            if($("#ContentPlaceHolder1_HiddenDefault").val()==src)
-                $("#ContentPlaceHolder1_HiddenDefault").val("");
+            if($("#ContentPlaceHolder1_HiddenDefault").val()==src)//HiddenDefault中存储有默认图片的客户端地址，通过判断可以判定删除的是否为默认图片
+                $("#ContentPlaceHolder1_HiddenDefault").val("");//如果是则将HiddenDefault值清空
             $(this).parent().remove();
+
             //alert($(this).parent().find(".pic").attr("src"));
             //alert($("#ContentPlaceHolder1_HiddenDefault").val());
         });
