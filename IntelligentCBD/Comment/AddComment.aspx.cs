@@ -48,16 +48,16 @@ namespace IntelligentCBD.Comment
             }
 
             //首先添加评论信息
-            commentc.AddComment(companyID, Session["Username"].ToString(), int.Parse(score.Value), TextBoxComment.Text, CheckBoxAnonymity.Checked);
+            Guid commentID= commentc.AddComment(companyID, Session["Username"].ToString(), int.Parse(score.Value), TextBoxComment.Text, CheckBoxAnonymity.Checked);
 
                 string filepath = Server.MapPath("~/Upload/CommentUploadPic") + "\\";
 
-                //string result = up.UploadCompanyPic(Request.Files, filepath, int.Parse(DropDownList_PicType.SelectedValue), companyID);
+            string result = commentc.UploadCommentPic(Request.Files, filepath, commentID);
 
-                //LabelPrompt.Text = result;
+            LabelPrompt.Text = result;
 
-                //最后还原控件初始状态
-                LabelStarPrompt.Visible = false;
+            //最后还原控件初始状态
+            LabelStarPrompt.Visible = false;
             score.Value = "";
         }
     }

@@ -143,6 +143,7 @@
     <Content Include="scripts\jquery.raty.min.js" />
     <Content Include="scripts\jquery.SuperSlide.2.1.1.js" />
     <Content Include="Search\Result.aspx" />
+    <Content Include="Test\CommentTest.aspx" />
     <Content Include="Test\OverlapRepeater.aspx" />
     <Content Include="Test\Test1.aspx" />
     <Content Include="Upload\Upload.aspx" />
@@ -269,6 +270,13 @@
     </Compile>
     <Compile Include="Search\Result.aspx.designer.cs">
       <DependentUpon>Result.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\CommentTest.aspx.cs">
+      <DependentUpon>CommentTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\CommentTest.aspx.designer.cs">
+      <DependentUpon>CommentTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Test\OverlapRepeater.aspx.cs">
       <DependentUpon>OverlapRepeater.aspx</DependentUpon>

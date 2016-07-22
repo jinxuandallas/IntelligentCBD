@@ -18,7 +18,7 @@ namespace IntelligentCBD.Company
         protected void Page_Load(object sender, EventArgs e)
         {
             //测试用
-            //Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
+            Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
             //addNum = 5;
             up = new UploadPictureClass();
             companyID = Guid.Parse(Session["CompanyID"].ToString());

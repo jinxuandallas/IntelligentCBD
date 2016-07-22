@@ -118,8 +118,9 @@ namespace Core
         /// <returns></returns>
         public string UploadCompanyPic(HttpFileCollection uploadFiles,string filepath,int picType,Guid companyID)
         {
-            //if (uploadFiles.Count < 1)
-            //    return string.Empty;
+            //检查文件个数
+            if (uploadFiles.Count < 1||uploadFiles.Count>5)
+                return "上传失败";
 
             //检查文件大小与类型
             string examResult = ExamFiles(uploadFiles, picType, companyID);
@@ -224,7 +225,7 @@ namespace Core
             Guid ID = Guid.NewGuid();
             //只能服务器使用相对路径，使用绝对路径客户端打不开（调用的是客户端文件）
             string filepath = "~/Upload/UploadCompanyPicture/" + filename;
-            sql = "insert 图片(ID,所属企业,图片类型,图片地址) values(@ID,@comID,@picType,@filepath)";
+            sql = "insert 企业图片(ID,所属企业,图片类型,图片地址) values(@ID,@comID,@picType,@filepath)";
             int rtn = ExecuteSql(sql, new SqlParameter[] {
                 new SqlParameter("@ID",ID),
                 new SqlParameter("@comID",comID),
