@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Web;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Core
 {
@@ -139,5 +140,11 @@ namespace Core
 
             return ID;
         }
+
+        //public DataSet GetComments(Guid companyID)
+        //{
+        //    sql = "SELECT [ID] ,[内容] ,[录入人] ,[星级],[是否匿名]  FROM [评论] where [所属企业]=@companyID";
+        //    return GetDataSet(sql, new SqlParameter[] { new SqlParameter("@companyID", companyID) });
+        //}
     }
 }
