@@ -13,13 +13,12 @@
     <style>
         .raty {
         }
-        
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:ListView ID="ListViewResult" runat="server" DataSourceID="SqlDataSource1">
+            <asp:ListView ID="ListViewResult" runat="server" DataSourceID="SqlDataSource1" OnItemCreated="ListViewResult_ItemCreated">
                 <LayoutTemplate>
                     <div id="itemPlaceholder" style="width: 1000px" runat="server"></div>
                     <div style="width: 1000px; text-align: center; background-color: #CCCCCC; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000;">
@@ -42,8 +41,8 @@
 
                         <div>
                             <div style="float: left; width: 600px; margin: 10px">
-                                &nbsp;&nbsp;<asp:Label ID="LabelUsername" runat="server" Text='<%# Eval("录入人") %>'></asp:Label>&nbsp;&nbsp;
-
+                                &nbsp;&nbsp;<asp:Label ID="LabelUsername" runat="server" Text='<%#commentc.ShowAnonymity(Eval("录入人").ToString(),Convert.ToInt16((Eval("是否匿名")))) %>'></asp:Label>&nbsp;&nbsp;
+                                <asp:Label ID="CommentID" runat="server" Text='<%# Eval("ID") %>' Visible="false"></asp:Label>
                                 
                                 <input type="hidden" value='<%#Eval("星级") %>' />
                                 <div style="float: left; font: 11px verdana;" id="Star" class="raty" runat="server"></div>
@@ -51,9 +50,26 @@
 
                         </div>
                         <div style="clear: both; width: 600px; margin: 10px">
-                            <article><asp:Label Style="word-break:break-all" ID="LabelComment" runat="server" Text='<%# Eval("内容") %>'></asp:Label></article>
+                            <article>
+                                <%-- 内容在录入时已经进行过HtmlEncode编码 --%>
+                                <asp:Label Style="word-break: break-all" ID="LabelComment" runat="server" Text='<%# Eval("内容") %>'></asp:Label>
+                            </article>
+                        </div>
+                        <div style="width: 600px; margin: 10px; color: #CFCCD2">
+                            <asp:Literal ID="Date" runat="server" Text='<%#commentc.ConvertDate(Eval("录入时间").ToString()) %>'></asp:Literal>
                         </div>
 
+
+                        <asp:Repeater ID="Repeater1" runat="server">
+                            <ItemTemplate>
+                                <div style="float: left; width: 100px; height: 80px">
+                                    <a href='<%# DataBinder.Eval(Container.DataItem,"图片地址").ToString().Replace("~","..") %>'">
+                       <asp:Image ID="img" runat="server"  Width="90px" Height="75px" ImageUrl='<%# DataBinder.Eval(Container.DataItem,"图片地址")  %>' />
+
+                   </a>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
                         <%--<div style="clear:both;width:300px;height:30px">
                                     <asp:LinkButton ID="LinkButton企业名称" CssClass="ComName"  ForeColor="Black" Font-Size="15px" Text='<%# t.cutStr(Server.HtmlEncode(Eval("企业名称").ToString()),60) %>'  OnClick="LinkButton企业名称_Click" Font-Underline="false" runat="server" />
                                 </div>
@@ -72,7 +88,7 @@
 
                 </ItemTemplate>
             </asp:ListView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [内容], [星级], [是否匿名], [录入人], [ID] FROM [评论] WHERE ([所属企业] = @所属企业)">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [内容], [星级], [是否匿名], [录入人], [ID],[录入时间] FROM [评论] WHERE ([所属企业] = @所属企业)">
                 <SelectParameters>
                     <asp:SessionParameter Name="所属企业" SessionField="CompanyID" Type="String" />
                 </SelectParameters>

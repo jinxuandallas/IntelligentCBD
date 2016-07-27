@@ -48,7 +48,7 @@ namespace IntelligentCBD.Comment
             }
 
             //首先添加评论信息
-            Guid commentID= commentc.AddComment(companyID, Session["Username"].ToString(), int.Parse(score.Value),Server.HtmlEncode(TextBoxComment.Text), CheckBoxAnonymity.Checked); //此处需将评论内容进行HtmlEncode编码
+            Guid commentID= commentc.AddComment(companyID, Session["Username"].ToString(), int.Parse(score.Value),TextBoxComment.Text, CheckBoxAnonymity.Checked); //此处需将评论内容进行HtmlEncode编码
 
             string filepath = Server.MapPath("~/Upload/CommentUploadPic") + "\\";
 
