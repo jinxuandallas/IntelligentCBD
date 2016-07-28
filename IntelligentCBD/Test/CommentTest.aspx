@@ -43,7 +43,7 @@
                             <div style="float: left; width: 600px; margin: 10px">
                                 &nbsp;&nbsp;<asp:Label ID="LabelUsername" runat="server" Text='<%#commentc.ShowAnonymity(Eval("录入人").ToString(),Convert.ToInt16((Eval("是否匿名")))) %>'></asp:Label>&nbsp;&nbsp;
                                 <asp:Label ID="CommentID" runat="server" Text='<%# Eval("ID") %>' Visible="false"></asp:Label>
-                                
+
                                 <input type="hidden" value='<%#Eval("星级") %>' />
                                 <div style="float: left; font: 11px verdana;" id="Star" class="raty" runat="server"></div>
                             </div>
@@ -63,10 +63,10 @@
                         <asp:Repeater ID="Repeater1" runat="server">
                             <ItemTemplate>
                                 <div style="float: left; width: 100px; height: 80px">
-                                    <a href='<%# DataBinder.Eval(Container.DataItem,"图片地址").ToString().Replace("~","..") %>'">
-                       <asp:Image ID="img" runat="server"  Width="90px" Height="75px" ImageUrl='<%# DataBinder.Eval(Container.DataItem,"图片地址")  %>' />
+                                    <a href='<%# DataBinder.Eval(Container.DataItem,"图片地址").ToString().Replace("~","..") %>'>
+                                        <asp:Image ID="img" runat="server" Width="90px" Height="75px" ImageUrl='<%# DataBinder.Eval(Container.DataItem,"图片地址")  %>' />
 
-                   </a>
+                                    </a>
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>

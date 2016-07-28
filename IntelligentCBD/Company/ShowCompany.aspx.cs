@@ -15,6 +15,7 @@ namespace IntelligentCBD.Company
         protected CompanyClass cc;
         protected Tools t;
         protected Guid companyID;
+        protected CommentClass commentc;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["comID"] == null || string.IsNullOrWhiteSpace(Request.QueryString["comID"]))
@@ -23,6 +24,7 @@ namespace IntelligentCBD.Company
             cc = new CompanyClass();
             t = new Tools();
             companyID = Guid.Parse(Request.QueryString["comID"]);
+            commentc = new CommentClass();
 
             //处理企业宣传页（翻页效果）
             DataSet ds = cc.GetCompanyAdvertises(companyID);
@@ -30,6 +32,8 @@ namespace IntelligentCBD.Company
             Repeater2.DataSource = ds;
             Repeater2.DataBind();
             Repeater1.DataBind();
+
+            //ListViewResult.DataBind();
 
             //Repeater3.DataSource = cc.GetPicKind(companyID);
             //Repeater3.DataBind();
@@ -87,9 +91,31 @@ namespace IntelligentCBD.Company
                     //Repeater3.DataSource = cc.GetPicKind(companyID);
                     //Repeater3.DataBind();
                     break;
+                case 2:
+                    ListViewResult.DataBind();
+                    break;
                 default:
                     break;
 
+            }
+        }
+
+        protected void ListViewResult_ItemCreated(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                Repeater rpt = e.Item.FindControl("Repeater5") as Repeater;
+                if (rpt != null)
+                {
+                    if (e.Item.DataItem == null)
+                        return;
+                    Guid id = Guid.Parse(((DataRowView)e.Item.DataItem).Row["ID"].ToString());
+                    if (id != null)
+                    {
+                        rpt.DataSource = commentc.GetCommentPic(id);
+                        rpt.DataBind();
+                    }
+                }
             }
         }
     }

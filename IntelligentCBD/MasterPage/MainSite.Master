@@ -26,7 +26,7 @@
             width: 50%;
         }
     </style>
-    <link href="~/Css/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <link href="~/Css/MainStyleSheet.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
