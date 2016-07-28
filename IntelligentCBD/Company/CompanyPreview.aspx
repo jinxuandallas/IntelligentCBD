@@ -165,6 +165,9 @@
            OnDemand="true">
                     
             <ajaxToolkit:TabPanel runat="server" HeaderText="基本信息" ID="TabPanelInfo" OnDemandMode="Once" >
+                <HeaderTemplate>
+                    基本信息
+                </HeaderTemplate>
                 <ContentTemplate>
                     <table style="width:100%;">
                         <tr>
@@ -235,6 +238,9 @@
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
             <ajaxToolkit:TabPanel ID="TabPanelPic" runat="server" HeaderText="相关证照" OnDemandMode="once">
+                <HeaderTemplate>
+                    相关证照
+                </HeaderTemplate>
                 <ContentTemplate>
                     <asp:Repeater ID="Repeater3" runat="server" OnItemCreated="Repeater3_ItemCreated" >
         <HeaderTemplate><h2> </h2><br /></HeaderTemplate>

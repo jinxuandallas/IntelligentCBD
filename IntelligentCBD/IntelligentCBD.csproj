@@ -139,10 +139,14 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <None Include="scripts\jquery-1.8.2-vsdoc.js" />
+    <Content Include="scripts\jquery-1.8.2.min.js" />
     <Content Include="scripts\jquery.min.js" />
     <Content Include="scripts\jquery.raty.min.js" />
     <Content Include="scripts\jquery.SuperSlide.2.1.1.js" />
+    <Content Include="scripts\readmore.min.js" />
     <Content Include="Search\Result.aspx" />
+    <Content Include="Test\CommentTest.aspx" />
     <Content Include="Test\OverlapRepeater.aspx" />
     <Content Include="Test\Test1.aspx" />
     <Content Include="Upload\Upload.aspx" />
@@ -270,6 +274,13 @@
     <Compile Include="Search\Result.aspx.designer.cs">
       <DependentUpon>Result.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Test\CommentTest.aspx.cs">
+      <DependentUpon>CommentTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\CommentTest.aspx.designer.cs">
+      <DependentUpon>CommentTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Test\OverlapRepeater.aspx.cs">
       <DependentUpon>OverlapRepeater.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -307,6 +318,7 @@
     <Folder Include="js\xheditor_lang\" />
     <Folder Include="js\xheditor_plugins\" />
     <Folder Include="js\xheditor_skin\" />
+    <Folder Include="Upload\CommentUploadPic\" />
     <Folder Include="Upload\ContentUploadPic\" />
   </ItemGroup>
   <PropertyGroup>
