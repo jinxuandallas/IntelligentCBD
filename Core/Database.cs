@@ -131,6 +131,12 @@ namespace Core
 			return dataSet;
 		}
 
+        /// <summary>
+        /// 运行Sql语句，并生成含有结果的DataSet实体
+        /// </summary>
+        /// <param name="Sql">要执行的Sql语句</param>
+        /// <param name="parameters">参数列表（无参数时请传入“null”）</param>
+        /// <returns>含有结果的DataSet实体</returns>
         protected DataSet GetDataSet(string Sql, IDataParameter[] parameters)
         {
             DataSet dataSet = new DataSet();
@@ -142,6 +148,7 @@ namespace Core
 
             return dataSet;
         }
+
         /// <summary>
         /// 运行Sql语句，并生成含有结果的DataSet实体
         /// </summary>
