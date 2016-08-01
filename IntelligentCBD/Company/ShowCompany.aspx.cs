@@ -68,14 +68,14 @@ namespace IntelligentCBD.Company
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                Repeater rpt2 = e.Item.FindControl("Repeater4") as Repeater;
-                if (rpt2 != null && e.Item.DataItem != null)
+                Repeater rpt4 = e.Item.FindControl("Repeater4") as Repeater;
+                if (rpt4 != null && e.Item.DataItem != null)
                 {
                     int picType = int.Parse(((DataRowView)e.Item.DataItem).Row[0].ToString());
                     if (picType != 0)
                     {
-                        rpt2.DataSource = cc.GetPicShowAddress(companyID, picType);
-                        rpt2.DataBind();
+                        rpt4.DataSource = cc.GetPicShowAddress(companyID, picType);
+                        rpt4.DataBind();
                     }
                 }
             }
@@ -92,6 +92,7 @@ namespace IntelligentCBD.Company
                     //Repeater3.DataBind();
                     break;
                 case 2:
+                    ListViewResult.DataSource = commentc.GetComments(companyID);
                     ListViewResult.DataBind();
                     break;
                 default:
