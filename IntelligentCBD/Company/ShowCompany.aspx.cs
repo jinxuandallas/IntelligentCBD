@@ -88,8 +88,6 @@ namespace IntelligentCBD.Company
                 case 1:
                     Repeater3.DataSource = cc.GetPicKind(companyID);
                     Repeater3.DataBind();
-                    //Repeater3.DataSource = cc.GetPicKind(companyID);
-                    //Repeater3.DataBind();
                     break;
                 case 2:
                     ListViewResult.DataSource = commentc.GetComments(companyID);

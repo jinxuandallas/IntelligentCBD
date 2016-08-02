@@ -58,6 +58,7 @@
                                 <div style="clear:both;width:300px;height:30px">
                                     <asp:LinkButton ID="LinkButton企业名称" CssClass="ComName"  ForeColor="Black" Font-Size="15px" Text='<%# t.cutStr(Server.HtmlEncode(Eval("企业名称").ToString()),60) %>'  OnClick="LinkButton企业名称_Click" Font-Underline="false" runat="server" />
                                 </div>
+                                <div style="width:500px;height:20px">&nbsp;&nbsp;</div>
                                 <div style="width:500px;height:20px">
                                     <div style="float:left;width:150px;height:20px">注册资本：<asp:Label ID="Label注册资本" runat="server" Text='<%#t.LongStr2CapitalStr(Eval("注册资本").ToString()) %>'></asp:Label></div>
                                     <div style="float:left;width:150px;height:20px">所属载体：<asp:Label ID="Label所属载体" runat="server" Text='<%# Eval("载体名称") %>' ></asp:Label></div> 
