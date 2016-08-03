@@ -19,16 +19,20 @@ namespace IntelligentCBD.Comment
             //测试用
             Session["Username"] = System.Configuration.ConfigurationManager.AppSettings["username"];
             //测试用
-            Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
+            //Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
 
             //此处必须先判断Session["Username"]是否为null否则后面的IsNullOrWhiteSpace会抛出异常
             if (Session["Username"] == null || string.IsNullOrWhiteSpace(Session["Username"].ToString()))
                 Response.Redirect("~/Account/Login.aspx");
+            if (Request.QueryString["comID"] == null || string.IsNullOrWhiteSpace(Request.QueryString["comID"]))
+                Response.Redirect("~/default.aspx");
 
-            if (Session["CompanyID"] == null || string.IsNullOrWhiteSpace(Session["CompanyID"].ToString()))
-                Response.Redirect("~/Account/Login.aspx");
+            //if (Session["CompanyID"] == null || string.IsNullOrWhiteSpace(Session["CompanyID"].ToString()))
+            //Response.Redirect("~/Account/Login.aspx");
 
-            companyID = Guid.Parse(Session["CompanyID"].ToString());
+            //companyID = Guid.Parse(Session["CompanyID"].ToString());
+
+            companyID = Guid.Parse(Request.QueryString["comID"]);
             companyc = new CompanyClass();
             commentc = new CommentClass();
 

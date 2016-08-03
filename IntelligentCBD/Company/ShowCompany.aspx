@@ -8,7 +8,6 @@
     <script src="../scripts/jquery.raty.min.js"></script>
     <script src="../scripts/readmore.min.js"></script>
     <style type="text/css">
-        
         /* css 重置 */
         * {
             margin: 0;
@@ -178,8 +177,10 @@
         .auto-style23 {
             height: 100px;
         }
+
         .raty {
         }
+
         .auto-style24 {
             font-size: 15px;
             vertical-align: top;
@@ -225,10 +226,11 @@
             </td>
         </tr>
         <tr>
-            <td  style="width:200px;height:24px" colspan="4">
-                <div style=" font: 11px verdana;" id="BigStar"></div></td>
+            <td style="width: 200px; height: 24px" colspan="4">
+                <div style="font: 11px verdana;" id="BigStar"></div>
+            </td>
         </tr>
-        
+
         <tr>
             <td class="auto-style7">联系电话：</td>
             <td class="auto-style13">
@@ -367,9 +369,11 @@
                             </asp:Repeater>
                         </ContentTemplate>
                     </ajaxToolkit:TabPanel>
-                    <ajaxToolkit:TabPanel ID="TabPanelComments" runat="server" HeaderText="评论" OnDemandMode="Once">
+                    <ajaxToolkit:TabPanel ID="TabPanelComments" runat="server" HeaderText="评论" OnDemandMode="Always">
                         <ContentTemplate>
-
+                            <div style="margin: 20px 20px 5px 25px">
+                                <a href="../Comment/AddComment.aspx?comID=<%=companyID %>" style=" text-decoration: none;text-align: center;line-height:30px" target="_blank" ><div  style="width: 100px; height: 30px; color: #FFFFFF; background-color: #FF7200; font-weight: bold;  font-size: 16px;">写评论</div></a>
+                            </div>
                             <asp:ListView ID="ListViewResult" runat="server" OnItemCreated="ListViewResult_ItemCreated">
                                 <LayoutTemplate>
                                     <div id="itemPlaceholder" style="width: 1000px" runat="server"></div>
@@ -432,7 +436,6 @@
                                     <asp:QueryStringParameter Name="所属企业" QueryStringField="comID" Type="String" />
                                 </SelectParameters>
                             </asp:SqlDataSource>--%>
-
                         </ContentTemplate>
                     </ajaxToolkit:TabPanel>
                     <ajaxToolkit:TabPanel ID="TabPanel4" runat="server" HeaderText="TabPanel4" OnDemandMode="Once">
@@ -467,11 +470,12 @@
             $("#BigStar").raty({
                 path: "../Images/Ratyimg",
                 readOnly: true,
-                size:24,
-                start: 3,
+                size: 24,
+                half: true,
+                start: <%=bigStar%>,
                 starHalf:   'star-half-big.png',
-            starOff:    'star-off-big.png',
-            starOn:     'star-on-big.png'
+                starOff:    'star-off-big.png',
+                starOn:     'star-on-big.png'
             })
         })
         function pageLoad() {

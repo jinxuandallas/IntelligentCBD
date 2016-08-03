@@ -105,6 +105,7 @@
     <Content Include="App_Data\IntelligentCBD.mdf" />
     <Content Include="App_Data\IntelligentCBD_log.ldf" />
     <Content Include="Comment\AddComment.aspx" />
+    <Content Include="Comment\ManageCompanyComments.aspx" />
     <Content Include="Company\AddCompany.aspx" />
     <Content Include="Company\CompanyPreview.aspx" />
     <Content Include="Company\EditCompany.aspx" />
@@ -195,6 +196,13 @@
     </Compile>
     <Compile Include="Comment\AddComment.aspx.designer.cs">
       <DependentUpon>AddComment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Comment\ManageCompanyComments.aspx.cs">
+      <DependentUpon>ManageCompanyComments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Comment\ManageCompanyComments.aspx.designer.cs">
+      <DependentUpon>ManageCompanyComments.aspx</DependentUpon>
     </Compile>
     <Compile Include="Company\AddCompany.aspx.cs">
       <DependentUpon>AddCompany.aspx</DependentUpon>

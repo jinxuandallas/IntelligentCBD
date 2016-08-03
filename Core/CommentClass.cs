@@ -214,10 +214,32 @@ namespace Core
             return GetDataSet(sql, new SqlParameter[] { new SqlParameter("@CommentID", commentID) });
         }
 
+        /// <summary>
+        /// 获取评论
+        /// </summary>
+        /// <param name="companyID">企业ID</param>
+        /// <returns>返回包含当前企业的所有评论DataSet</returns>
         public DataSet GetComments(Guid companyID)
         {
             sql = "SELECT [ID], [内容], [录入人], [星级], [录入时间], [是否匿名] FROM [评论] WHERE ([所属企业] = @所属企业)";
             return GetDataSet(sql, new SqlParameter[] { new SqlParameter("@所属企业", companyID) });
+        }
+
+        /// <summary>
+        /// 调用数据库计算出企业的星级评分
+        /// </summary>
+        /// <param name="companyID">企业ID</param>
+        /// <returns>返回星级评分</returns>
+        public double GetCompanyStar(Guid companyID)
+        {
+            sql = "exec [dbo].[获取企业星级] @companyID";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@companyID", companyID) }))
+            {
+                if (sdr.Read())
+                    return double.Parse(sdr[0].ToString());
+                else
+                    return 0.0;
+            }
         }
     }
 }
