@@ -180,6 +180,10 @@
         }
         .raty {
         }
+        .auto-style24 {
+            font-size: 15px;
+            vertical-align: top;
+        }
     </style>
     <table style="width: 900px">
         <tr>
@@ -216,13 +220,15 @@
                 </div>
             </td>
             <td style="font-size: 20px; font-weight: bold" class="auto-style7">企业名称:</td>
-            <td colspan="3" rowspan="2" style="vertical-align: top">
+            <td colspan="3" style="vertical-align: top">
                 <asp:Label ID="LabelCompanyName" runat="server" Font-Size="18px" Width="400px" CssClass="WordWrap" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>
-            <td class="auto-style7">&nbsp;</td>
+            <td  style="width:200px;height:24px" colspan="4">
+                <div style=" font: 11px verdana;" id="BigStar"></div></td>
         </tr>
+        
         <tr>
             <td class="auto-style7">联系电话：</td>
             <td class="auto-style13">
@@ -364,7 +370,7 @@
                     <ajaxToolkit:TabPanel ID="TabPanelComments" runat="server" HeaderText="评论" OnDemandMode="Once">
                         <ContentTemplate>
 
-                            <asp:ListView ID="ListViewResult" runat="server" DataSourceID="SqlDataSource1" OnItemCreated="ListViewResult_ItemCreated">
+                            <asp:ListView ID="ListViewResult" runat="server" OnItemCreated="ListViewResult_ItemCreated">
                                 <LayoutTemplate>
                                     <div id="itemPlaceholder" style="width: 1000px" runat="server"></div>
                                     <div style="width: 1000px; text-align: center; background-color: #CCCCCC; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000;">
@@ -421,11 +427,11 @@
 
                                 </ItemTemplate>
                             </asp:ListView>
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ID], [内容], [录入人], [星级], [录入时间], [是否匿名] FROM [评论] WHERE ([所属企业] = @所属企业)">
+                            <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ID], [内容], [录入人], [星级], [录入时间], [是否匿名] FROM [评论] WHERE ([所属企业] = @所属企业)">
                                 <SelectParameters>
                                     <asp:QueryStringParameter Name="所属企业" QueryStringField="comID" Type="String" />
                                 </SelectParameters>
-                            </asp:SqlDataSource>
+                            </asp:SqlDataSource>--%>
 
                         </ContentTemplate>
                     </ajaxToolkit:TabPanel>
@@ -458,23 +464,35 @@
         jQuery(".slideBox").slide({ mainCell: ".bd ul", autoPlay: true, trigger: "click" });
 
         $(function () {
-            $(".raty").each(function () {
-                var ratyValue = $(this).parent().find("input[type=hidden]").val();
-                $(this).raty({
-                    path: "../Images/Ratyimg",
-                    readOnly: true,
-                    start: ratyValue
-                });
+            $("#BigStar").raty({
+                path: "../Images/Ratyimg",
+                readOnly: true,
+                size:24,
+                start: 3,
+                starHalf:   'star-half-big.png',
+            starOff:    'star-off-big.png',
+            starOn:     'star-on-big.png'
+            })
+        })
+        function pageLoad() {
+            $(function () {
+                $(".raty").each(function () {
+                    var ratyValue = $(this).parent().find("input[type=hidden]").val();
+                    $(this).raty({
+                        path: "../Images/Ratyimg",
+                        readOnly: true,
+                        start: ratyValue
+                    });
+                })
+
             })
 
-        })
-
-        $("article").readmore({
-            collapsedHeight: 62,
-            moreLink: '<a style="text-decoration: none;text-align: right; font-size: 13px" href="#">展开</a>',
-            lessLink: '<a style="text-decoration: none;text-align: right; font-size: 13px" href="#">收起</a>'
-        });
-
+            $("article").readmore({
+                collapsedHeight: 62,
+                moreLink: '<a style="text-decoration: none;text-align: right; font-size: 13px;color: blue"  href="#">展开</a>',
+                lessLink: '<a style="text-decoration: none;text-align: right; font-size: 13px;color: blue" href="#">收起</a>'
+            });
+        }
     </script>
 
 </asp:Content>

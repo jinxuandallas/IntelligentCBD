@@ -213,5 +213,11 @@ namespace Core
             sql = "select 图片地址 from 评论图片 where 所属评论=@CommentID";
             return GetDataSet(sql, new SqlParameter[] { new SqlParameter("@CommentID", commentID) });
         }
+
+        public DataSet GetComments(Guid companyID)
+        {
+            sql = "SELECT [ID], [内容], [录入人], [星级], [录入时间], [是否匿名] FROM [评论] WHERE ([所属企业] = @所属企业)";
+            return GetDataSet(sql, new SqlParameter[] { new SqlParameter("@所属企业", companyID) });
+        }
     }
 }
