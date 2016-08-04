@@ -13,6 +13,8 @@ namespace IntelligentCBD.Search
     {
         protected SearchClass sc;
         protected Tools t;
+        protected CommentClass commentc;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //测试
@@ -28,7 +30,7 @@ namespace IntelligentCBD.Search
 
             if (Request.QueryString["query"] == null || string.IsNullOrWhiteSpace(Request.QueryString["query"]))
                 Response.Redirect("~/default.aspx");
-
+            commentc = new CommentClass();
             sc = new SearchClass();
             t = new Tools();
 

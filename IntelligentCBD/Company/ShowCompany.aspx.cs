@@ -16,6 +16,7 @@ namespace IntelligentCBD.Company
         protected Tools t;
         protected Guid companyID;
         protected CommentClass commentc;
+        protected double bigStar;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["comID"] == null || string.IsNullOrWhiteSpace(Request.QueryString["comID"]))
@@ -33,6 +34,9 @@ namespace IntelligentCBD.Company
             Repeater2.DataBind();
             Repeater1.DataBind();
 
+
+            //处理企业星级显示
+            bigStar = commentc.GetCompanyStar(companyID);
             //ListViewResult.DataBind();
 
             //Repeater3.DataSource = cc.GetPicKind(companyID);
@@ -117,5 +121,16 @@ namespace IntelligentCBD.Company
                 }
             }
         }
+
+        //protected void LinkButton1_Click(object sender, EventArgs e)
+        //{
+        //    Session["CompanyID"] = companyID;
+        //    Response.Redirect("../Comment/AddComment.aspx");
+            //Response.Write("<script language='javascript'>window.open('../Comment/AddComment.aspx');</script>");
+            //Response.Write("<script>");
+            //Response.Write("window.open('EditCompany.aspx','_blank')");
+            //Response.Write("</script>");
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script type='text/JavaScript'>alert('xxx');</script>");
+        //}
     }
 }
