@@ -372,9 +372,11 @@
                     <ajaxToolkit:TabPanel ID="TabPanelComments" runat="server" HeaderText="评论" OnDemandMode="Always">
                         <ContentTemplate>
                             <div style="margin: 20px 20px 5px 25px">
-                                <a href="../Comment/AddComment.aspx?comID=<%=companyID %>" style=" text-decoration: none;text-align: center;line-height:30px" target="_blank" ><div  style="width: 100px; height: 30px; color: #FFFFFF; background-color: #FF7200; font-weight: bold;  font-size: 16px;">写评论</div></a>
+                                <a href="../Comment/AddComment.aspx?comID=<%=companyID %>" style="text-decoration: none; text-align: center; line-height: 30px" target="_blank">
+                                    <div style="width: 100px; height: 30px; color: #FFFFFF; background-color: #FF7200; font-weight: bold; font-size: 16px;">写评论</div>
+                                </a>
                             </div>
-                            <asp:ListView ID="ListViewResult" runat="server" OnItemCreated="ListViewResult_ItemCreated">
+                            <asp:ListView ID="ListViewComment" runat="server" OnItemDataBound="ListViewComment_ItemDataBound">
                                 <LayoutTemplate>
                                     <div id="itemPlaceholder" style="width: 1000px" runat="server"></div>
                                     <div style="width: 1000px; text-align: center; background-color: #CCCCCC; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000;">
@@ -418,17 +420,21 @@
 
                                         <asp:Repeater ID="Repeater5" runat="server">
                                             <ItemTemplate>
-                                                <div style="float: left; width: 100px; height: 80px">
-                                                    <a href='<%# DataBinder.Eval(Container.DataItem,"图片地址").ToString().Replace("~","..") %>'>
-                                                        <asp:Image ID="img" runat="server" Width="90px" Height="75px" ImageUrl='<%# DataBinder.Eval(Container.DataItem,"图片地址")  %>' />
-
+                                                <div style="float: left; width: 70px; height: 50px">
+                                                    <a href='<%# DataBinder.Eval(Container.DataItem,"图片地址").ToString().Replace("~","..") %>' target="_blank">
+                                                        <asp:Image ID="img" runat="server" Width="65px" Height="45px" ImageUrl='<%# DataBinder.Eval(Container.DataItem,"图片地址")  %>' />
                                                     </a>
                                                 </div>
                                             </ItemTemplate>
                                         </asp:Repeater>
+                                        <div style="clear: both; width: 600px; margin: 10px">
+                                            <article>
+                                                <%-- 内容在录入时已经进行过HtmlEncode编码 --%>
+                                                <asp:Label Style="word-break: break-all;" ForeColor="#BD7F00" ID="LabelExplanation" runat="server"></asp:Label>
+                                            </article>
+                                        </div>
                                         <hr style="clear: both" />
                                     </div>
-
                                 </ItemTemplate>
                             </asp:ListView>
                             <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ID], [内容], [录入人], [星级], [录入时间], [是否匿名] FROM [评论] WHERE ([所属企业] = @所属企业)">

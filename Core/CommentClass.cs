@@ -241,5 +241,103 @@ namespace Core
                     return 0.0;
             }
         }
+
+        /// <summary>
+        /// 获取当前用户的所有企业评论（14天内）
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <returns>返回一个DataSet</returns>
+        public DataSet GetManagementComments(string username)
+        {
+            sql = "select ID,企业名称,内容,录入人,录入时间,星级 from 评论企业视图  where (所属企业 in (select ID from 企业 where 录入人=@username)) and (DATEDIFF(DAY,录入时间,GETDATE())<=14)";
+                //select * from 评论 where (DATEDIFF(DAY,录入时间,GETDATE())<=14) and 录入人=@username";
+            return GetDataSet(sql, new SqlParameter[] { new SqlParameter("@username", username) });
+        }
+
+
+        /// <summary>
+        /// 添加评论解释
+        /// </summary>
+        /// <param name="commentID">评论ID</param>
+        /// <param name="content">解释内容</param>
+        /// <param name="username">录入人</param>
+        /// <returns>返回是否成功</returns>
+        public bool AddExplanation(Guid commentID,string content,string username)
+        {
+            Guid ExplanationID = Guid.NewGuid();
+            sql = "insert 解释 (ID,所属评论,内容,录入人) values (@ID,@comment,@content,@username) update 评论 set 是否有解释=1 where ID=@comment";
+            bool result = ExecuteTranSQL(sql, new SqlParameter[] { new SqlParameter("@ID",ExplanationID),
+            new SqlParameter("@comment",commentID),
+            new SqlParameter("@content",content),
+            new SqlParameter("@username",username)});
+            return result;
+        }
+
+        /// <summary>
+        /// 返回评论是否有追加解释
+        /// </summary>
+        /// <param name="commentID">评论ID</param>
+        /// <returns>返回是否有追加解释</returns>
+        public bool HasExplanation(Guid commentID)
+        {
+            sql = "select 是否有解释 from 评论 where ID=@commentID";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@commentID", commentID) }))
+            {
+                if (sdr.Read())
+                    if (bool.Parse(sdr[0].ToString()))
+                        return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 获取评论的解释内容
+        /// </summary>
+        /// <param name="commentID">评论ID</param>
+        /// <returns>返回解释内容</returns>
+        public string GetExplanation(Guid commentID)
+        {
+            sql = "select 内容 from 解释 where 所属评论=@commentID";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@commentID", commentID) }))
+            {
+                if (sdr.Read())
+                    return sdr[0].ToString();
+            }
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// 获取当前企业的评论总数
+        /// </summary>
+        /// <param name="companyID">企业ID</param>
+        /// <returns>评论数量</returns>
+        public int GetCommentSum(Guid companyID)
+        {
+            sql = "select count(ID) from 评论 where 所属企业=@companyID";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@companyID", companyID) }))
+            {
+                if (sdr.Read())
+                    return int.Parse(sdr[0].ToString());
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 判断当前用户是否为企业主
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <param name="companyID">企业ID</param>
+        /// <returns>返回布尔变量</returns>
+        public bool IsOwner(string username,Guid companyID)
+        {
+            sql = "select ID from 企业 where ID=@companyID and 录入人=@username";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@companyID", companyID),
+            new SqlParameter("@username",username)}))
+            {
+                if (sdr.Read())
+                    return true;
+            }
+            return false;
+        }
     }
 }

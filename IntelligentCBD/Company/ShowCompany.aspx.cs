@@ -17,6 +17,7 @@ namespace IntelligentCBD.Company
         protected Guid companyID;
         protected CommentClass commentc;
         protected double bigStar;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["comID"] == null || string.IsNullOrWhiteSpace(Request.QueryString["comID"]))
@@ -34,7 +35,7 @@ namespace IntelligentCBD.Company
             Repeater2.DataBind();
             Repeater1.DataBind();
 
-
+            TabPanelComments.HeaderText = @"评论&nbsp;<span style=""color:red"">" + commentc.GetCommentSum(companyID)+@"</span>";
             //处理企业星级显示
             bigStar = commentc.GetCompanyStar(companyID);
             //ListViewResult.DataBind();
@@ -94,8 +95,8 @@ namespace IntelligentCBD.Company
                     Repeater3.DataBind();
                     break;
                 case 2:
-                    ListViewResult.DataSource = commentc.GetComments(companyID);
-                    ListViewResult.DataBind();
+                    ListViewComment.DataSource = commentc.GetComments(companyID);
+                    ListViewComment.DataBind();
                     break;
                 default:
                     break;
@@ -103,21 +104,54 @@ namespace IntelligentCBD.Company
             }
         }
 
-        protected void ListViewResult_ItemCreated(object sender, ListViewItemEventArgs e)
+        //protected void ListViewResult_ItemCreated(object sender, ListViewItemEventArgs e)
+        //{
+            //if (e.Item.ItemType == ListViewItemType.DataItem)
+            //{
+            //    Repeater rpt = e.Item.FindControl("Repeater5") as Repeater;
+            //    if (rpt != null)
+            //    {
+            //        if (e.Item.DataItem == null)
+            //            return;
+            //        Guid id = Guid.Parse(((DataRowView)e.Item.DataItem).Row["ID"].ToString());
+            //        if (id != null)
+            //        {
+            //            rpt.DataSource = commentc.GetCommentPic(id);
+            //            rpt.DataBind();
+            //        }
+            //    }
+            //}
+        //}
+
+        protected void ListViewComment_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
+            Guid id;
             if (e.Item.ItemType == ListViewItemType.DataItem)
             {
-                Repeater rpt = e.Item.FindControl("Repeater5") as Repeater;
+                id = Guid.Parse(((DataRowView)e.Item.DataItem).Row["ID"].ToString());
+                Repeater rpt = e.Item.FindControl("RepeaterCommentPic") as Repeater;
                 if (rpt != null)
                 {
-                    if (e.Item.DataItem == null)
-                        return;
-                    Guid id = Guid.Parse(((DataRowView)e.Item.DataItem).Row["ID"].ToString());
+                    //if (e.Item.DataItem == null)
+                    //    return;
+
                     if (id != null)
                     {
                         rpt.DataSource = commentc.GetCommentPic(id);
                         rpt.DataBind();
                     }
+                }
+
+                //判断是否有解释内容
+                if (commentc.HasExplanation(id))
+                {
+                    Label lbExplanation = (e.Item.FindControl("LabelExplanation") as Label);
+                    lbExplanation.Visible = true;
+                    lbExplanation.Text = "解释：" + commentc.GetExplanation(id);
+                }
+                else
+                {
+                    (e.Item.FindControl("LabelExplanation") as Label).Visible = false;
                 }
             }
         }
@@ -126,11 +160,11 @@ namespace IntelligentCBD.Company
         //{
         //    Session["CompanyID"] = companyID;
         //    Response.Redirect("../Comment/AddComment.aspx");
-            //Response.Write("<script language='javascript'>window.open('../Comment/AddComment.aspx');</script>");
-            //Response.Write("<script>");
-            //Response.Write("window.open('EditCompany.aspx','_blank')");
-            //Response.Write("</script>");
-            //Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script type='text/JavaScript'>alert('xxx');</script>");
+        //Response.Write("<script language='javascript'>window.open('../Comment/AddComment.aspx');</script>");
+        //Response.Write("<script>");
+        //Response.Write("window.open('EditCompany.aspx','_blank')");
+        //Response.Write("</script>");
+        //Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script type='text/JavaScript'>alert('xxx');</script>");
         //}
     }
 }
