@@ -312,5 +312,17 @@ namespace Core
                 else
                     return string.Empty;
         }
+
+        public bool DelCompany(Guid companyID)
+        {
+            //最后删除数据库中企业所有信息
+            sql = @"delete from 解释 where 解释.所属评论 in (select ID from 评论 where 所属企业=@companyID)
+                   delete from 评论图片 where 评论图片.所属评论 in (select ID from 评论 where 所属企业=@companyID)
+                    delete from 企业图片 where 企业图片.所属企业=@companyID
+                    delete from 评论 where 所属企业=@companyID
+                    delete from 企业 where ID=@companyID";
+            bool result = ExecuteTranSQL(sql, new SqlParameter[] { new SqlParameter("@companyID", companyID) });
+            return result;
+        }
     }
 }

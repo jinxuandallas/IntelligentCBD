@@ -12,6 +12,8 @@ namespace IntelligentCBD.Comment
     public partial class ManageCompanyComments : System.Web.UI.Page
     {
         protected CommentClass commentc;
+
+        //还需增加评论筛选功能，防止评论太多来不及一一回复
         protected void Page_Load(object sender, EventArgs e)
         {
             commentc = new CommentClass();
