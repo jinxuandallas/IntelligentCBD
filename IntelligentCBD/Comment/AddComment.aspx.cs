@@ -36,6 +36,12 @@ namespace IntelligentCBD.Comment
             companyc = new CompanyClass();
             commentc = new CommentClass();
 
+            if (commentc.IsOwner(Session["Username"].ToString(), companyID))
+            {
+                Response.Write("<script>alert('店主的不能给自己企业写评论')</script>");
+                Response.Write("<script>window.close();</script>");
+                //Response.Close();
+            }
             if (!IsPostBack)
             {
                 LabelCompanyName.Text = companyc.GetCompanyName(companyID);
@@ -45,6 +51,11 @@ namespace IntelligentCBD.Comment
 
         protected void Submit_Click(object sender, EventArgs e)
         {
+            if (commentc.IsOwner(Session["Username"].ToString(), companyID))
+            {
+                LabelPrompt.Text = "店主不能给自己企业添加评论";
+                return;
+            }
             if (string.IsNullOrWhiteSpace(score.Value))
             {
                 LabelStarPrompt.Visible = true;
