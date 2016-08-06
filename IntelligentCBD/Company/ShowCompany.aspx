@@ -418,7 +418,7 @@
                                         </div>
 
 
-                                        <asp:Repeater ID="Repeater5" runat="server">
+                                        <asp:Repeater ID="RepeaterCommentPic" runat="server">
                                             <ItemTemplate>
                                                 <div style="float: left; width: 70px; height: 50px">
                                                     <a href='<%# DataBinder.Eval(Container.DataItem,"图片地址").ToString().Replace("~","..") %>' target="_blank">

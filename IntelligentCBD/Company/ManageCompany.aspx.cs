@@ -11,6 +11,7 @@ namespace IntelligentCBD.Company
     public partial class ManageCompany : System.Web.UI.Page
     {
         public Tools t;
+        protected CompanyClass companyc;
         protected void Page_Load(object sender, EventArgs e)
         {
             //MenuSite.Master页面已经包括Session["Username"]的是否为空的检查
@@ -24,6 +25,8 @@ namespace IntelligentCBD.Company
                 Response.Redirect("EditCompany.aspx");
             }
             */
+
+            companyc = new CompanyClass();
         }
 
         protected void ButtonEdit_Click(object sender, EventArgs e)
@@ -35,8 +38,21 @@ namespace IntelligentCBD.Company
 
         protected void ButtonDel_Click(object sender, EventArgs e)
         {
+            /*
             ///删除企业，还没完成具体实现，包括删除图片和评论等所有企业信息
             Response.Write((((Button)sender).Parent.FindControl("Label企业ID") as Label).Text);
+            Guid companyID = Guid.Parse((((Button)sender).Parent.FindControl("Label企业ID") as Label).Text);
+            List<string> l = companyc.GetPicList(companyID);
+            foreach(string s in l)
+            {
+                Response.Write(s + "<br/>");
+            }
+            */
+
+            Guid companyID = Guid.Parse((((Button)sender).Parent.FindControl("Label企业ID") as Label).Text);
+            companyc.DelCompany(companyID);
+            ListViewCompany.DataBind();
+
         }
 
         protected void ButtonPreview_Click(object sender, EventArgs e)

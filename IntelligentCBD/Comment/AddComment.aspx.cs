@@ -74,6 +74,7 @@ namespace IntelligentCBD.Comment
             //最后还原控件初始状态
             LabelStarPrompt.Visible = false;
             score.Value = "";
+            Response.Write("<script>window.close();</script>");
         }
     }
 }
