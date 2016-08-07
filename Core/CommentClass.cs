@@ -116,7 +116,7 @@ namespace Core
                     throw Ex;
                 }
             }
-            return "";
+            return "上传成功";
         }
 
         /// <summary>

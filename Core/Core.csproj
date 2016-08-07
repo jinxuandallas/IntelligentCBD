@@ -45,6 +45,7 @@
     <Compile Include="CommentClass.cs" />
     <Compile Include="CompanyClass.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="ProblemsClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchClass.cs" />
     <Compile Include="Tools.cs" />

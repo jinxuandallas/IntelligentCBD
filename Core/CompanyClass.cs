@@ -300,7 +300,7 @@ namespace Core
         }
 
         /// <summary>
-        /// 根据企业ID返回企业的名称（一般给别的类用）
+        /// 根据企业ID返回企业的名称（一般给别的类用）//已经过HTMLEncode处理
         /// </summary>
         /// <param name="ID">企业ID</param>
         /// <returns>返回的企业名称</returns>
@@ -309,7 +309,7 @@ namespace Core
             sql = "select 企业名称 from 企业视图 where ID=@ID";
             using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@ID", ID) }))
                 if (sdr.Read())
-                    return sdr[0].ToString();
+                    return HttpUtility.HtmlEncode(sdr[0].ToString());
                 else
                     return string.Empty;
         }
@@ -459,6 +459,31 @@ namespace Core
             imgstart = s.IndexOf("src") + 5;
             imgend = s.IndexOf("\"", imgstart);
             return s.Substring(imgstart, imgend - imgstart);
+        }
+
+        /// <summary>
+        /// 提交企业错误信息
+        /// </summary>
+        /// <param name="companyID">企业ID</param>
+        /// <param name="content">报告错误内容（已经过HtmlEncode处理）</param>
+        /// <param name="username">用户名</param>
+        /// <returns>返回是否成功</returns>
+        public bool SubmitCompanyError(Guid companyID,string content,string username)
+        {
+            sql = "insert into 企业问题报告(ID,问题企业,问题内容,录入人) values (@ID,@companyID,@content,@username)";
+            Guid ID = Guid.NewGuid();
+            int rtn = ExecuteSql(sql, new SqlParameter[]
+            {
+                new SqlParameter("@ID",ID),
+                new SqlParameter("@companyID",companyID),
+                new SqlParameter("@content",HttpUtility.HtmlEncode(content)),
+                new SqlParameter("@username",username)
+            });
+
+            if (rtn == 1)
+                return true;
+            else
+                return false;
         }
     }
 }

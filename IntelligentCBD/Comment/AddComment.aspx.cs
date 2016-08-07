@@ -44,7 +44,7 @@ namespace IntelligentCBD.Comment
             }
             if (!IsPostBack)
             {
-                LabelCompanyName.Text = companyc.GetCompanyName(companyID);
+                LabelCompanyName.Text = companyc.GetCompanyName(companyID);//已经过HTMLEncode处理
             }
 
         }
@@ -74,7 +74,13 @@ namespace IntelligentCBD.Comment
             //最后还原控件初始状态
             LabelStarPrompt.Visible = false;
             score.Value = "";
-            Response.Write("<script>window.close();</script>");
+            if (result == "上传成功")
+            {
+                Response.Write("<script>alert('评论提交成功')</script>");
+                Response.Write("<script>window.close();</script>");
+            }
+            else
+                LabelPrompt.Text = "上传不成功";
         }
     }
 }

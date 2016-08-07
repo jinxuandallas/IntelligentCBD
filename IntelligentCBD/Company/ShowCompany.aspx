@@ -223,11 +223,16 @@
             <td style="font-size: 20px; font-weight: bold" class="auto-style7">企业名称:</td>
             <td colspan="3" style="vertical-align: top">
                 <asp:Label ID="LabelCompanyName" runat="server" Font-Size="18px" Width="400px" CssClass="WordWrap" Font-Bold="True"></asp:Label>
+
             </td>
         </tr>
         <tr>
-            <td style="width: 200px; height: 24px" colspan="4">
-                <div style="font: 11px verdana;" id="BigStar"></div>
+            <td style="width: 200px; height: 24px" colspan="3">
+                <div style="font: 11px verdana; width: 300px" id="BigStar"></div>
+            </td>
+            <td>
+                <a id="erra" href="ReportCompanyError.aspx?comID=<%=companyID %>" target="_blank">
+                    <img id="error" title="报错" src="../Images/报错.png" />信息有误</a>
             </td>
         </tr>
 
@@ -484,6 +489,18 @@
                 starOn:     'star-on-big.png'
             })
         })
+        $(function () {
+            $('#erra').mouseover(function () {
+                $('#error').attr("src", "../Images/报错2.png");
+                $('#erra').css("color","#ff6600");
+            })
+
+            $('#erra').mouseout(function () {
+                $('#error').attr("src", "../Images/报错.png");
+                $('#erra').css("color","black");
+            })
+        })
+
         function pageLoad() {
             $(function () {
                 $(".raty").each(function () {
