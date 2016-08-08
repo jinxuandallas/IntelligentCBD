@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Web;
+using System.IO;
 
 namespace Core
 {
@@ -299,7 +300,7 @@ namespace Core
         }
 
         /// <summary>
-        /// 根据企业ID返回企业的名称（一般给别的类用）
+        /// 根据企业ID返回企业的名称（一般给别的类用）//已经过HTMLEncode处理
         /// </summary>
         /// <param name="ID">企业ID</param>
         /// <returns>返回的企业名称</returns>
@@ -308,13 +309,21 @@ namespace Core
             sql = "select 企业名称 from 企业视图 where ID=@ID";
             using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@ID", ID) }))
                 if (sdr.Read())
-                    return sdr[0].ToString();
+                    return HttpUtility.HtmlEncode(sdr[0].ToString());
                 else
                     return string.Empty;
         }
 
+        /// <summary>
+        /// 删除企业记录（包括所有评论、图片、解释等内容）
+        /// </summary>
+        /// <param name="companyID">要删除的企业ID</param>
+        /// <returns>返回是否删除成功</returns>
         public bool DelCompany(Guid companyID)
         {
+            //首先记录下数据库中当前企业的所有图片（文件）信息，以备在成功删除数据库中记录信息后删除该企业的所有图片（文件）
+            List<string> picList = GetPicList(companyID);
+
             //最后删除数据库中企业所有信息
             sql = @"delete from 解释 where 解释.所属评论 in (select ID from 评论 where 所属企业=@companyID)
                    delete from 评论图片 where 评论图片.所属评论 in (select ID from 评论 where 所属企业=@companyID)
@@ -322,7 +331,159 @@ namespace Core
                     delete from 评论 where 所属企业=@companyID
                     delete from 企业 where ID=@companyID";
             bool result = ExecuteTranSQL(sql, new SqlParameter[] { new SqlParameter("@companyID", companyID) });
+
+
+            if (result)
+                DelPicFiles(picList);
+             
             return result;
+        }
+
+        public bool DelPicFiles(List<string> picList)
+        {
+            FileInfo file;
+            foreach(string filepath in picList)
+            {
+                file = new FileInfo(filepath);
+                if(file.Exists)
+                {
+                    file.Attributes = FileAttributes.Normal;
+                    file.Delete();
+                }
+
+                string dir = filepath.Substring(0, filepath.LastIndexOf("\\"));
+                if (Directory.GetFiles(dir).Length + Directory.GetDirectories(dir).Length == 0)
+                {
+                    //如果目录为空则删除目录
+                    Directory.Delete(dir);
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 获取企业所有图片地址（以备在成功删除数据库中记录信息后删除该企业的所有图片（文件））
+        /// </summary>
+        /// <param name="companyID">企业ID</param>
+        /// <returns>返回一个包含所有图片地址的列表</returns>
+        public List<string> GetPicList(Guid companyID)
+        {
+            //第一步先搜索企业宣传内容里是否有上传图片
+            List<string> picList = GetContentPicList(companyID);
+
+            //第二步搜索企业的上传图片
+            sql = "select 图片地址 from 企业图片 where 企业图片.所属企业=@companyID";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@companyID", companyID) }))
+            {
+                while(sdr.Read())
+                {
+                    picList.Add(HttpContext.Current.Server.MapPath(sdr[0].ToString()));
+                }
+                    
+            }
+
+            //第三步搜索企业评论里上传的图片
+            sql = "select 图片地址 from 评论图片 where 评论图片.所属评论 in (select ID from 评论 where 所属企业=@companyID)";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@companyID", companyID) }))
+            {
+                while (sdr.Read())
+                {
+                    picList.Add(HttpContext.Current.Server.MapPath(sdr[0].ToString()));
+                }
+
+            }
+            return picList;
+        }
+        
+
+        /// <summary>
+        /// 获取企业宣传内容文本中含有上传图片地址的列表集合
+        /// </summary>
+        /// <param name="companyID">企业的ID</param>
+        /// <returns>返回包含上传图片地址的列表集合（以备下一步删除用，所以系统包括的图标不在此列)</returns>
+        public List<string> GetContentPicList(Guid companyID)
+        {
+            List<string> contentPicList=new List<string>();
+            string content;
+            
+            sql = "select 内容 from 企业 where ID=@ID";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@ID", companyID) }))
+            {
+                if (sdr.Read())
+                {
+                    content = sdr[0].ToString();
+                    GeneratePicList(content,ref contentPicList);
+                }
+
+            }
+            return contentPicList;
+        }
+
+        /// <summary>
+        /// 根据内容文本，填充上传图片地址列表
+        /// </summary>
+        /// <param name="content">企业宣传内容文本</param>
+        /// <param name="l">引用的上传图片地址列表</param>
+        /// <returns>返回是否有数据填充</returns>
+        public bool GeneratePicList(string content,ref List<string> l)
+        {
+            bool result = false;
+            int start, end;
+            string img, src;
+            start = content.IndexOf("<img");
+            while (start != -1)
+            {
+                end = content.IndexOf("/>", start);
+                img = content.Substring(start + 4, end - start - 4);
+                if (img.IndexOf("Upload/ContentUploadPic") != -1)
+                {
+                    src=GetSrc(img);
+                    l.Add(HttpContext.Current.Server.MapPath(src));
+                    if (!result)
+                        result = true;
+
+                }
+                start = content.IndexOf("<img", end + 2);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 从src参数内取出图片地址
+        /// </summary>
+        /// <param name="s">img标签中的内容</param>
+        /// <returns>返回图片地址</returns>
+        public string GetSrc(string s)
+        {
+            int imgstart, imgend;
+            imgstart = s.IndexOf("src") + 5;
+            imgend = s.IndexOf("\"", imgstart);
+            return s.Substring(imgstart, imgend - imgstart);
+        }
+
+        /// <summary>
+        /// 提交企业错误信息
+        /// </summary>
+        /// <param name="companyID">企业ID</param>
+        /// <param name="content">报告错误内容（已经过HtmlEncode处理）</param>
+        /// <param name="username">用户名</param>
+        /// <returns>返回是否成功</returns>
+        public bool SubmitCompanyError(Guid companyID,string content,string username)
+        {
+            sql = "insert into 企业问题报告(ID,问题企业,问题内容,录入人) values (@ID,@companyID,@content,@username)";
+            Guid ID = Guid.NewGuid();
+            int rtn = ExecuteSql(sql, new SqlParameter[]
+            {
+                new SqlParameter("@ID",ID),
+                new SqlParameter("@companyID",companyID),
+                new SqlParameter("@content",HttpUtility.HtmlEncode(content)),
+                new SqlParameter("@username",username)
+            });
+
+            if (rtn == 1)
+                return true;
+            else
+                return false;
         }
     }
 }
