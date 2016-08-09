@@ -19,7 +19,7 @@ namespace IntelligentCBD.Comment
             commentc = new CommentClass();
             if (!IsPostBack)
             {
-                ListViewComment.DataSource = commentc.GetManagementComments(Session["Username"].ToString());
+                ListViewComment.DataSource = commentc.GetManagementComments(Session["Username"].ToString());//只能显示14天之内的评论
                 ListViewComment.DataBind();
             }
         }

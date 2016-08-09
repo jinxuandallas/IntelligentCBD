@@ -5,22 +5,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    
+    <title>智慧CBD</title>
+    <meta name="author" content="智慧CBD" />
+    <meta name="keywords" content="智慧,搜索,企业,商务,中央商务区,休闲,娱乐,餐饮,点评" />
+
     <style type="text/css">
         .auto-style1 {
             width: 200px;
         }
         .auto-style2 {
-            width: 200px;
-            height: 25px;
+            width: 250px;
+            height: 20px;
         }
+
         .auto-style3 {
             height: 35px;
         }
+
         .auto-style4 {
-            width: 99px;
-            height: 25px;
+            width: 600px;
+            height: 20px;
         }
         .auto-style5 {
             width: 50%;
@@ -38,6 +42,7 @@
                     <td style="padding: 0px; background-color: #0066FF; color: #FFFFFF;" class="auto-style3">
                         <asp:LoginName ID="LoginName1" runat="server" Font-Size="15px" FormatString="你好，{0}" />
 &nbsp;<asp:LoginStatus ID="LoginStatus1" runat="server" Font-Size="14px" LogoutPageUrl="~\default.aspx" ForeColor="White" OnLoggedOut="LoginStatus1_LoggedOut" />
+                        &nbsp;<a href="~/Account/PersonalDetails.aspx" style="font-size:14px; color: white" runat="server" >管理</a>
                     &nbsp;<a href="~\Problems\Feedback.aspx" style="font-size:14px; color: white" runat="server" target="_blank">反馈问题</a></td>
 
                 </tr>

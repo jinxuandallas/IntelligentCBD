@@ -20,7 +20,7 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td>要管理的企业：</td>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
