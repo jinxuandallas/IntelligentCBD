@@ -3,18 +3,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="../scripts/jquery.min.js"></script>
     <script src="../scripts/jquery.raty.min.js"></script>
-    <table style="width: 1000px; font-size: 14px; height: 30px">
+    <table><tr><td style="width:200px"></td><td>
+    <table style="width: 700px; font-size: 14px; height: 30px" class="MainTable">
         <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
+            <td style="height: 30px">&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
-        <tr>
-            <td colspan="3" style="background-color: #F3F3F3; height: 35px">&nbsp;
+        <tr >
+            <td colspan="3" style="background-color: #F3F3F3; height: 35px">
                 <asp:Label ID="LabelCompanyName" runat="server" ForeColor="#FF3300" Font-Size="20px"></asp:Label>
                 <span style="color: darkgray">（</span><span style="color: red">*</span><span style="color: darkgray">为必填选项）</span>
             </td>
         </tr>
+        <tr>
+                                <td colspan="3" style="padding: 0px">
+                                    <table class="TableBox">
         <tr>
             <td style="width: 100px; height: 30px">总体评价:<span style="color: red">*</span></td>
             <td style="width: 500px;">
@@ -79,7 +83,11 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
+                                        </table>
+                                    </td>
+            </tr>
     </table>
+        </td></tr></table>
     <script type="text/javascript">
         $('#CommentGrade').raty({
             path: "../Images/Ratyimg",

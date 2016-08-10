@@ -19,3 +19,9 @@ body { font-size:15px;
      word-wrap : break-word;
      word-break:break-all
  }
+ .TableBox{
+     margin: 0px; padding: 10px; border: 1px solid #d8d8d8;
+ }
+ .MainTable{
+     padding:0px; border-collapse: collapse;
+ }
