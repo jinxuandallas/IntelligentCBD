@@ -7,24 +7,7 @@
     </style>
     
     <table style="width: 900px;">
-        <tr>
-            <td  class="TableTitle" style="width:150px">管理企业信息</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
+        
         <tr>
             <td colspan="4">
                 <asp:ListView ID="ListViewCompany" runat="server" DataSourceID="SqlDataSource1">
@@ -57,7 +40,7 @@
                                 </div>
                                 
                             </div>
-                            <div style="float:left;  width:150px;height:100px; margin: 10px">
+                            <div style="float:left;  width:150px;height:100px; margin: 10px; border-right-style: solid; border-right-width: 1px; border-right-color: #d8d8d8;">
                                 <div style="clear:both;width:130px;height:50px">注册资本：<asp:Label ID="Label注册资本" runat="server" Text='<%#t.LongStr2CapitalStr(Eval("注册资本").ToString()) %>'></asp:Label> </div>
                                 <div style="width:130px;height:50px">所属载体：<asp:Label ID="Label所属载体" runat="server" Text='<%# Eval("载体名称") %>' ></asp:Label></div>
                             </div>

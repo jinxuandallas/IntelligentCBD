@@ -3,91 +3,96 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="../scripts/jquery.min.js"></script>
     <script src="../scripts/jquery.raty.min.js"></script>
-    <table><tr><td style="width:200px"></td><td>
-    <table style="width: 700px; font-size: 14px; height: 30px" class="MainTable">
+    <table>
         <tr>
-            <td style="height: 30px">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr >
-            <td colspan="3" style="background-color: #F3F3F3; height: 35px">
-                <asp:Label ID="LabelCompanyName" runat="server" ForeColor="#FF3300" Font-Size="20px"></asp:Label>
-                <span style="color: darkgray">（</span><span style="color: red">*</span><span style="color: darkgray">为必填选项）</span>
-            </td>
-        </tr>
-        <tr>
-                                <td colspan="3" style="padding: 0px">
-                                    <table class="TableBox">
-        <tr>
-            <td style="width: 100px; height: 30px">总体评价:<span style="color: red">*</span></td>
-            <td style="width: 500px;">
-                <div style="float: left; font: 11px verdana;" id="CommentGrade" ></div>
-                <div id="hint" style="float: left; font: 11px verdana; color: red;"></div>
-                <input type="hidden" id="score" runat="server" />
-                <asp:Label ID="LabelStarPrompt" Text="*" runat="server" ForeColor="Red" Visible="false"></asp:Label>
-            </td>
-            <td></td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">评价：<span style="color: red">*</span></td>
-            <td style="height: 30px">
-                <asp:TextBox ID="TextBoxComment" runat="server" Height="200px" MaxLength="2000" TextMode="MultiLine" Width="450px"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBoxComment" Display="Dynamic" ErrorMessage="*" ForeColor="Red" ValidationExpression="[\s\S]{10,2000}"></asp:RegularExpressionValidator>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxComment" Display="Dynamic" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-            </td>
-            <td style="height: 30px"></td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td style="font-size: 12px">10-2000字</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">上传图片：</td>
+            <td style="width: 200px"></td>
             <td>
-                <div id="f" style="background-color: #ff6600; width: 350px;">
-                    <div id="zhi">
-                        <div id="content">
-                            <input id="File1" runat="server" type="file" /><input id="jia" type="button" value="添加" /><input id="jian" type="button" value="删除" />
-                            <br />
-                        </div>
-                    </div>
-                </div>
-                <input id="tianjia" type="button" value="添加新项" /></td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td style="font-size: 12px; color: darkgray">单张图片不要超过2MB，总共不要超过5MB，只支持jpg,png,gif图片格式</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td>
-                <asp:Label ID="LabelPrompt" runat="server" ForeColor="Red"></asp:Label>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td>
-                <asp:Button ID="Submit" runat="server" Text="提  交" OnClick="Submit_Click" />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:CheckBox ID="CheckBoxAnonymity" runat="server" Text="是否匿名" />
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-                                        </table>
+                <table style="width: 600px; font-size: 14px; height: 30px" class="MainTable">
+                    <tr>
+                        <td style="height: 30px">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color: #F3F3F3; height: 35px">
+                            <asp:Label ID="LabelCompanyName" runat="server" ForeColor="#FF3300" Font-Size="20px"></asp:Label>
+                            <span style="color: darkgray">（</span><span style="color: red">*</span><span style="color: darkgray">为必填选项）</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="padding: 0px">
+                            <table class="TableBox">
+                                <tr>
+                                    <td style="width: 100px; height: 30px">总体评价:<span style="color: red">*</span></td>
+                                    <td style="width: 500px;">
+                                        <div style="float: left; font: 11px verdana;" id="CommentGrade"></div>
+                                        <div id="hint" style="float: left; font: 11px verdana; color: red;"></div>
+                                        <input type="hidden" id="score" runat="server" />
+                                        <asp:Label ID="LabelStarPrompt" Text="*" runat="server" ForeColor="Red" Visible="false"></asp:Label>
                                     </td>
-            </tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100px; height: 30px">评价：<span style="color: red">*</span></td>
+                                    <td style="height: 30px; width: 500px;">
+                                        <asp:TextBox ID="TextBoxComment" runat="server" Height="200px" MaxLength="2000" TextMode="MultiLine" Width="450px"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBoxComment" Display="Dynamic" ErrorMessage="*" ForeColor="Red" ValidationExpression="[\s\S]{10,2000}"></asp:RegularExpressionValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxComment" Display="Dynamic" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    </td>
+                                    <td style="height: 30px"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100px; height: 30px">&nbsp;</td>
+                                    <td style="font-size: 12px; width: 500px;">10-2000字</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100px; height: 30px">上传图片：</td>
+                                    <td style="width: 500px">
+                                        <div id="f" style="background-color: #ff6600; width: 350px;">
+                                            <div id="zhi">
+                                                <div id="content">
+                                                    <input id="File1" runat="server" type="file" /><input id="jia" type="button" value="添加" /><input id="jian" type="button" value="删除" />
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input id="tianjia" type="button" value="添加新项" /></td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100px; height: 30px">&nbsp;</td>
+                                    <td style="font-size: 12px; color: darkgray; width: 500px;">单张图片不要超过2MB，总共不要超过5MB，只支持jpg,png,gif图片格式</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100px; height: 30px">&nbsp;</td>
+                                    <td style="width: 500px">
+                                        <asp:Label ID="LabelPrompt" runat="server" ForeColor="Red"></asp:Label>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100px; height: 30px">&nbsp;</td>
+                                    <td style="width: 500px">
+                                        <asp:Button ID="Submit" runat="server" Text="提  交" OnClick="Submit_Click" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:CheckBox ID="CheckBoxAnonymity" runat="server" Text="是否匿名" />
+                                    </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100px; height: 30px">&nbsp;</td>
+                                    <td style="width: 500px">&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
     </table>
-        </td></tr></table>
     <script type="text/javascript">
         $('#CommentGrade').raty({
             path: "../Images/Ratyimg",

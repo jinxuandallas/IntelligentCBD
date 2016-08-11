@@ -9,10 +9,11 @@
         }
     </style>
     <asp:ScriptManager ID="ScriptManager3" runat="server"></asp:ScriptManager>
+    <table style="border: 1px solid #d8d8d8;width:800px"><tr><td>
     <asp:ListView ID="ListViewComment" runat="server" OnItemDataBound="ListViewComment_ItemDataBound">
         <LayoutTemplate>
-            <div id="itemPlaceholder" style="width: 1000px" runat="server"></div>
-            <div style="width: 1000px; text-align: center; background-color: #CCCCCC; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000;">
+            <div id="itemPlaceholder" style="width: 800px" runat="server"></div>
+            <div style="width: 800px; text-align: center; background-color: #CCCCCC; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000;">
                 <asp:DataPager ID="DataPager1" PageSize="10" runat="server">
                     <Fields>
                         <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
@@ -77,7 +78,7 @@
             </div>
         </ItemTemplate>
     </asp:ListView>
-
+    </td></tr></table>
     <script>
         $(function () {
             $(".raty").each(function () {

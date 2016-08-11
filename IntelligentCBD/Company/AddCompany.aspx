@@ -3,14 +3,18 @@
     <script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript" src="/js/xheditor-1.2.2.min.js"></script>
 <script type="text/javascript" src="/js/xheditor_lang/zh-cn.js"></script>
-    <table style="width:100%;">
+    <table style="width:1000px;" class="MainTable">
             <tr>
-                <td class="TableTitle" colspan="2">添加新企业</td>
+                <td class="TableTitle"  style="width:120px">添加新企业</td>
+                <td></td>
                 <td style="height: 20px; width: 80px;"></td>
                 <td style="height: 20px; width: 90px;">&nbsp;</td>
                 <td style="height: 20px">&nbsp;</td>
                 <td style="height: 20px">&nbsp;</td>
             </tr>
+        <tr>
+                                <td colspan="6" style="padding: 0px">
+                                    <table class="TableBox">
             <tr>
                 <td style="height: 20px; width: 90px;"></td>
                 <td style="height: 20px; width: 150px;"></td>
@@ -140,6 +144,9 @@
                 <td style="height: 18px">
                     </td>
             </tr>
+                                          </table>
+                                    </td>
+            </tr>
             <tr>
                 <td style="width: 90px; height: 30px;"></td>
                 <td style="height: 30px; " colspan="2">
@@ -149,6 +156,7 @@
                 <td style="height: 30px"></td>
                 <td style="height: 30px"></td>
             </tr>
+                                      
             <tr>
                 <td style="width: 90px; height: 30px;">宣传内容：</td>
                 <td style="height: 30px; " colspan="2">
