@@ -17,7 +17,7 @@ namespace IntelligentCBD.Test
         protected void Page_Load(object sender, EventArgs e)
         {
             //测试用
-            Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
+            //Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
 
             if (Session["CompanyID"] == null || Session["CompanyID"].ToString().Trim() == "")
                 Response.Redirect("~/Account/Login.aspx");

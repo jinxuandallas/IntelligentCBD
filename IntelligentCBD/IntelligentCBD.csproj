@@ -133,6 +133,7 @@
     <Content Include="MasterPage\MenuSite.Master" />
     <Content Include="IndividualSite.sitemap" />
     <Content Include="CompanySite.sitemap" />
+    <None Include="Properties\PublishProfiles\IntelligentCBD.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
