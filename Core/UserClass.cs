@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 //using System.Web.Security;
 using System.Security.Cryptography;
 using System.Security;
+using System.Web;
 
 namespace Core
 {
@@ -249,6 +250,44 @@ namespace Core
             if (rtn == 1)
                 return true;
             return false;
+        }
+
+        /// <summary>
+        /// 添加密码申诉
+        /// </summary>
+        /// <param name="username">申诉人</param>
+        /// <param name="content">申诉内容（已经包括HTMLEncode）</param>
+        /// <returns>返回是否添加成功</returns>
+        public bool AddAppeal(string username,string content)
+        {
+            Guid id = Guid.NewGuid();
+            sql = "insert 密码申诉 (ID,申诉人,申诉内容) values(@ID,@username,@content)";
+            int rtn = ExecuteSql(sql, new SqlParameter[]
+            {
+                new SqlParameter("@ID",id),
+                new SqlParameter("@username",username),
+                new SqlParameter("@content",HttpUtility.HtmlEncode(content))
+            });
+            if (rtn == 1)
+                return true;
+            return false;
+        }
+
+        /// <summary>
+        /// 判断用户是否以前申诉过
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <returns>true为以前申诉过，false为未申诉过</returns>
+        public bool HasAppel(string username)
+        {
+            sql = "select ID from 密码申诉 where 申诉人=@username";
+            using (SqlDataReader sdr = GetDataReader(sql, new SqlParameter[] { new SqlParameter("@username", username) }))
+            {
+                if (sdr.Read())
+                    return true;
+                else
+                    return false;
+            }
         }
     }
 }

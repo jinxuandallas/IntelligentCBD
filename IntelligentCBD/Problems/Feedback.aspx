@@ -2,75 +2,87 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="../scripts/jquery-1.8.2.min.js"></script>
-    <table style="width: 1000px; font-size: 14px; height: 30px">
+    <table>
         <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td colspan="3" style="background-color: #F3F3F3; height: 35px"><span style="color: red;font-size:18px">&nbsp;反馈问题：*</span>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td style="width: 500px;">
-                &nbsp;
-            </td>
-            <td></td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td style="height: 30px">
-                <asp:textbox id="TextBoxProblem" runat="server" height="200px" maxlength="2000" textmode="MultiLine" width="450px"></asp:textbox>
-                <asp:regularexpressionvalidator id="RegularExpressionValidator1" runat="server" controltovalidate="TextBoxProblem" display="Dynamic" errormessage="*" forecolor="Red" validationexpression="[\s\S]{10,2000}"></asp:regularexpressionvalidator>
-                <asp:requiredfieldvalidator id="RequiredFieldValidator1" runat="server" controltovalidate="TextBoxProblem" display="Dynamic" errormessage="*" forecolor="Red"></asp:requiredfieldvalidator>
-            </td>
-            <td style="height: 30px"></td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td style="font-size: 12px">10-2000字</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">上传图片：</td>
+            <td style="width: 200px"></td>
             <td>
-                <div id="f" style="background-color: #ff6600; width: 350px;">
-                    <div id="zhi">
-                        <div id="content">
-                            <input id="File1" runat="server" type="file" /><input id="jia" type="button" value="添加" /><input id="jian" type="button" value="删除" />
-                            <br />
-                        </div>
-                    </div>
-                </div>
-                <input id="tianjia" type="button" value="添加新项" /></td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td style="font-size: 12px; color: darkgray">单张图片不要超过2MB，总共不要超过5MB，只支持jpg,png,gif图片格式</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td>
-                <asp:label id="LabelPrompt" runat="server" forecolor="Red"></asp:label>
+                <table style="width: 600px; font-size: 14px; height: 30px" class="MainTable">
+                    <tr>
+                        <td style="width: 100px; height: 30px">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color: #F3F3F3; height: 35px"><span style="color: red; font-size: 18px">&nbsp;反馈问题：*</span>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td colspan="3" style="padding: 0px">
+                            <table class="TableBox">
+                    <tr>
+                        <td style="width: 100px; height: 30px">&nbsp;</td>
+                        <td style="width: 500px;">&nbsp;
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px; height: 30px">&nbsp;</td>
+                        <td style="height: 30px">
+                            <asp:TextBox ID="TextBoxProblem" runat="server" Height="200px" MaxLength="2000" TextMode="MultiLine" Width="450px"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBoxProblem" Display="Dynamic" ErrorMessage="*" ForeColor="Red" ValidationExpression="[\s\S]{10,2000}"></asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxProblem" Display="Dynamic" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </td>
+                        <td style="height: 30px"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px; height: 30px">&nbsp;</td>
+                        <td style="font-size: 12px">10-2000字</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 120px; height: 30px;font-size:14px">上传图片：</td>
+                        <td>
+                            <div id="f" style="background-color: #ff6600; width: 350px;">
+                                <div id="zhi">
+                                    <div id="content">
+                                        <input id="File1" runat="server" type="file" /><input id="jia" type="button" value="添加" /><input id="jian" type="button" value="删除" />
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <input id="tianjia" type="button" value="添加新项" /></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px; height: 30px">&nbsp;</td>
+                        <td style="font-size: 12px; color: darkgray">单张图片不要超过2MB，总共不要超过5MB，只支持jpg,png,gif图片格式</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px; height: 30px">&nbsp;</td>
+                        <td>
+                            <asp:Label ID="LabelPrompt" runat="server" ForeColor="Red"></asp:Label>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px; height: 30px">&nbsp;</td>
+                        <td>
+                            <asp:Button ID="Submit" runat="server" Text="提  交" OnClick="Submit_Click" Style="height: 21px" />
+                            &nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px; height: 30px">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                                </table>
+                            </td>
+                         </tr>
+                </table>
             </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td>
-                <asp:button id="Submit" runat="server" text="提  交" onclick="Submit_Click" style="height: 21px" />
-                &nbsp;&nbsp;&nbsp;
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 30px">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
         </tr>
     </table>
     <script type="text/javascript">

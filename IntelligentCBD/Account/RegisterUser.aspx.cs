@@ -48,7 +48,7 @@ namespace IntelligentCBD.Account
             //Label1.Text = "";
 
             //跨目录要用"../default.aspx"的形式
-            if (achieve) Response.Redirect("Login.aspx?url=" + System.Web.HttpUtility.UrlEncode("../default.aspx"));
+            if (achieve) Response.Redirect("Login.aspx?url=" + System.Web.HttpUtility.UrlEncode("~/default.aspx"));
             else Label1.Text = "注册不成功";
         }
     }

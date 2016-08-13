@@ -6,6 +6,7 @@
 <head title="注册用户" runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <link href="../Css/MainStyleSheet.css" rel="stylesheet" />
     <style type="text/css">
         .auto-style1 {
             width: 100px;
@@ -42,12 +43,16 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <!--<asp:TextBox ID="TextBox1" runat="server" AutoPostBack="True" onblur="alert('xx')" OnTextChanged="UserName_TextChanged"></asp:TextBox>-->
-                <table style="width:100%;">
+                <table><tr><td style="width:200px"></td><td>
+                <table style="width:800px;" class="MainTable">
                    <tr> 
-                    <td style="background-color: #0066ff; text-align: center; height: 20px;" class="auto-style6">注册用户</td>
+                    <td style="width:100px" class="TableTitle">注册用户</td>
                 <td style="height: 20px;"></td>
                 <td style="height: 20px"></td>
             </tr>
+                    <tr>
+                                <td colspan="3" style="padding: 0px">
+                                    <table class="TableBox">
             <tr>
                 <td style="height: 20px; "></td>
                 <td style="height: 20px; "></td>
@@ -80,12 +85,15 @@
                         </td>
                         <td>&nbsp;</td>
                     </tr>
+                                        </table>
+                                    </td>
+                        </tr>
                 </table>
                 <br />
-                <br />
+                    </td></tr></table>
             </ContentTemplate>
         </asp:UpdatePanel>
-        <asp:Button ID="CreateUser" runat="server" Text="注册" OnClick="CreateUser_Click" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="CreateUser" runat="server" Text="注册" OnClick="CreateUser_Click" />
     </div>
     </form>
 </body>

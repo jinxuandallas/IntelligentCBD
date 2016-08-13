@@ -17,7 +17,7 @@ namespace IntelligentCBD.Comment
         {
             ///因为引用的是MainSite.Master，所以都要重新判断Session的Username、CompanyID属性是否存在
             //测试用
-            Session["Username"] = System.Configuration.ConfigurationManager.AppSettings["username"];
+            //Session["Username"] = System.Configuration.ConfigurationManager.AppSettings["username"];
             //测试用
             //Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
 

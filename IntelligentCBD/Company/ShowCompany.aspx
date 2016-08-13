@@ -186,84 +186,90 @@
             vertical-align: top;
         }
     </style>
-    <table style="width: 900px">
+    <table style="width: 900px;margin:20px 10px 10px 100px">
         <tr>
-            <td class="auto-style6" rowspan="5">
-                <div id="slideBox" class="slideBox">
-                    <div class="hd">
-                        <asp:Repeater ID="Repeater1" runat="server">
-                            <HeaderTemplate>
-                                <ul>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <li><%# Eval("Num")%></li>
-                            </ItemTemplate>
-                            <FooterTemplate></ul></FooterTemplate>
-                        </asp:Repeater>
-                    </div>
-                    <div class="bd">
-                        <asp:Repeater ID="Repeater2" runat="server">
-                            <HeaderTemplate>
-                                <ul>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <li><a href='<%#Eval("图片地址").ToString().Replace("~","..") %>' target="_blank">
-                                    <img src='<%#Eval("图片地址").ToString().Replace("~","..") %>' /></a></li>
-                            </ItemTemplate>
-                            <FooterTemplate></ul></FooterTemplate>
-                        </asp:Repeater>
-                    </div>
+            <td colspan="3" style="padding: 0px">
+                <table class="TableBox" style="width: 900px">
+                    <tr>
+                        <td class="auto-style6" rowspan="5">
+                            <div id="slideBox" class="slideBox">
+                                <div class="hd">
+                                    <asp:Repeater ID="Repeater1" runat="server">
+                                        <HeaderTemplate>
+                                            <ul>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <li><%# Eval("Num")%></li>
+                                        </ItemTemplate>
+                                        <FooterTemplate></ul></FooterTemplate>
+                                    </asp:Repeater>
+                                </div>
+                                <div class="bd">
+                                    <asp:Repeater ID="Repeater2" runat="server">
+                                        <HeaderTemplate>
+                                            <ul>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <li><a href='<%#Eval("图片地址").ToString().Replace("~","..") %>' target="_blank">
+                                                <img src='<%#Eval("图片地址").ToString().Replace("~","..") %>' /></a></li>
+                                        </ItemTemplate>
+                                        <FooterTemplate></ul></FooterTemplate>
+                                    </asp:Repeater>
+                                </div>
 
-                    <!-- 下面是前/后按钮代码，如果不需要删除即可 -->
-                    <a class="prev" href="javascript:void(0)"></a>
-                    <a class="next" href="javascript:void(0)"></a>
+                                <!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+                                <a class="prev" href="javascript:void(0)"></a>
+                                <a class="next" href="javascript:void(0)"></a>
 
-                </div>
-            </td>
-            <td style="font-size: 20px; font-weight: bold" class="auto-style7">企业名称:</td>
-            <td colspan="3" style="vertical-align: top">
-                <asp:Label ID="LabelCompanyName" runat="server" Font-Size="18px" Width="400px" CssClass="WordWrap" Font-Bold="True"></asp:Label>
+                            </div>
+                        </td>
+                        <td style="font-size: 20px; font-weight: bold" class="auto-style7">企业名称:</td>
+                        <td colspan="3" style="vertical-align: top">
+                            <asp:Label ID="LabelCompanyName" runat="server" Font-Size="18px" Width="400px" CssClass="WordWrap" Font-Bold="True"></asp:Label>
 
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 200px; height: 24px" colspan="3">
-                <div style="font: 11px verdana; width: 300px" id="BigStar"></div>
-            </td>
-            <td>
-                <a id="erra" href="ReportCompanyError.aspx?comID=<%=companyID %>" target="_blank">
-                    <img id="error" title="报错" src="../Images/报错.png" />信息有误</a>
-            </td>
-        </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px; height: 24px" colspan="3">
+                            <div style="font: 11px verdana; width: 300px" id="BigStar"></div>
+                        </td>
+                        <td>
+                            <a id="erra" href="ReportCompanyError.aspx?comID=<%=companyID %>" target="_blank">
+                                <img id="error" title="报错" src="../Images/报错.png" />信息有误</a>
+                        </td>
+                    </tr>
 
-        <tr>
-            <td class="auto-style7">联系电话：</td>
-            <td class="auto-style13">
-                <asp:Label ID="LabelPhone" runat="server" CssClass="WordWrap"></asp:Label>
-            </td>
-            <td class="auto-style16">联系人：</td>
-            <td class="auto-style10">
-                <asp:Label ID="LabelContact" runat="server" CssClass="WordWrap"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style7">所属载体：</td>
-            <td class="auto-style13">
-                <asp:Label ID="LabelVector" runat="server"></asp:Label>
-            </td>
-            <td class="auto-style16">注册资本：</td>
-            <td class="auto-style10">
-                <asp:Label ID="LabelCapital" runat="server"></asp:Label>&nbsp;RMB
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style7">地址：</td>
-            <td class="auto-style19">
-                <asp:Label ID="LabelAddress" runat="server" CssClass="WordWrap"></asp:Label>
-            </td>
-            <td class="auto-style20">房间号：</td>
-            <td class="auto-style19">
-                <asp:Label ID="LabelRoomNum" runat="server" CssClass="WordWrap"></asp:Label>
+                    <tr>
+                        <td class="auto-style7">联系电话：</td>
+                        <td class="auto-style13">
+                            <asp:Label ID="LabelPhone" runat="server" CssClass="WordWrap"></asp:Label>
+                        </td>
+                        <td class="auto-style16">联系人：</td>
+                        <td class="auto-style10">
+                            <asp:Label ID="LabelContact" runat="server" CssClass="WordWrap"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style7">所属载体：</td>
+                        <td class="auto-style13">
+                            <asp:Label ID="LabelVector" runat="server"></asp:Label>
+                        </td>
+                        <td class="auto-style16">注册资本：</td>
+                        <td class="auto-style10">
+                            <asp:Label ID="LabelCapital" runat="server"></asp:Label>&nbsp;RMB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style7">地址：</td>
+                        <td class="auto-style19">
+                            <asp:Label ID="LabelAddress" runat="server" CssClass="WordWrap"></asp:Label>
+                        </td>
+                        <td class="auto-style20">房间号：</td>
+                        <td class="auto-style19">
+                            <asp:Label ID="LabelRoomNum" runat="server" CssClass="WordWrap"></asp:Label>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
         <tr>
@@ -447,13 +453,6 @@
                                     <asp:QueryStringParameter Name="所属企业" QueryStringField="comID" Type="String" />
                                 </SelectParameters>
                             </asp:SqlDataSource>--%>
-                        </ContentTemplate>
-                    </ajaxToolkit:TabPanel>
-                    <ajaxToolkit:TabPanel ID="TabPanel4" runat="server" HeaderText="TabPanel4" OnDemandMode="Once">
-                        <ContentTemplate>
-                            I'm tab 4. Hey, I&#39;m loaded only once!<br />
-                            I was rendered at
-                    <%= DateTime.Now.ToString("T") %>
                         </ContentTemplate>
                     </ajaxToolkit:TabPanel>
                 </ajaxToolkit:TabContainer>

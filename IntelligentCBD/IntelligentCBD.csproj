@@ -125,6 +125,7 @@
     <Content Include="Images\title4.png" />
     <Content Include="Images\报错.png" />
     <Content Include="Images\报错2.png" />
+    <Content Include="Images\青岛中央商务区鸟瞰2b.jpg" />
     <Content Include="js\jquery-1.4.4.min.js" />
     <Content Include="js\xheditor-1.2.2.min.js" />
     <Content Include="packages.config" />
@@ -132,6 +133,7 @@
     <Content Include="MasterPage\MenuSite.Master" />
     <Content Include="IndividualSite.sitemap" />
     <Content Include="CompanySite.sitemap" />
+    <None Include="Properties\PublishProfiles\IntelligentCBD.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

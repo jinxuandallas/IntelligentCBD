@@ -12,7 +12,7 @@ namespace IntelligentCBD
         protected void Page_Load(object sender, EventArgs e)
         {
             //测试用
-            Response.Redirect("~/Search/Result.aspx?query=谢谢");
+            //Response.Redirect("~/Search/Result.aspx?query=谢谢");
         }
 
         protected void ImgBtnSearch_Click(object sender, ImageClickEventArgs e)

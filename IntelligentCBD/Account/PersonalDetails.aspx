@@ -6,12 +6,16 @@
              width: 25px;
          }
             </style>
-    <table style="width:100%;">
+    <table style="width:500px;" class="MainTable">
             <tr>
-                <td class="TableTitle">用户信息</td>
+                <td class="TableTitle" style="width:100px">用户信息</td>
                 <td style="height: 20px;"></td>
                 <td style="height: 20px"></td>
             </tr>
+        <tr>
+                                <td colspan="3" style="padding: 0px">
+                                    <table class="TableBox">
+
             <tr>
                 <td style="height: 20px; "></td>
                 <td style="height: 20px; "></td>
@@ -87,6 +91,9 @@
                 &nbsp;</td>
                 <td>
                     &nbsp;</td>
+            </tr>
+                                        </table>
+                                    </td>
             </tr>
             <!--下一步加入上传头像功能  -->
         </table>

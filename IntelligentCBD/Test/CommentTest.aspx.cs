@@ -15,7 +15,7 @@ namespace IntelligentCBD.Test
         protected void Page_Load(object sender, EventArgs e)
         {
             //测试用
-            Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
+            //Session["CompanyID"] = System.Configuration.ConfigurationManager.AppSettings["companyID"];
 
             commentc = new CommentClass();
         }

@@ -22,6 +22,42 @@ namespace IntelligentCBD.Account {
         protected global::System.Web.UI.WebControls.MultiView MultiView1;
         
         /// <summary>
+        /// UserView 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View UserView;
+        
+        /// <summary>
+        /// TextBoxUsername 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxUsername;
+        
+        /// <summary>
+        /// LabelUsername 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelUsername;
+        
+        /// <summary>
+        /// ButtonUsername 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonUsername;
+        
+        /// <summary>
         /// Secret 控件。
         /// </summary>
         /// <remarks>
@@ -85,6 +121,15 @@ namespace IntelligentCBD.Account {
         protected global::System.Web.UI.WebControls.TextBox TextBoxAppeal;
         
         /// <summary>
+        /// RequiredFieldValidator3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        
+        /// <summary>
         /// SubmitAppeal 控件。
         /// </summary>
         /// <remarks>
@@ -92,6 +137,15 @@ namespace IntelligentCBD.Account {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SubmitAppeal;
+        
+        /// <summary>
+        /// LabelAppealNotice 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelAppealNotice;
         
         /// <summary>
         /// ChangePassword 控件。

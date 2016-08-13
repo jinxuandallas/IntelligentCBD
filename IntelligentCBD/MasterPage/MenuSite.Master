@@ -4,71 +4,92 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link href="~/Css/MainStyleSheet.css" rel="stylesheet" type="text/css"  runat="server"/>
-    <style type="text/css">
+    <%--<title>智慧CBD</title>
+    <meta name="author" content="智慧CBD" />
+    <meta name="keywords" content="智慧,搜索,企业,商务,中央商务区,休闲,娱乐,餐饮,点评" />--%>
+    <link href="~/Css/MainStyleSheet.css" rel="stylesheet" type="text/css" runat="server" />
+    <style type="text/css" style="border-style: solid; border-width: 0px 0px 1px 0px; border-color: #d8d8d8;">
         .auto-style1 {
             width: 250px;
         }
+
         .auto-style2 {
             width: 250px;
             height: 20px;
         }
+
         .auto-style3 {
             height: 35px;
         }
+
         .auto-style4 {
             width: 600px;
             height: 20px;
         }
+
         .auto-style5 {
             width: 50%;
         }
-        
+        .auto-style6 {
+            width: 250px;
+            height: 188px;
+        }
+        .auto-style7 {
+            width: 900px;
+            height: 188px;
+        }
+        .table{
+            border-style: solid; border-width:1px 1px 0px 1px; border-color: #d8d8d8;
+        }
+        .item{
+            border-style: solid; border-width:0px 0px 1px 0px; border-color: #d8d8d8;
+        }
     </style>
-    
+
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-            <table style="width:1200px;border-collapse: collapse; border-spacing: 0px;">
+        <div>
+            <table style="width: 1200px; border-collapse: collapse; border-spacing: 0px;">
                 <tr style="background-color: #0066FF; border-width: 0px; padding: 0px; margin: 0px; border-spacing: 0px">
-                    <td style="padding: 0px; background-color: #0066FF;" class="auto-style2">&nbsp;&nbsp;<a href="~\default.aspx" style="font-size:14px; color: white; text-decoration: none;" runat="server">首页</a></td>
-                    <td style="padding: 0px; background-color: #0066FF;" class="auto-style4" ></td>
+                    <td style="padding: 0px; background-color: #0066FF;" class="auto-style2">&nbsp;&nbsp;<a href="~\default.aspx" style="font-size: 14px; color: white; text-decoration: none;" runat="server">首页</a></td>
+                    <td style="padding: 0px; background-color: #0066FF;" class="auto-style4"></td>
                     <td style="padding: 0px; background-color: #0066FF; color: #FFFFFF;" class="auto-style3">
-                        <asp:LoginName ID="LoginName1" runat="server" Font-Size="15px" FormatString="您好，{0}"/>
-&nbsp;<asp:LoginStatus ID="LoginStatus1" runat="server" Font-Size="14px" LogoutPageUrl="~\default.aspx" ForeColor="White" LogoutAction="RedirectToLoginPage" LogoutText="退出" OnLoggedOut="LoginStatus1_LoggedOut" />
-                    &nbsp;<a href="~\Problems\Feedback.aspx" style="font-size:14px; color: white" runat="server" target="_blank">反馈问题</a></td>
+                        <asp:LoginName ID="LoginName1" runat="server" Font-Size="15px" FormatString="您好，{0}" />
+                        &nbsp;<asp:LoginStatus ID="LoginStatus1" runat="server" Font-Size="14px" LogoutPageUrl="~\default.aspx" ForeColor="White" LogoutAction="RedirectToLoginPage" LogoutText="退出" OnLoggedOut="LoginStatus1_LoggedOut" />
+                        &nbsp;<a href="~/Account/PersonalDetails.aspx" style="font-size: 14px; color: white" runat="server">管理</a>
+                        &nbsp;<a href="~\Problems\Feedback.aspx" style="font-size: 14px; color: white" runat="server" target="_blank">反馈问题</a></td>
 
                 </tr>
-                 <tr>
+                <tr>
                     <td class="auto-style1">&nbsp;</td>
                     <td class="auto-style5">&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style1" style="vertical-align:top">
-                        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" StaticDisplayLevels="2" BackColor="#B5C7DE" DynamicHorizontalOffset="3" Font-Names="Verdana" Font-Size="1em" ForeColor="#284E98" StaticSubMenuIndent="50px">
-                           <LevelMenuItemStyles>
-                                <asp:MenuItemStyle BackColor="#0066ff" Font-Underline="False" ForeColor="White" Width="150px" />
-                           </LevelMenuItemStyles>
+                    <td class="auto-style6" style="vertical-align: top">
+                        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" StaticDisplayLevels="2"  DynamicHorizontalOffset="3" Font-Names="Verdana" Font-Size="1em" ForeColor="#284E98"   CssClass="table" StaticSubMenuIndent="50px" RenderingMode="Table">                           
+                             <LevelMenuItemStyles>
+                                <asp:MenuItemStyle Font-Underline="False"   ForeColor="Black" Font-Bold="true"  />
+                            </LevelMenuItemStyles>
                             <LevelSubMenuStyles>
-                <asp:SubMenuStyle Font-Underline="false"  />
-            </LevelSubMenuStyles>
-             <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
+                                <asp:SubMenuStyle Font-Underline="false" />
+                            </LevelSubMenuStyles>
+                            <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
                             <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
                             <DynamicMenuStyle BackColor="#B5C7DE" />
                             <DynamicSelectedStyle BackColor="#507CD1" />
                             <StaticHoverStyle BackColor="#ff6600" ForeColor="White" />
-                            <StaticMenuItemStyle HorizontalPadding="20px"  VerticalPadding="10px" />
+                            <StaticMenuItemStyle HorizontalPadding="20px" VerticalPadding="10px" CssClass="item" />
                             <StaticSelectedStyle BackColor="#284E98" ForeColor="White" />
                         </asp:Menu>
                     </td>
-                    <td colspan="2" style="width:900px;vertical-align:top;text-align:left">
+                    <td colspan="2" style="vertical-align: top; text-align: left" class="auto-style7">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-
-                        </asp:ContentPlaceHolder></td>
+                        </asp:ContentPlaceHolder>
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
@@ -76,9 +97,9 @@
                     <td>&nbsp;</td>
                 </tr>
             </table>
-        
-       
-    </div>
+
+
+        </div>
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="Individualsitemap" ShowStartingNode="False" />
     </form>
 </body>

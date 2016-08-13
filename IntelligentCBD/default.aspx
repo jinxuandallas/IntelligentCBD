@@ -10,19 +10,19 @@
      <table style="width:1200px;">
         <tr>
             <td style="width: 250px">&nbsp;</td>
-            <td style="width: 700px">&nbsp;</td>
+            <td style="width: 700px; height: 50px;">&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
          <tr>
             <td style="width: 250px">&nbsp;</td>
-            <td style="width: 700px">&nbsp;
+            <td style="width: 700px; height: 100px;">&nbsp;
                 <img alt="" src="Images/title3.png" /></td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td style="width: 250px; height: 40px"></td>
             <td style="width: 700px; height: 40px;vertical-align:bottom">
-                &nbsp;<asp:TextBox ID="TextBoxSearch" runat="server" BorderColor="#186AE4" BorderStyle="Solid" BorderWidth="1px" Height="25px" Width="400px" Wrap="False" MaxLength="100" /><asp:ImageButton ID="ImgBtnSearch" runat="server" ImageUrl="~/Images/Search.jpg"   CssClass="imgbtn" OnClick="ImgBtnSearch_Click" />
+                &nbsp;<asp:TextBox ID="TextBoxSearch" runat="server" BorderColor="#186AE4" BorderStyle="Solid" BorderWidth="1px" Height="25px" Width="450px" Wrap="False" MaxLength="100" /><asp:ImageButton ID="ImgBtnSearch" runat="server" ImageUrl="~/Images/Search.jpg"   CssClass="imgbtn" OnClick="ImgBtnSearch_Click" />
             </td>
             <td class="auto-style3" style="height: 40px"></td>
         </tr>

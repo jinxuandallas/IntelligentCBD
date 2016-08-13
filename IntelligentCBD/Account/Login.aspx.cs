@@ -43,6 +43,9 @@ namespace IntelligentCBD.Account
 
                 Session["Username"] = UserLogin.UserName;
 
+                //Response.Redirect(Request.Url.ToString());
+
+                //return;
                 //判断是否有QueryString["url"]，如有直接跳转到参数指定的页面
                 if (Request.QueryString["url"] != null)
                     Response.Redirect(System.Web.HttpUtility.UrlDecode(Request.QueryString["url"].ToString()));
