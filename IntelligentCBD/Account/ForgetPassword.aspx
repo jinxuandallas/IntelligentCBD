@@ -175,6 +175,13 @@
                                         </tr>
                                         <tr>
                                             <td>&nbsp;</td>
+                                            <td>联系电话：<asp:TextBox ID="AppealPhone" runat="server" MaxLength="20"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="AppealPhone" Display="Dynamic" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
                                             <td>
                                                 <asp:Button ID="SubmitAppeal" runat="server" Text="提交" OnClick="SubmitAppeal_Click" />
                                                 &nbsp;

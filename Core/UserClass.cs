@@ -258,15 +258,16 @@ namespace Core
         /// <param name="username">申诉人</param>
         /// <param name="content">申诉内容（已经包括HTMLEncode）</param>
         /// <returns>返回是否添加成功</returns>
-        public bool AddAppeal(string username,string content)
+        public bool AddAppeal(string username,string content,string phone)
         {
             Guid id = Guid.NewGuid();
-            sql = "insert 密码申诉 (ID,申诉人,申诉内容) values(@ID,@username,@content)";
+            sql = "insert 密码申诉 (ID,申诉人,申诉内容,联系电话) values(@ID,@username,@content,@phone)";
             int rtn = ExecuteSql(sql, new SqlParameter[]
             {
                 new SqlParameter("@ID",id),
                 new SqlParameter("@username",username),
-                new SqlParameter("@content",HttpUtility.HtmlEncode(content))
+                new SqlParameter("@content",HttpUtility.HtmlEncode(content)),
+                new SqlParameter("@phone",HttpUtility.HtmlEncode(phone))
             });
             if (rtn == 1)
                 return true;
