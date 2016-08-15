@@ -46,15 +46,23 @@ namespace IntelligentCBD.Account
                 //Response.Redirect(Request.Url.ToString());
 
                 //return;
+
                 //判断是否有QueryString["url"]，如有直接跳转到参数指定的页面
+                //此处只能使用UserLogin.DestinationPageUrl =""，不能使用Response.Redirect，否则登陆控件没有刷新
                 if (Request.QueryString["url"] != null)
-                    Response.Redirect(System.Web.HttpUtility.UrlDecode(Request.QueryString["url"].ToString()));
+                    UserLogin.DestinationPageUrl = System.Web.HttpUtility.UrlDecode(Request.QueryString["url"].ToString());
 
                 //返回登录前网页
-                if (ViewState["UrlReferrer"] != null)
+                else if (ViewState["UrlReferrer"] != null)
                     UserLogin.DestinationPageUrl = ViewState["UrlReferrer"].ToString();
+                else
+                    UserLogin.DestinationPageUrl = "~/default.aspx";
 
-                
+
+
+
+
+
             }
         }
     }

@@ -42,7 +42,7 @@ namespace IntelligentCBD.Account
                 return;
             }
 
-            bool result=uc.AddAppeal(username, TextBoxAppeal.Text);
+            bool result=uc.AddAppeal(username, TextBoxAppeal.Text,AppealPhone.Text);
             if (result)
                 LabelAppealNotice.Text = "申诉成功，请等待";
             else

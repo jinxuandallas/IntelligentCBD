@@ -41,7 +41,7 @@
                 <asp:TextBox ID="ConfirmPassword" runat="server" TextMode="Password"></asp:TextBox>
             </td>
             <td>
-                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="ConfirmPassword" ControlToValidate="NewPassword" Display="Dynamic" ErrorMessage="两次输入的密码需一致" ForeColor="Red"></asp:CompareValidator>
+                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="NewPassword" ControlToValidate="ConfirmPassword" Display="Dynamic" ErrorMessage="两次输入的密码需一致" ForeColor="Red"></asp:CompareValidator>
                         </td>
         </tr>
         <tr>
@@ -50,7 +50,7 @@
                 <asp:Label ID="Label_Status" runat="server" ForeColor="Red"></asp:Label>
             </td>
             <td>
-                <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="NewPassword" ControlToValidate="OriginalPassword" Display="Dynamic" ErrorMessage="原密码与新秘密需不一致" ForeColor="Red" Operator="NotEqual"></asp:CompareValidator>
+                <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="OriginalPassword" ControlToValidate="NewPassword" Display="Dynamic" ErrorMessage="原密码与新秘密需不一致" ForeColor="Red" Operator="NotEqual"></asp:CompareValidator>
             </td>
         </tr>
         <tr>
