@@ -80,7 +80,7 @@ namespace IntelligentCBD.Comment
                 Response.Write("<script>window.close();</script>");
             }
             else
-                LabelPrompt.Text = "上传不成功";
+                LabelPrompt.Text = result;
         }
     }
 }

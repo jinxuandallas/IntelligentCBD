@@ -159,7 +159,6 @@
     <Content Include="Upload\ProblemUploadPic\2016080705101368382.jpg" />
     <Content Include="Upload\ProblemUploadPic\2016080705101378681.jpg" />
     <Content Include="Upload\Upload.aspx" />
-    <Content Include="Upload\UploadCompanyPicture\2016062009453011.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -350,6 +349,7 @@
     <Folder Include="js\xheditor_skin\" />
     <Folder Include="Upload\CommentUploadPic\" />
     <Folder Include="Upload\ContentUploadPic\" />
+    <Folder Include="Upload\UploadCompanyPicture\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

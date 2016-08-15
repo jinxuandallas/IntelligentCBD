@@ -72,7 +72,7 @@ namespace Core
         {
             //检查文件个数
             if (uploadFiles.Count < 1 || uploadFiles.Count > 5)
-                return "上传失败";
+                return "上传文件数大于5或者小于1";
 
             //检查文件大小与类型
             string examResult = ExamFiles(uploadFiles);

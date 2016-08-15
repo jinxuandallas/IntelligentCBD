@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MenuSite.Master" AutoEventWireup="true" CodeBehind="EditCompany.aspx.cs" Inherits="IntelligentCBD.Company.EditCompany" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
-    <script type="text/javascript" src="/js/xheditor-1.2.2.min.js"></script>
-    <script type="text/javascript" src="/js/xheditor_lang/zh-cn.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../js/xheditor-1.2.2.min.js"></script>
+    <script type="text/javascript" src="../js/xheditor_lang/zh-cn.js"></script>
     <table style="width: 1000px;" class="MainTable">
         <tr>
             <td class="TableTitle" style="width: 120px">编辑企业</td>
