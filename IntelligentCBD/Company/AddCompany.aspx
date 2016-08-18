@@ -3,7 +3,7 @@
     <script type="text/javascript" src="../js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript" src="../js/xheditor-1.2.2.min.js"></script>
 <script type="text/javascript" src="../js/xheditor_lang/zh-cn.js"></script>
-    <table style="width:1000px;" class="MainTable">
+    <table style="width:800px;" class="MainTable">
             <tr>
                 <td class="TableTitle"  style="width:120px">添加新企业</td>
                 <td></td>

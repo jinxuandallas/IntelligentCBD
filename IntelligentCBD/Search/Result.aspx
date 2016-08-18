@@ -13,7 +13,7 @@
         }
         .raty{}
     </style>
-    <table style="width: 900px;">
+    <table style="width: 1000px;">
         <tr>
             <td class="auto-style1" style="width: 5px">&nbsp;</td>
             <td>&nbsp;</td>
@@ -36,7 +36,7 @@
 
     <asp:ListView ID="ListViewResult" runat="server">
         <LayoutTemplate>
-            <div id="itemPlaceholder" style="width: 1000px" runat="server"></div>
+            <div id="itemPlaceholder" style="width: 900px" runat="server"></div>
             <div style="width: 1000px; text-align: center; background-color: #CCCCCC; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000;">
                 <asp:DataPager ID="DataPager1" PageSize="10" runat="server">
                     <Fields>
@@ -53,7 +53,7 @@
         <ItemTemplate>
             <!-- 企业选项还可以设计的更漂亮些（企业名称横着一排显示）-->
             <!-- 每一个要显示的label都要用Server.HtmlEncode重新编码，防止JavaScript注入攻击-->
-            <div style="clear: both; padding: 5px; margin: 10px; width: 800px; height: 100px; font-size: 13px">
+            <div style="clear: both; padding: 5px; margin: 10px; width: 900px; height: 100px; font-size: 13px">
                 <div style="float: left; width: 150px; height: 100px; margin: 5px">
                     <div style="border: solid; border-width: 1px; border-color: black; padding: 2px">
                         <asp:ImageButton ID="Image企业宣传图片" ImageUrl='<%#t.TransformPicAddress( Eval("图片地址").ToString()) %>' OnClick="Image企业宣传图片_Click" Width="145px" Height="100px" runat="server" /></div>

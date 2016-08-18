@@ -69,7 +69,7 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style6" style="vertical-align: top">
+                    <td class="auto-style6" style="padding: 0px 0px 0px 20px; vertical-align:top">
                         <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" StaticDisplayLevels="2"  DynamicHorizontalOffset="3" Font-Names="Verdana" Font-Size="1em" ForeColor="#284E98"   CssClass="table" StaticSubMenuIndent="50px" RenderingMode="Table">                           
                              <LevelMenuItemStyles>
                                 <asp:MenuItemStyle Font-Underline="False"   ForeColor="Black" Font-Bold="true"  />
@@ -82,7 +82,7 @@
                             <DynamicMenuStyle BackColor="#B5C7DE" />
                             <DynamicSelectedStyle BackColor="#507CD1" />
                             <StaticHoverStyle BackColor="#ff6600" ForeColor="White" />
-                            <StaticMenuItemStyle HorizontalPadding="20px" VerticalPadding="10px" CssClass="item" />
+                            <StaticMenuItemStyle HorizontalPadding="20px" VerticalPadding="10px" CssClass="item" Width="200px" Height="40px" />
                             <StaticSelectedStyle BackColor="#284E98" ForeColor="White" />
                         </asp:Menu>
                     </td>

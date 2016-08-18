@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MainSite.Master" AutoEventWireup="true" CodeBehind="Feedback.aspx.cs" Inherits="IntelligentCBD.Problems.Feedback" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script src="../scripts/jquery-1.8.2.min.js"></script>
+    <script src="../js/jquery-1.4.4.min.js"></script>
     <table>
         <tr>
             <td style="width: 200px"></td>
@@ -117,6 +117,7 @@
             $("#jian").click(function () {
                 //查找上传控件的个数
                 var shu = $("#f").find("#content").size();
+                //alert(shu);
                 //如果有多，就删除掉
                 if (parseInt(shu) > 1) {
                     $(this).parent().remove();
