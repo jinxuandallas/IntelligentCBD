@@ -177,7 +177,11 @@ namespace Core
                 BusinessScope = sdr["经营范围"].ToString();
 
                 //此处Datetime需要转化一下
-                RegistrationDate = DateTime.Parse(sdr["注册日期"].ToString()).ToString("yyyy-MM-dd");
+                //要防止数据库中因导入出现注册日期字段为NULL
+                if (sdr["注册日期"] != DBNull.Value)
+                    RegistrationDate = DateTime.Parse(sdr["注册日期"].ToString()).ToString("yyyy-MM-dd");
+                else
+                    RegistrationDate = null;
                 RegisteredAddress = sdr["注册地"].ToString();
                 Contact = sdr["联系人"].ToString();
                 Phone = sdr["联系电话"].ToString();
@@ -226,7 +230,11 @@ namespace Core
                 BusinessScope = HttpUtility.HtmlEncode(sdr["经营范围"].ToString());
 
                 //此处Datetime需要转化一下
-                RegistrationDate = DateTime.Parse(sdr["注册日期"].ToString()).ToString("yyyy-MM-dd");
+                //要防止数据库中因导入出现注册日期字段为NULL
+                if (sdr["注册日期"] !=DBNull.Value)
+                    RegistrationDate = DateTime.Parse(sdr["注册日期"].ToString()).ToString("yyyy-MM-dd");
+                else
+                    RegistrationDate = null;
                 if (RegistrationDate == "1900-01-01")
                     RegistrationDate = string.Empty;
 
